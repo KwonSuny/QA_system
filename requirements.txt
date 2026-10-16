@@ -1,0 +1,15 @@
+# 已在 Python 3.12 开发环境中验证的直接运行依赖。
+# CUDA 用户请先按 README 安装适合硬件的 PyTorch 构建。
+torch==2.6.0
+transformers==4.49.0
+chromadb==1.5.9
+langchain-text-splitters==1.1.2
+fastapi==0.115.11
+uvicorn==0.34.0
+python-multipart==0.0.20
+pydantic==2.13.4
+openai==2.36.0
+SQLAlchemy==2.0.34
+cryptography==43.0.0
+python-docx==1.2.0
+pypdf==6.20.1

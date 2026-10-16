@@ -31,7 +31,7 @@ class RetrievedChunk:
 
 @dataclass
 class LocalRagConfig:
-    data_file: str = "database.txt"
+    data_file: str = str(Path(__file__).resolve().parent / "data" / "aidata.txt")
     db_path: str = "./knowledge_base"
     collection_name: str | None = None
     embedding_model_name: str = DEFAULT_EMBEDDING_MODEL
@@ -60,8 +60,6 @@ def _mean_pool(last_hidden_state: torch.Tensor, attention_mask: torch.Tensor) ->
 
 
 class LocalEmbeddingModel:
-    """Small wrapper around a Hugging Face encoder model for local embeddings."""
-
     def __init__(self, model_name: str, device: str | None = None) -> None:
         self.model_name = model_name
         self.device = _pick_device(device)

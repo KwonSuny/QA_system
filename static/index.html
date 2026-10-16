@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>知识库问答助手</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="app">
+    <!-- 左侧：知识库 + 历史对话 -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="brand">
+          <span class="logo">AI</span>
+          <div>
+            <div class="brand-name">知识库问答助手</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="section-header">
+          <span class="section-title">知识库</span>
+          <div class="section-actions">
+            <button class="icon-btn" id="btn-merge" title="融合知识库">⧉</button>
+            <button class="icon-btn" id="btn-new" title="新建知识库">＋</button>
+          </div>
+        </div>
+        <div class="kb-search">
+          <input type="text" id="kb-search" placeholder="搜索知识库...">
+        </div>
+        <div class="kb-list" id="kb-list"></div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="section-header">
+          <span class="section-title">历史对话</span>
+          <div class="section-actions">
+            <button class="icon-btn" id="btn-new-conv" title="新建对话">＋</button>
+          </div>
+        </div>
+        <div class="conv-list" id="conv-list"></div>
+      </div>
+    </aside>
+
+    <!-- 右侧：对话区 -->
+    <main class="main">
+      <header class="chat-header">
+        <div class="chat-header-left">
+          <div class="active-kb-name" id="active-kb-name">请选择知识库并开始提问</div>
+          <div class="active-kb-meta" id="active-kb-meta"></div>
+        </div>
+        <div class="chat-header-right">
+          <label class="param">模型
+            <select id="model-select">
+              <option value="local">本地模型</option>
+            </select>
+          </label>
+          <label class="param">片段
+            <input type="number" id="top-k" value="4" min="1" max="10">
+          </label>
+          <label class="param">温度
+            <input type="number" id="temperature" value="0.2" min="0" max="1" step="0.1">
+          </label>
+          <button class="btn btn-ghost" id="btn-api-settings" title="管理我的 API 模型">⚙ 我的 API</button>
+          <button class="btn btn-ghost" id="btn-admin" title="用户管理" style="display:none">用户管理</button>
+          <button class="btn btn-ghost" id="btn-clear" title="清空当前对话">清空对话</button>
+          <button class="btn btn-ghost" id="btn-logout" title="退出登录">退出</button>
+        </div>
+      </header>
+
+      <div class="messages" id="messages">
+        <div class="empty-state" id="empty-state">
+          <div class="empty-icon"></div>
+          <div class="empty-title">开始提问</div>
+          <div class="empty-sub">在左侧选择或新建知识库，然后输入你的问题</div>
+        </div>
+      </div>
+
+      <footer class="input-area">
+        <div class="input-box">
+          <textarea id="input" rows="1" placeholder="向知识库提问，Enter 发送，Shift+Enter 换行"></textarea>
+          <button class="btn-send" id="btn-send" title="发送">➤</button>
+        </div>
+        <div class="input-hint">答案由模型生成，可能不准确，请结合知识库原文核对。</div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- 新建/编辑知识库弹窗 -->
+  <div class="modal-overlay" id="kb-modal" hidden>
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="kb-modal-title">新建知识库</h3>
+        <button class="modal-close" id="kb-modal-close">×</button>
+      </div>
+      <div class="modal-body">
+        <label class="field">名称
+          <input type="text" id="kb-name" placeholder="例如：学院介绍">
+        </label>
+        <label class="field">简介
+          <input type="text" id="kb-desc" placeholder="一句话描述（可选）">
+        </label>
+        <div class="modal-text-label">
+          <span>正文</span>
+          <label class="upload-btn">选择文件（TXT / Markdown / DOCX / PDF）
+            <input type="file" id="kb-file" accept=".txt,.md,.text,.docx,.pdf">
+          </label>
+        </div>
+        <div class="file-info" id="kb-file-info" hidden></div>
+        <p class="field-hint">每个文件不超过20 MB。PDF需有可提取的文字；扫描件请先做OCR。</p>
+        <textarea id="kb-text" rows="8" placeholder="粘贴正文内容；或选择文件，文件内容不会显示在此处。"></textarea>
+        <p class="field-hint" id="kb-edit-hint" hidden>编辑时如需替换内容，请选择文件或粘贴新正文（将整体替换）。留空表示不修改正文。</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" id="kb-cancel">取消</button>
+        <button class="btn btn-primary" id="kb-save">保存</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 融合知识库弹窗 -->
+  <div class="modal-overlay" id="merge-modal" hidden>
+    <div class="modal">
+      <div class="modal-header">
+        <h3>融合知识库</h3>
+        <button class="modal-close" id="merge-close">×</button>
+      </div>
+      <div class="modal-body">
+        <p class="field-hint">勾选两个及以上知识库，将其正文合并为一个新的知识库。原库可选择保留或删除。</p>
+        <div class="merge-list" id="merge-list"></div>
+        <label class="field">新知识库名称
+          <input type="text" id="merge-name" placeholder="例如：学院资料合集">
+        </label>
+        <label class="checkbox-field">
+          <input type="checkbox" id="merge-delete"> 融合成功后删除原有知识库
+        </label>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" id="merge-cancel">取消</button>
+        <button class="btn btn-primary" id="merge-ok">融合</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 删除确认弹窗 -->
+  <div class="modal-overlay" id="confirm-modal" hidden>
+    <div class="modal modal-sm">
+      <div class="modal-header">
+        <h3 id="confirm-title">删除</h3>
+        <button class="modal-close" id="confirm-close">×</button>
+      </div>
+      <div class="modal-body">
+        <p id="confirm-text">确定要删除吗？此操作不可撤销。</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" id="confirm-cancel">取消</button>
+        <button class="btn btn-danger" id="confirm-ok">删除</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- API 设置弹窗 -->
+  <div class="modal-overlay" id="api-modal" hidden>
+    <div class="modal" style="width: 640px;">
+      <div class="modal-header">
+        <h3>我的 API 模型</h3>
+        <button class="modal-close" id="api-modal-close">×</button>
+      </div>
+      <div class="modal-body">
+        <p class="api-hint">这些配置仅属于当前账号，其他用户（含管理员）不可见。API Key 加密存储在本机，界面只显示脱敏后的值。</p>
+        <div class="api-list" id="api-list"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" id="api-close">关闭</button>
+        <button class="btn btn-primary" id="api-add">＋ 添加配置</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- API 添加/编辑表单弹窗 -->
+  <div class="modal-overlay" id="api-form-modal" hidden>
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="api-form-title">添加 API 配置</h3>
+        <button class="modal-close" id="api-form-close">×</button>
+      </div>
+      <div class="modal-body">
+        <label class="field">名称
+          <input type="text" id="api-name" placeholder="例如：阿里云百炼 DashScope">
+        </label>
+        <label class="field">Base URL
+          <input type="text" id="api-base-url" placeholder="https://dashscope.aliyuncs.com/compatible-mode/v1">
+        </label>
+        <label class="field">模型名
+          <input type="text" id="api-model" placeholder="例如：qwen-max">
+        </label>
+        <label class="field">API Key
+          <input type="password" id="api-key" placeholder="sk-..." autocomplete="off">
+        </label>
+        <p class="api-hint" id="api-key-hint" style="display:none">编辑时留空或保持脱敏值（含 ****）则不改动原 Key。</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" id="api-form-cancel">取消</button>
+        <button class="btn btn-primary" id="api-form-save">保存</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 管理员：用户管理弹窗 -->
+  <div class="modal-overlay" id="admin-modal" hidden>
+    <div class="modal" style="width: 660px;">
+      <div class="modal-header">
+        <h3>用户管理</h3>
+        <button class="modal-close" id="admin-modal-close">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="admin-stats" id="admin-stats"></div>
+        <div class="admin-create">
+          <input type="text" id="admin-new-username" placeholder="用户名">
+          <input type="password" id="admin-new-password" placeholder="密码（至少 6 位）">
+          <select id="admin-new-role">
+            <option value="user">普通用户</option>
+            <option value="admin">管理员</option>
+          </select>
+          <button class="btn btn-primary" id="admin-add-user">添加</button>
+        </div>
+        <div class="admin-user-list" id="admin-user-list"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" id="admin-close">关闭</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 输入弹窗（重命名对话 / 重置密码） -->
+  <div class="modal-overlay" id="prompt-modal" hidden>
+    <div class="modal modal-sm">
+      <div class="modal-header">
+        <h3 id="prompt-title">输入</h3>
+        <button class="modal-close" id="prompt-close">×</button>
+      </div>
+      <div class="modal-body">
+        <input type="text" id="prompt-input" placeholder="">
+        <p class="field-hint" id="prompt-hint" hidden></p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" id="prompt-cancel">取消</button>
+        <button class="btn btn-primary" id="prompt-ok">确定</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 登录 / 注册遮罩 -->
+  <div class="auth-overlay" id="auth-overlay">
+    <div class="auth-card">
+      <div class="auth-logo">AI</div>
+      <h2 class="auth-title">知识库问答助手</h2>
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-mode="login">登录</button>
+        <button class="auth-tab" data-mode="register">注册</button>
+      </div>
+      <label class="field">用户名
+        <input type="text" id="auth-user" placeholder="用户名" autocomplete="username">
+      </label>
+      <label class="field">密码
+        <input type="password" id="auth-pass" placeholder="密码" autocomplete="current-password">
+      </label>
+      <label class="field" id="auth-confirm-wrap" hidden>确认密码
+        <input type="password" id="auth-confirm" placeholder="再次输入密码" autocomplete="new-password">
+      </label>
+      <button class="btn btn-primary btn-block" id="auth-submit">登录</button>
+      <div class="auth-err" id="auth-err"></div>
+      <div class="auth-hint" id="auth-hint">默认管理员：admin / admin123（可用环境变量 APP_ADMIN_PASSWORD 修改）</div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+# Python / 本地开发环境
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+*.egg-info/
+
+# 密钥、用户数据、会话、向量索引和问答追踪
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+kb_store/
+knowledge_base/
+txt_knowledge_base/
+
+# 模型权重与下载缓存
+models/
+model/
+.cache/
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.onnx
+
+# 个人资料、实验输出和第三方仓库
+data/*
+!data/sample.md
+evaluation/external/
+output/
+release/
+T2Retrieval/
+old/
+*.log
+*.zip
+
+# 编辑器与操作系统
+.workbuddy/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

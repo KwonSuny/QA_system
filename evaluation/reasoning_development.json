@@ -1,0 +1,378 @@
+{
+  "schema_version": 1,
+  "name": "虚构机构·证据分析开发诊断",
+  "split": "development",
+  "annotation_status": "assistant_draft",
+  "annotation_notes": "仅用于开发诊断，标注由助手构造，待独立人工审核；不得宣称未见测试成绩。机构和数值均为虚构，不复用原留出题事实。",
+  "sources": {
+    "chengchuan": {
+      "path": "fixtures/chengchuan.txt",
+      "title": "澄川研究所",
+      "text_sha256": "b684e5b26f0b936c130a87f6c0b8bdc9262a9057e7611cce9337bb8582a81065"
+    },
+    "yunting": {
+      "path": "fixtures/yunting.txt",
+      "title": "云汀研究所",
+      "text_sha256": "b463c05ebecdec88a10ecf33ec8073c70e2f0718ba5148222de34b4fbaac0766"
+    }
+  },
+  "cases": [
+    {
+      "id": "reason-01",
+      "source_id": "chengchuan",
+      "category": "multi_evidence",
+      "question": "2023—2024年澄川研究所基础与应用项目合计、省级协作项目各多少？",
+      "answerable": true,
+      "reference_answer": "基础与应用项目合计12项，省级协作7项；不应新增基础和应用的单项要求。",
+      "evidence": [
+        {
+          "source_id": "chengchuan",
+          "quote": "基础与应用项目合计12项，省级协作项目7项。",
+          "start": 46,
+          "end": 68
+        }
+      ],
+      "history": [],
+      "retrieval_source_ids": [
+        "chengchuan",
+        "yunting"
+      ],
+      "fact_groups": [
+        "fiction.grouped"
+      ],
+      "annotation_status": "assistant_draft",
+      "annotation_review": {
+        "reviewer": null,
+        "approved": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "reason-02",
+      "source_id": "chengchuan",
+      "category": "unanswerable",
+      "question": "澄川研究所基础项目、应用项目分别有多少项？",
+      "answerable": false,
+      "reference_answer": "资料只有两类合计12项，不能确定各自数量。可说明合计口径，但不能将12项分配给任一单项。",
+      "evidence": [],
+      "history": [],
+      "retrieval_source_ids": [
+        "chengchuan",
+        "yunting"
+      ],
+      "fact_groups": [
+        "fiction.individual"
+      ],
+      "annotation_status": "assistant_draft",
+      "annotation_review": {
+        "reviewer": null,
+        "approved": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "reason-03",
+      "source_id": "chengchuan",
+      "category": "multi_evidence",
+      "question": "两研究所分别有什么局部榜单名次，这些指标可以直接比较机构整体水平吗？",
+      "answerable": true,
+      "reference_answer": "澄川机器视觉论文榜第9，云汀绿色材料行业专利榜第6；领域及指标不同，不能直接比较整体水平。",
+      "evidence": [
+        {
+          "source_id": "chengchuan",
+          "quote": "澄川研究所在机器视觉论文榜位列第9，该榜单仅统计机器视觉论文数量。",
+          "start": 122,
+          "end": 155
+        },
+        {
+          "source_id": "yunting",
+          "quote": "云汀研究所在绿色材料行业专利榜位列第6，该榜单仅统计绿色材料授权专利数量。",
+          "start": 55,
+          "end": 92
+        }
+      ],
+      "history": [],
+      "retrieval_source_ids": [
+        "chengchuan",
+        "yunting"
+      ],
+      "fact_groups": [
+        "fiction.scope"
+      ],
+      "annotation_status": "assistant_draft",
+      "annotation_review": {
+        "reviewer": null,
+        "approved": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "reason-04",
+      "source_id": "chengchuan",
+      "category": "analysis",
+      "question": "2024年澄川研究人员约占在编职工的百分之多少？",
+      "answerable": true,
+      "reference_answer": "32除以54，约59.26%（合理四舍五入均可），保留人员口径。",
+      "evidence": [
+        {
+          "source_id": "chengchuan",
+          "quote": "2024年度在编职工总数54人，其中研究人员32人，其他岗位22人。",
+          "start": 88,
+          "end": 122
+        }
+      ],
+      "history": [],
+      "retrieval_source_ids": [
+        "chengchuan",
+        "yunting"
+      ],
+      "fact_groups": [
+        "fiction.ratio"
+      ],
+      "annotation_status": "assistant_draft",
+      "annotation_review": {
+        "reviewer": null,
+        "approved": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "reason-05",
+      "source_id": "yunting",
+      "category": "unanswerable",
+      "question": "云汀研究所2024年的运营预算具体多少元？",
+      "answerable": false,
+      "reference_answer": "资料未提供运营预算金额，不能推算。",
+      "evidence": [],
+      "history": [],
+      "retrieval_source_ids": [
+        "chengchuan",
+        "yunting"
+      ],
+      "fact_groups": [
+        "fiction.budget"
+      ],
+      "annotation_status": "assistant_draft",
+      "annotation_review": {
+        "reviewer": null,
+        "approved": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "reason-06",
+      "source_id": "chengchuan",
+      "category": "analysis",
+      "question": "资料能证明导师制导致澄川论文数量上升吗？",
+      "answerable": true,
+      "reference_answer": "不能证明；只有同期变化，没有对照或因果研究。",
+      "evidence": [
+        {
+          "source_id": "chengchuan",
+          "quote": "2024年推行导师制，同期论文数量上升；资料只记录同期变化，未提供对照试验或因果研究。",
+          "start": 155,
+          "end": 198
+        }
+      ],
+      "history": [],
+      "retrieval_source_ids": [
+        "chengchuan",
+        "yunting"
+      ],
+      "fact_groups": [
+        "fiction.causal"
+      ],
+      "annotation_status": "assistant_draft",
+      "annotation_review": {
+        "reviewer": null,
+        "approved": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "reason-07",
+      "source_id": "chengchuan",
+      "category": "analysis",
+      "question": "澄川机器视觉论文榜第9，可以说它的全国综合排名也是第9吗？",
+      "answerable": true,
+      "reference_answer": "不能据局部论文榜推出全国综合排名；资料未提供全国综合排名。",
+      "evidence": [
+        {
+          "source_id": "chengchuan",
+          "quote": "澄川研究所在机器视觉论文榜位列第9，该榜单仅统计机器视觉论文数量。",
+          "start": 122,
+          "end": 155
+        }
+      ],
+      "history": [],
+      "retrieval_source_ids": [
+        "chengchuan",
+        "yunting"
+      ],
+      "fact_groups": [
+        "fiction.local"
+      ],
+      "annotation_status": "assistant_draft",
+      "annotation_review": {
+        "reviewer": null,
+        "approved": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "reason-08",
+      "source_id": "chengchuan",
+      "category": "multi_evidence",
+      "question": "两研究所2024年度在编职工和研究人员分别多少？",
+      "answerable": true,
+      "reference_answer": "澄川54、32；云汀64、41，不能混用机构数据。",
+      "evidence": [
+        {
+          "source_id": "chengchuan",
+          "quote": "2024年度在编职工总数54人，其中研究人员32人，其他岗位22人。",
+          "start": 88,
+          "end": 122
+        },
+        {
+          "source_id": "yunting",
+          "quote": "2024年度在编职工总数64人，其中研究人员41人。",
+          "start": 29,
+          "end": 55
+        }
+      ],
+      "history": [],
+      "retrieval_source_ids": [
+        "chengchuan",
+        "yunting"
+      ],
+      "fact_groups": [
+        "fiction.ownership"
+      ],
+      "annotation_status": "assistant_draft",
+      "annotation_review": {
+        "reviewer": null,
+        "approved": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "reason-09",
+      "source_id": "yunting",
+      "category": "multi_evidence",
+      "question": "请列齐云汀竞赛记录中的区域赛、晋级及总决赛数量和最好名次。",
+      "answerable": true,
+      "reference_answer": "区域赛3次冠军、4次亚军；8次晋级总决赛；总决赛1银2铜，最佳第12名。",
+      "evidence": [
+        {
+          "source_id": "yunting",
+          "quote": "竞赛记录：区域赛3次冠军、4次亚军；8次晋级总决赛，总决赛获1银2铜，最佳名次为第12名。",
+          "start": 92,
+          "end": 137
+        }
+      ],
+      "history": [],
+      "retrieval_source_ids": [
+        "chengchuan",
+        "yunting"
+      ],
+      "fact_groups": [
+        "fiction.list"
+      ],
+      "annotation_status": "assistant_draft",
+      "annotation_review": {
+        "reviewer": null,
+        "approved": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "reason-10",
+      "source_id": "chengchuan",
+      "category": "analysis",
+      "question": "2024年哪个研究所的在编职工更多，多多少人？",
+      "answerable": true,
+      "reference_answer": "云汀64比澄川54多10人；两个数字均是2024年度在编职工口径。",
+      "evidence": [
+        {
+          "source_id": "chengchuan",
+          "quote": "2024年度在编职工总数54人，其中研究人员32人，其他岗位22人。",
+          "start": 88,
+          "end": 122
+        },
+        {
+          "source_id": "yunting",
+          "quote": "2024年度在编职工总数64人，其中研究人员41人。",
+          "start": 29,
+          "end": 55
+        }
+      ],
+      "history": [],
+      "retrieval_source_ids": [
+        "chengchuan",
+        "yunting"
+      ],
+      "fact_groups": [
+        "fiction.difference"
+      ],
+      "annotation_status": "assistant_draft",
+      "annotation_review": {
+        "reviewer": null,
+        "approved": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "reason-11",
+      "source_id": "yunting",
+      "category": "unanswerable",
+      "question": "列出云汀研究所全部研究人员的姓名。",
+      "answerable": false,
+      "reference_answer": "资料只给人员数量，没有姓名名单，应说明无法提供。",
+      "evidence": [],
+      "history": [],
+      "retrieval_source_ids": [
+        "chengchuan",
+        "yunting"
+      ],
+      "fact_groups": [
+        "fiction.names"
+      ],
+      "annotation_status": "assistant_draft",
+      "annotation_review": {
+        "reviewer": null,
+        "approved": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "reason-12",
+      "source_id": "yunting",
+      "category": "fact",
+      "question": "云汀研究所2024年度在编职工有多少人？",
+      "answerable": true,
+      "reference_answer": "64人。",
+      "evidence": [
+        {
+          "source_id": "yunting",
+          "quote": "2024年度在编职工总数64人，其中研究人员41人。",
+          "start": 29,
+          "end": 55
+        }
+      ],
+      "history": [],
+      "retrieval_source_ids": [
+        "chengchuan",
+        "yunting"
+      ],
+      "fact_groups": [
+        "fiction.simple"
+      ],
+      "annotation_status": "assistant_draft",
+      "annotation_review": {
+        "reviewer": null,
+        "approved": null,
+        "notes": ""
+      }
+    }
+  ]
+}
