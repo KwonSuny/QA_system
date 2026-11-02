@@ -1,2 +1,2 @@
+# 核心回归测试使用 unittest，无需 pytest。
 -r requirements.txt
-httpx==0.28.1

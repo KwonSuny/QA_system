@@ -37,11 +37,14 @@ class ConversationService:
             chunks = json.loads(row.chunks_json or "[]")
         except (json.JSONDecodeError, TypeError):
             chunks = []
+        metadata = chunks.get("metadata", {}) if isinstance(chunks, dict) else {}
+        chunks = chunks.get("chunks", []) if isinstance(chunks, dict) else chunks
         return {
             "id": row.id,
             "role": row.role,
             "content": row.content,
             "chunks": chunks if isinstance(chunks, list) else [],
+            "metadata": metadata if isinstance(metadata, dict) else {},
             "created_at": row.created_at,
         }
 
@@ -124,6 +127,7 @@ class ConversationService:
         role: str,
         content: str,
         chunks: list | None = None,
+        metadata: dict | None = None,
     ) -> dict:
         with self.db.session() as s:
             conv = self._owned(s, user_id, conversation_id)
@@ -133,7 +137,8 @@ class ConversationService:
                 conversation_id=conversation_id,
                 role=role,
                 content=content or "",
-                chunks_json=json.dumps(chunks or [], ensure_ascii=False),
+                chunks_json=json.dumps({"chunks": chunks or [], "metadata": metadata} if metadata is not None
+                                       else chunks or [], ensure_ascii=False),
                 created_at=now_str(),
             )
             s.add(message)

@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import threading
+from copy import deepcopy
 from dataclasses import dataclass
 
 import torch
@@ -34,6 +35,16 @@ class LLMAnswerer:
         self.model.to(self.device)
         self.model.eval()
 
+    def _generation_config(self, temperature: float):
+        config = deepcopy(self.model.generation_config)
+        config.do_sample = temperature > 0
+        config.temperature = temperature if config.do_sample else 1.0
+        if not config.do_sample:
+            # 模型目录自带采样参数；贪心解码时恢复中性值，避免无效参数警告。
+            config.top_p = 1.0
+            config.top_k = 50
+        return config
+
     def stream_answer(
         self,
         question: str,
@@ -52,7 +63,7 @@ class LLMAnswerer:
             **inputs,
             "streamer": streamer,
             "max_new_tokens": config.max_new_tokens,
-            "do_sample": config.temperature > 0,
+            "generation_config": self._generation_config(config.temperature),
             "eos_token_id": self.tokenizer.eos_token_id,
         }
         if config.temperature > 0:
@@ -73,7 +84,8 @@ class LLMAnswerer:
     def complete_messages(self, messages: list[dict], max_new_tokens: int = 1536) -> str:
         prompt = self.tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
         inputs = self.tokenizer(prompt, return_tensors="pt").to(self.device)
-        generated = self.model.generate(**inputs, max_new_tokens=max_new_tokens, do_sample=False,
+        generated = self.model.generate(**inputs, max_new_tokens=max_new_tokens,
+                                        generation_config=self._generation_config(0),
                                         eos_token_id=self.tokenizer.eos_token_id)
         return self.tokenizer.decode(generated[0, inputs["input_ids"].shape[1]:], skip_special_tokens=True)
 

@@ -15,6 +15,7 @@ const state = {
   token: localStorage.getItem('token') || null,
   currentUser: null,       // {id, username, role}
   providers: [],
+  embeddingProviders: [],
   authMode: 'login',       // 'login' | 'register'
 };
 
@@ -170,7 +171,7 @@ function selectKb(id) {
   const kb = state.kbs.find((k) => k.id === id);
   $('active-kb-name').textContent = kb ? kb.name : '请选择知识库并开始提问';
   $('active-kb-meta').textContent = kb
-    ? `${kb.chunk_count ?? 0} 个片段 · ${kb.description || '暂无简介'}`
+    ? `${kb.chunk_count ?? 0} 个片段 · ${kb.embedding_provider === 'api' ? '在线嵌入' : '本地嵌入'} · ${kb.description || '暂无简介'}`
     : '';
   renderKbList();
   renderConvList();
@@ -224,12 +225,17 @@ async function selectConversation(id) {
     state.activeKbId = conv.kb_id || null;
     state.messages = (conv.messages || []).map((m) => ({
       role: m.role, content: m.content, chunks: m.chunks || null,
+      metadata: m.metadata || {},
     }));
     const kb = state.kbs.find((k) => k.id === state.activeKbId);
-    $('active-kb-name').textContent = kb ? kb.name : '（原知识库已删除）';
+    $('active-kb-name').textContent = kb ? kb.name : conv.kb_id ? '（原知识库已删除）' : '通用与联网问答';
     $('active-kb-meta').textContent = kb
-      ? `${kb.chunk_count ?? 0} 个片段 · ${kb.description || '暂无简介'}`
-      : '该会话绑定的知识库已不存在';
+      ? `${kb.chunk_count ?? 0} 个片段 · ${kb.embedding_provider === 'api' ? '在线嵌入' : '本地嵌入'} · ${kb.description || '暂无简介'}`
+      : conv.kb_id ? '该会话绑定的知识库已不存在' : '此会话未绑定知识库';
+    const lastAnswer = [...state.messages].reverse().find(m => m.role === 'assistant');
+    $('source-mode').value = lastAnswer?.metadata?.source_mode || (conv.kb_id ? 'strict' : 'smart');
+    $('allow-web').checked = false;
+    updateSourceMode();
     renderKbList();
     renderConvList();
     renderMessages();
@@ -247,6 +253,18 @@ function newConversation() {
     ? ($('active-kb-name').textContent)
     : '请选择知识库并开始提问';
   toast('已开启新对话，输入问题即可开始');
+  updateSourceMode();
+}
+
+function updateSourceMode() {
+  const smart = $('source-mode').value === 'smart';
+  $('allow-web').disabled = !smart;
+  if (!smart) $('allow-web').checked = false;
+  $('input').placeholder = smart ? '输入问题；联网需单独勾选允许，Enter 发送' : '向知识库提问，Enter 发送，Shift+Enter 换行';
+  if (!state.activeKbId) {
+    $('active-kb-name').textContent = smart ? '通用与联网问答' : '请选择知识库并开始提问';
+  }
+  $('empty-state-hint').textContent = smart ? '可直接提问通用问题；也可选择知识库或允许联网补充' : '在左侧选择或新建知识库，然后输入你的问题';
 }
 
 function renameConversation(id) {
@@ -301,17 +319,68 @@ function renderMessages() {
     const { wrap, content } = createMessageEl(msg.role);
     content.innerHTML = markdown(msg.content);
     if (msg.chunks && msg.chunks.length) appendSources(content, msg.chunks);
+    appendAnswerMetadata(content, msg.metadata);
     messagesEl.appendChild(wrap);
   }
   scrollToBottom();
 }
 
 function appendSources(contentEl, chunks) {
+  for (const type of ['kb', 'web']) {
+    const selected = chunks.filter(c => (c.source_type || 'kb') === type);
+    if (selected.length) appendSourceGroup(contentEl, selected, type);
+  }
+}
+
+function safeSourceUrl(value) {
+  try { const url = new URL(value); return ['https:', 'http:'].includes(url.protocol) && !url.username && !url.password; }
+  catch (_) { return false; }
+}
+
+function appendAnswerMetadata(contentEl, metadata) {
+  if (!metadata || metadata.source_mode !== 'smart') return;
+  const note = document.createElement('div');
+  note.className = 'answer-origin';
+  const names = { kb: '知识库', web: '参考网页', model: '模型通识（未经外部资料核验）' };
+  note.textContent = '依据：' + ((metadata.answer_sources || []).map(s => names[s] || s).join('、') || '未获得可靠依据');
+  if (metadata.warnings?.length) note.textContent += '。' + metadata.warnings.join(' ');
+  contentEl.appendChild(note);
+  if (metadata.show_search_results && metadata.search_results?.length) {
+    appendSearchResults(contentEl, metadata.search_results);
+  }
+}
+
+function appendSearchResults(contentEl, results) {
   const box = document.createElement('div');
   box.className = 'msg-sources';
   const toggle = document.createElement('button');
   toggle.className = 'sources-toggle';
-  toggle.textContent = `引用 ${chunks.length} 个知识片段`;
+  toggle.textContent = `检索结果（未作为答案依据） · ${results.length} 项`;
+  const body = document.createElement('div');
+  body.className = 'sources-body open';
+  results.forEach((result) => {
+    const item = document.createElement('div');
+    item.className = 'source-item';
+    const kind = result.content_kind === 'search_excerpt' ? '搜索摘录' : '提取正文片段';
+    item.innerHTML = `<div class="src-score">${escapeHtml(result.title || '网页')} · ${kind}</div>` +
+      `<div class="src-text">${escapeHtml(result.text || '')}</div>`;
+    if (safeSourceUrl(result.url)) {
+      const link = document.createElement('a');
+      link.href = result.url; link.textContent = result.url; link.target = '_blank'; link.rel = 'noopener noreferrer';
+      item.appendChild(link);
+    }
+    body.appendChild(item);
+  });
+  toggle.addEventListener('click', () => body.classList.toggle('open'));
+  box.appendChild(toggle); box.appendChild(body); contentEl.appendChild(box);
+}
+
+function appendSourceGroup(contentEl, chunks, type) {
+  const box = document.createElement('div');
+  box.className = 'msg-sources';
+  const toggle = document.createElement('button');
+  toggle.className = 'sources-toggle';
+  toggle.textContent = type === 'web' ? `参考 ${chunks.length} 个网页片段` : `引用 ${chunks.length} 个知识库片段`;
   const body = document.createElement('div');
   body.className = 'sources-body';
   chunks.forEach((c) => {
@@ -319,11 +388,17 @@ function appendSources(contentEl, chunks) {
     item.className = 'source-item';
     const label = [c.evidence_id ? `[${c.evidence_id}]` : '', c.source_title || ''].filter(Boolean).join(' ');
     const score = c.evidence_id ? c.dense_score : c.score;
-    const scoreLabel = typeof score === 'number' ? `向量相似度 ${score.toFixed(3)}` : '关键词召回';
+    const webKind = c.content_kind === 'search_excerpt' ? '搜索摘录' : '提取正文';
+    const scoreLabel = type === 'web' ? `${webKind} · 检索时间 ${c.retrieved_at || '未记录'}` : typeof score === 'number' ? `向量相似度 ${score.toFixed(3)}` : '关键词召回';
     const headings = [...new Set((c.section_context || []).map(s => s.heading))].join('；');
     item.innerHTML = `<div class="src-score">${escapeHtml(label)}${label ? ' · ' : ''}${escapeHtml(scoreLabel)}</div>` +
       (headings ? `<div class="src-score">章节线索：${escapeHtml(headings)}</div>` : '') +
       `<div class="src-text">${escapeHtml(c.text)}</div>`;
+    if (type === 'web' && safeSourceUrl(c.url)) {
+      const link = document.createElement('a');
+      link.href = c.url; link.textContent = c.url; link.target = '_blank'; link.rel = 'noopener noreferrer';
+      item.appendChild(link);
+    }
     body.appendChild(item);
   });
   toggle.addEventListener('click', () => body.classList.toggle('open'));
@@ -339,7 +414,7 @@ function scrollToBottom() {
 // ---------------- 发送消息 ----------------
 async function sendMessage() {
   if (state.streaming) return;
-  if (!state.activeKbId) { toast('请先选择或新建一个知识库', 'error'); return; }
+  if (!state.activeKbId && $('source-mode').value === 'strict') { toast('请先选择或新建一个知识库', 'error'); return; }
   const question = $('input').value.trim();
   if (!question) return;
 
@@ -353,6 +428,7 @@ async function sendMessage() {
   emptyStateEl.style.display = 'none';
   let full = '';
   let metaChunks = [];
+  let answerMetadata = {};
   const caret = document.createElement('span');
   caret.className = 'caret';
   content.appendChild(caret);
@@ -370,7 +446,9 @@ async function sendMessage() {
       method: 'POST',
       headers: Object.assign({ 'Content-Type': 'application/json' }, authHeaders()),
       body: JSON.stringify({
-        kb_id: state.activeKbId,
+        kb_id: state.activeKbId || '',
+        source_mode: $('source-mode').value,
+        allow_web: $('allow-web').checked,
         question,
         history,
         top_k: state.topK,
@@ -403,6 +481,7 @@ async function sendMessage() {
         let evt; try { evt = JSON.parse(dataLine); } catch (_) { continue; }
         if (evt.type === 'meta') {
           metaChunks = evt.chunks || [];
+          if (evt.metadata) answerMetadata = evt.metadata;
           if (evt.conversation_id && evt.conversation_id !== state.activeConversationId) {
             state.activeConversationId = evt.conversation_id;
             newConv = !state.conversations.some((c) => c.id === evt.conversation_id);
@@ -431,7 +510,8 @@ async function sendMessage() {
     caret.remove();
     content.innerHTML = markdown(full);
     if (metaChunks.length) appendSources(content, metaChunks);
-    state.messages.push({ role: 'assistant', content: full, chunks: metaChunks });
+    appendAnswerMetadata(content, answerMetadata);
+    state.messages.push({ role: 'assistant', content: full, chunks: metaChunks, metadata: answerMetadata });
     state.streaming = false;
     $('btn-send').disabled = false;
     scrollToBottom();
@@ -449,6 +529,8 @@ function openCreateModal() {
   $('kb-file').value = '';
   $('kb-file-info').hidden = true;
   $('kb-edit-hint').hidden = true;
+  fillEmbeddingSelect('');
+  $('kb-reindex').hidden = true;
   $('kb-modal').hidden = false;
   $('kb-name').focus();
 }
@@ -468,6 +550,8 @@ async function openEditModal(id) {
     $('kb-file').value = '';
     $('kb-file-info').hidden = true;
     $('kb-edit-hint').hidden = false;
+    fillEmbeddingSelect(kb.embedding_profile_id || '');
+    $('kb-reindex').hidden = false;
     $('kb-modal').hidden = false;
   } catch (e) {
     toast('加载失败: ' + e.message, 'error');
@@ -487,6 +571,14 @@ async function saveKb() {
   const description = $('kb-desc').value.trim();
   const text = $('kb-text').value;
   if (!name) { toast('请填写名称', 'error'); return; }
+  const embedding_profile_id = $('kb-embedding').value;
+  const current = state.kbs.find(k => k.id === state.editingKbId);
+  if (state.editingKbId && embedding_profile_id !== (current?.embedding_profile_id || '')) {
+    toast('更换配置请单独点击“重建索引”；正文请先按原配置保存。', 'error'); return;
+  }
+  if ((embedding_profile_id || current?.embedding_provider === 'api') && !$('kb-external-consent').checked) {
+    toast('请确认允许向在线嵌入服务发送文本。', 'error'); return;
+  }
   const btn = $('kb-save');
   btn.disabled = true;
   btn.textContent = '保存中...';
@@ -497,6 +589,7 @@ async function saveKb() {
       fd.append('file', state.pendingFile);
       fd.append('name', name);
       fd.append('description', description);
+      fd.append('embedding_profile_id', embedding_profile_id);
       if (state.editingKbId) fd.append('kb_id', state.editingKbId);
       const data = await request('/api/kbs/upload', { method: 'POST', body: fd });
       if (!state.editingKbId) state.activeKbId = data.kb.id;
@@ -515,7 +608,7 @@ async function saveKb() {
       const data = await request('/api/kbs', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, description, text }),
+        body: JSON.stringify({ name, description, text, embedding_profile_id }),
       });
       state.activeKbId = data.kb.id;
       toast('知识库已创建', 'success');
@@ -546,6 +639,13 @@ function openMergeModal() {
   });
   $('merge-name').value = '';
   $('merge-delete').checked = false;
+  const embeddingSelect = $('merge-embedding');
+  embeddingSelect.innerHTML = '<option value="">本地 BGE</option>';
+  state.embeddingProviders.forEach(p => {
+    const option = document.createElement('option'); option.value = p.id;
+    option.textContent = `${p.name}（${p.model}）`; embeddingSelect.appendChild(option);
+  });
+  $('merge-external-consent').checked = false;
   $('merge-modal').hidden = false;
 }
 
@@ -556,6 +656,8 @@ async function confirmMerge() {
   const name = $('merge-name').value.trim();
   if (checked.length < 2) { toast('请至少勾选两个知识库', 'error'); return; }
   if (!name) { toast('请填写新知识库名称', 'error'); return; }
+  const embedding_profile_id = $('merge-embedding').value;
+  if (embedding_profile_id && !$('merge-external-consent').checked) { toast('请确认允许发送融合后的文本。', 'error'); return; }
   const btn = $('merge-ok');
   btn.disabled = true;
   btn.textContent = '融合中...';
@@ -565,6 +667,7 @@ async function confirmMerge() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         kb_ids: checked, name, description: '', delete_sources: $('merge-delete').checked,
+        embedding_profile_id,
       }),
     });
     toast(`已融合 ${data.merged_from.length} 个知识库为「${data.kb.name}」`, 'success');
@@ -644,6 +747,108 @@ async function confirmDelete() {
     btn.disabled = false;
     state.pendingDelete = null;
   }
+}
+
+// ---------------- 嵌入与搜索（用户私有） ----------------
+async function loadRetrievalSettings() {
+  const [embedding, search] = await Promise.all([
+    request('/api/embeddings/providers'), request('/api/search/config'),
+  ]);
+  state.embeddingProviders = embedding.providers || [];
+  $('search-config-status').textContent = search.configured
+    ? `已配置 Tavily（${search.api_key_masked}）` : '尚未配置搜索服务；不影响严格知识库和通识回答。';
+  const list = $('embedding-list');
+  list.innerHTML = '';
+  state.embeddingProviders.forEach(p => {
+    const row = document.createElement('div');
+    row.className = 'api-row';
+    row.innerHTML = `<div class="api-row-main"><div>${escapeHtml(p.name)}</div>` +
+      `<div class="field-hint">${escapeHtml(p.model)} · ${p.dimensions || '默认'} 维 · ${escapeHtml(p.api_key_masked)}</div></div>`;
+    const rotate = document.createElement('button');
+    rotate.className = 'btn btn-ghost'; rotate.textContent = '更换密钥';
+    rotate.addEventListener('click', async () => {
+      const api_key = $('embedding-key').value.trim();
+      if (!api_key) { toast('先在下方嵌入 API Key 输入框填写新密钥。', 'error'); return; }
+      try {
+        await request(`/api/embeddings/providers/${p.id}/key`, { method: 'PUT',
+          headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ api_key }) });
+        $('embedding-key').value = ''; await loadRetrievalSettings(); toast('密钥已更新', 'success');
+      } catch (e) { toast(e.message, 'error'); }
+    });
+    const remove = document.createElement('button');
+    remove.className = 'btn btn-ghost'; remove.textContent = '删除';
+    remove.addEventListener('click', async () => {
+      try { await request(`/api/embeddings/providers/${p.id}`, { method: 'DELETE' }); await loadRetrievalSettings(); }
+      catch (e) { toast(e.message, 'error'); }
+    });
+    row.append(rotate, remove); list.appendChild(row);
+  });
+}
+
+function fillEmbeddingSelect(selected) {
+  const sel = $('kb-embedding');
+  sel.innerHTML = '<option value="">本地 BGE</option>';
+  state.embeddingProviders.forEach(p => {
+    const option = document.createElement('option'); option.value = p.id;
+    option.textContent = `${p.name}（${p.model}）`; sel.appendChild(option);
+  });
+  sel.value = selected;
+  $('kb-external-consent').checked = false;
+  updateEmbeddingHint();
+}
+
+function updateEmbeddingHint() {
+  const current = state.kbs.find(k => k.id === state.editingKbId);
+  $('kb-external-hint').hidden = !($('kb-embedding').value || current?.embedding_provider === 'api');
+}
+
+async function rebuildKbIndex() {
+  if (!state.editingKbId) return;
+  if (state.pendingFile || $('kb-text').value) { toast('请先保存正文，再重建索引。', 'error'); return; }
+  const embedding_profile_id = $('kb-embedding').value;
+  if (embedding_profile_id && !$('kb-external-consent').checked) { toast('请先确认允许发送知识库文本。', 'error'); return; }
+  const button = $('kb-reindex'); button.disabled = true; $('kb-save').disabled = true;
+  button.textContent = '重建中，原索引仍可用…';
+  try {
+    await request(`/api/kbs/${state.editingKbId}/reindex`, { method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ embedding_profile_id, confirm_external: $('kb-external-consent').checked }) });
+    await loadKbs(); toast('索引已重建并切换，旧索引已保留。', 'success'); closeKbModal();
+  } catch (e) { toast('重建失败，原索引保留：' + e.message, 'error'); }
+  finally { button.disabled = false; $('kb-save').disabled = false; button.textContent = '按所选配置重建索引'; }
+}
+
+async function openRetrievalModal() {
+  try { await loadRetrievalSettings(); $('retrieval-modal').hidden = false; }
+  catch (e) { toast('配置加载失败：' + e.message, 'error'); }
+}
+
+function closeRetrievalModal() {
+  $('retrieval-modal').hidden = true;
+  $('embedding-key').value = ''; $('search-key').value = '';
+}
+
+async function saveEmbeddingProfile() {
+  const button = $('embedding-save'); button.disabled = true;
+  try {
+    await request('/api/embeddings/providers', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: $('embedding-name').value.trim(), base_url: $('embedding-url').value.trim(),
+        model: $('embedding-model').value.trim(), api_key: $('embedding-key').value.trim(),
+        dimensions: $('embedding-dimensions').value ? Number($('embedding-dimensions').value) : null,
+        batch_size: Number($('embedding-batch').value) }) });
+    $('embedding-key').value = ''; await loadRetrievalSettings(); toast('已添加；可在知识库编辑窗口选择。', 'success');
+  } catch (e) { toast('保存失败：' + e.message, 'error'); }
+  finally { button.disabled = false; }
+}
+
+async function saveSearchConfig() {
+  const button = $('search-save'); button.disabled = true;
+  try {
+    await request('/api/search/config', { method: 'PUT', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ api_key: $('search-key').value.trim() }) });
+    $('search-key').value = ''; await loadRetrievalSettings(); toast('搜索配置已保存', 'success');
+  } catch (e) { toast(e.message, 'error'); }
+  finally { button.disabled = false; }
 }
 
 // ---------------- API 模型（用户私有） ----------------
@@ -907,6 +1112,18 @@ function autoResize() {
 }
 
 function bindEvents() {
+  $('btn-retrieval-settings').addEventListener('click', openRetrievalModal);
+  $('retrieval-close').addEventListener('click', closeRetrievalModal);
+  $('embedding-save').addEventListener('click', saveEmbeddingProfile);
+  $('search-save').addEventListener('click', saveSearchConfig);
+  $('search-delete').addEventListener('click', async () => {
+    try { await request('/api/search/config', { method: 'DELETE' }); await loadRetrievalSettings(); }
+    catch (e) { toast(e.message, 'error'); }
+  });
+  $('kb-embedding').addEventListener('change', updateEmbeddingHint);
+  $('kb-reindex').addEventListener('click', rebuildKbIndex);
+  $('source-mode').addEventListener('change', updateSourceMode);
+  $('retrieval-modal').addEventListener('click', e => { if (e.target === e.currentTarget) closeRetrievalModal(); });
   // 认证
   $('auth-submit').addEventListener('click', submitAuth);
   $('auth-pass').addEventListener('keydown', (e) => { if (e.key === 'Enter') submitAuth(); });
@@ -1071,6 +1288,7 @@ async function afterLogin() {
   resetSessionState();
   await loadKbs();
   await loadProviders();
+  try { await loadRetrievalSettings(); } catch (e) { toast('检索配置加载失败：' + e.message, 'error'); }
   await loadConversations();
 }
 
@@ -1078,6 +1296,9 @@ function resetSessionState() {
   state.kbs = [];
   state.conversations = [];
   state.providers = [];
+  state.embeddingProviders = [];
+  $('source-mode').value = 'strict'; $('allow-web').checked = false; $('allow-web').disabled = true;
+  closeRetrievalModal();
   state.activeKbId = null;
   state.activeConversationId = null;
   state.messages = [];
@@ -1086,6 +1307,7 @@ function resetSessionState() {
   renderMessages();
   $('active-kb-name').textContent = '请选择知识库并开始提问';
   $('active-kb-meta').textContent = '';
+  updateSourceMode();
 }
 
 async function init() {
