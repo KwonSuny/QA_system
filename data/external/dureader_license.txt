@@ -1,0 +1,139 @@
+参赛者协议
+Participant Agreement
+本《参赛者协议》（“本协议”）适用于您（“参赛者”）作为『2021语言与智能技术竞赛』参赛者对举办方百度及其关联方的（“我方”）相关网站、服务、应用及开放存取数据集（合称“信息”）的访问及使用。请仔细阅读本协议，若参赛者对本协议有任何疑问，请与我方联系。若参赛者采取任何方式访问或使用信息，则表示参赛者同意受本协议约束：
+This Participant Agreement (this “Agreement”) governs your (“Participants”) access to and use of the websites, services, applications and open-access data sets (collectively, the “Information”) in connection with 2021 Language and Intelligence Challenge which organized and maintained by Baidu and its affiliates (“we,” “us” or “ours”).  Please read this Agreement carefully, and contact us if the Participant has any questions regarding this Agreement.  Any access to or use of the Information indicates that the Participant agrees to be bound by this Agreement.
+参赛者的一般义务
+General Obligations of the Participant
+若参赛者代表某一实体（例如其雇主）订立本协议，则参赛者声明其具有使本协议对该实体产生约束力的法律权限。若参赛者在访问或使用服务的相关事项中使用某一公司或某一组织的名称，则他/她将被视为代表该公司或组织订立本协议。
+If the Participant enters into this Agreement on behalf of an entity, such as his/her employer, then the Participant shall represent that he/she has the legal authority to cause this Agreement to bind such entity.  If the Participant specifies a company or organization name in connection with access to or use of the Information, he/she will be deemed to have entered into this Agreement on behalf of such company or organization.
+参赛者可以授权其助手、同事或其他合作者访问和使用信息，但应确保前述人员已经认真阅读并同意接受本协议约束。
+The Participant may authorize his/her assistants, colleagues, or other partners to access and use the Information, but shall ensure that the aforementioned persons have carefully read and agree to be bound by this Agreement.
+如我方对参赛者使用的部分信息（或使用信息所涉及到的由其他数据平台提供的信息）有额外要求的，参赛者应同时遵守上述所有要求或在达到上述要求后方可使用该等信息。
+If we have additional requirements regarding certain parts of the Information (or any other digital platform Information which are involved during use of the Information), the Participant may use such Information only if he/she complies with all such additional requirements.
+经我方不时要求，参赛者应当向我方提供身份信息、文件、资料、信息、源代码等（“参赛者信息”）。 参赛者应当保证参赛者信息真实、有效、合法，且不侵犯任何第三方的权利，且参赛者对其拥有合法、有效、完整的知识产权或所有权。我方保留委托第三方机构调查参赛者信息的权利，如果参赛者信息存在失实或违法等情况，我方有权立即终止本协议并禁止参赛者访问或使用信息及参赛资格。
+Upon our request from time to time, the Participant shall provide us with his/her identity information, documents, materials, information, and source code (“Participant Information”).  The Participant shall ensure the Participant Information is true, valid and lawful and does not infringe any rights of any third parties and the Participant owns lawful, valid and complete intellectual property rights in or title to the Participant Information.  We reserve the right to appoint a third-party agent to investigate the Participant Information.  If the Participant Information is found to be untrue or illegal, we are entitled to terminate this Agreement and prohibit the Participant from accessing or using the Information.
+参赛者在访问或使用信息过程中不得以任何方式：
+When accessing or using the Information, the Participant shall not in any manner:
+侵犯或违反任何人（包括我方）的知识产权或其他权利；
+Infringe or violate the intellectual property rights or any other rights of any parties (including ours);
+从事任何具有有害、欺诈、欺骗、威胁、骚扰、诽谤，淫秽性质的活动；
+Engage in any activities which are harmful, fraudulent, deceptive, threatening, harassing, defamatory or obscene;
+未经我方书面允许，采取爬虫或其他方式获取任何与信息中或与信息相关的页面、数据或信息（无论采取人工方式或自动方式）；
+“Crawl”, “scrape” or “spider” any page, data, or information of or relating to the Information (through use of manual or automated means), without our written consent;
+使用反编译、反向工程等方式试图获取信息中或与信息相关的源代码、基本理念或信息；或
+Decompile, reverse engineer, or otherwise attempt to obtain the source code or underlying ideas or information of or relating to the Information ; or
+从事任何其他违反适用法律、法规、规章或本协议的活动。
+Engage in any other activities which violate any applicable laws, rules or regulations
+数据集下载
+Dataset Downloads
+在参赛者访问或使用信息期间，我方会酌情授权参赛者访问、使用、下载一定数据集（“数据集”）。
+During the Participant’s access to or use of the Information, we will authorize the Participant to use and download certain data sets (“Datasets”) at our sole discretion.
+参赛者仅有权出于非商业科研或学术目的使用数据集，不得出于任何商业目的使用数据集。
+The Participant is entitled to use the Datasets only for the purposes of non-commercial research or teaching and shall not use the Datasets for any commercial purpose.
+我方对数据集中的内容，例如语料、内容、文字等不享有任何知识产权，也不就上述内容做出任何保证，该等保证包括但不限于：保证不侵犯任何知识产权权利、保证有权出于任何目的使用上述内容。
+We do not enjoy any intellectual property rights to content in the Datasets, such as corpus, content or text, nor do we make any warranties as to such content, including but not limited to a warranty of non-infringement of other’s intellectual property rights or a warranty of entitlement to use such content for any specific purpose.
+在任何时候，我方均有权取消或终止授权参赛者使用数据集，并有权要求参赛者删除数据集。
+We shall be entitled to cancel or terminate the authorization granted to the Participant for use of the Datasets at any time and have the right to request the Participant to delete the Datasets.
+
+隐私政策
+Privacy Policy
+参赛者同意并允许我方通过任何线上线下方式，出于参赛和获取信息的目的调查、获取和收集参赛者的个人数据。参赛者的个人数据包括：
+The Participant agrees and permits us to investigate, acquire and collect the Participant’s personal data for purposes of participating in the competition, by any online or offline means.  The Participant’s personal data shall include:
+参赛者在访问或使用服务时，向我方提供的相关个人信息，包括但不限于：姓名、单位/学校、电子邮件、社交账号、电话号码等；
+Personal information that the Participant provides to us when accessing or using the Information, including but not limited to his/her name, organization/school, e-mail address, social media account, telephone number, etc.;
+参赛者访问或使用信息时，我方系统通过Cookies、Web Beacon或其他方式自动采集的技术信息。
+The technological information automatically collected by the system via cookies, web beacons, or other means when the Participant accesses or uses the Information.
+参赛者进一步同意，我方有权在全球范围内、永久、无偿出于以下目的使用参赛者个人数据：
+The Participant further agrees that we are entitled to use the Participant’s personal data globally, permanently and free of royalties for the following purposes:
+为参赛者提供个性化服务；
+Providing personalized services to the Participant;
+向参赛者发送可能感兴趣的产品和服务的信息；邀请参赛者参与我方的活动和市场调查；或向参赛者发送营销信息。如果参赛者不想接收此类信息，则可经书面通知我方进行退订；和
+Sending the Participant product and service information in which the Participant may be interested; inviting the Participant to participate in our activities or market surveys; or send the Participant marketing information.  If the Participant does not wish to receive such information, the Participant may unsubscribe by sending us written notice; and
+开展内部审计、数据分析和研究，改善我方的服务及参赛者之间的沟通。
+Conducting internal audits, data analyses and research in order to improve our services and communications with the Participant.
+除下列情形外，我方将不公开或向第三方提供参赛者的个人数据：
+Except under the following circumstances, we will not publish the Participant’s personal data or disclose it to any third parties:
+参赛者同意披露或提供；
+The Participant agrees to disclose or provide it;
+参赛者根据本比赛的规则同意披露或提供；
+The Participant agrees to disclose or provide it under rules with respect to this competition;
+参赛者与第三方已经签订的协议要求我方披露或提供；或
+Any agreements executed between the Participant and any third parties require us to disclose or provide it; or
+法律法规、国家机关依法要求披露或提供。
+Its disclosure or provision is required by laws or regulations or governmental agencies.
+为确保我方网站的正常运转，我方不时会在计算机或移动设备上存储名为Cookies的小数据文件。Cookies是一种网络服务器存储在计算机或移动设备上的纯文本文件。Cookies的内容只能由创建它的服务器检索或读取。每个Cookies对参赛者的网络浏览器或移动应用程序都是唯一的。Cookies 通常包含标识符、站点名称以及一些号码和字符。借助于Cookies，网站能够存储参赛者偏好等数据。我方不会将Cookies用于本协议所述目的之外的任何用途。参赛者可根据自己的偏好管理或删除Cookies。
+In order to ensure our website’s normal operation, we will from time to time store small data files called cookies on computers or mobile devices.  cookies are a type of plain text file that network servers store on computers or mobile devices.  The content of cookies can only be retrieved or read by the servers creating such cookies.  Each cookie is unique to the Participant’s web browser or mobile application.  Cookies generally contain identifiers, site names, and some numbers and characters.  With the help of cookies, websites are able to save user preference data and other data.  We will not use cookies for any purposes other than those described in this Agreement.  The Participant may manage or delete cookies based on his/her preferences.
+知识产权
+Intellectual Property
+除本协议另有约定外，我方对比赛中所提供的所有信息（包括但不限于语料、内容、数据、代码等）享有合法所有权利，参赛者对此不享有任何权利。除本协议约定目的外，参赛者不得使用、修改、复制、公开传播、发行或以其他任何方式利用前述信息。
+Unless otherwise provided in this Agreement, we own all legal rights to the information (including but not limited to corpus, content, data and codes) provided by us in connection with the competition and the Participant shall not have any rights to such information. Unless otherwise provided in this Agreement, the Participant shall not use, modify, copy, disseminate distribute such information or utilize it in any manner.
+除我方与参赛者另有约定外，参赛者通过比赛独立开发的成果（包括但不限于算法、源代码、数据、设计方案、论文等，合称“成果”）及相应的知识产权，归参赛者所有。但产生该等成果所依附或使用的语料、内容、数据等（以下简称“基础数据”），如属于我方提供，则该等基础数据的所有权利并不因提供行为发生转移。参赛者如在使用该等成果过程中使用了我方享有知识产权或其他合法权利的基础数据，应向我方提出申请。
+Unless otherwise agreed by us and the Participant, the results (including but not limited to algorithms, source codes, data, design plans, and papers, collectively referred to as “Results”) independently generated by the Participant via the competition and the corresponding intellectual property rights shall belong to the Participant.  Nonetheless, no rights to the corpus, content, or data provided by us and utilized by the Participant in generating the Results (“Underlying Data”) shall be transferred due to our provision of such Underlying Data.  If the Participant uses any Underlying Data in which we own intellectual property rights or other legal rights when using the Results, then the Participant shall obtain our written consent.  
+参赛者应确保任何实际或预期的出版或公开披露（包括但不限于在科学出版物、任何手稿或演示文稿中出版），包括任何信息（包括但不限于引用的参考文献，数据集提供者）关于2020语言与智能技术竞赛任何方面，包括根据分配科学学分的标准惯例，通过作者身份或确认（视情况而定）对组织者贡献的认可。
+The participant shall ensure that any actual or intended publication or public disclosure (including but not limited to publish in scientific publications, any manuscript or presentation), incorporating any information (including but not limited to Cited References, dataset provider) concerning any aspect of 2020 Language and Intelligence Challenge includes recognition of the Organizers’ contributions according to standard practice for assigning scientific credit, either through authorship or acknowledgement, as may be appropriate.  
+参赛者同意授予我方在全球范围内、无限期、不受限制的免费使用前款成果的权利，包括但不限于用于服务提供、进一步开发服务、用于商业用途及分许可他人使用。为免歧义，基于上述成果使用所产生的新成果，我方享有完整的知识产权，参赛者同意对新成果不主张任何权益，包括但不限于所有权、以及基于对上述成果享有的所有权而阻碍新成果的实施等。
+The Participant agrees to grant us a global, permanent, unlimited and royalty-free right to use the above Results, including but not limited to use of such Results for the purpose of providing the service, developing the service, conducting commercial activities and sub-licensing to others for use.  For avoidance of doubt, we shall have complete intellectual property rights in any new results generated by us by using the Results, and the Participant shall not claim any rights or interests in such new results, including but not limited to ownership and the right to obstruct the implementation of any other rights based on such new results.
+知识产权争议报告
+Intellectual Property Dispute Reports
+若参赛者或任何知识产权权利人认为比赛中或通过比赛获取的材料或内容侵犯其（或其被授权代表的主体）的知识产权，则请将包含下述信息的通知发送至LIC2021@126.com：
+If the Participant or any owner of intellectual property rights believes that material or content residing on or accessible through the competition infringes his/her intellectual property rights (or the intellectual property rights of any parties whom he/she are authorized to act on behalf of), please send a notice of copyright infringement containing the following information to LIC2021@126.com：
+被侵权知识产权权利人授权代表的信息，包括名称、电话号码和邮箱地址；
+Information regarding a person authorized to act on behalf of the owner of the intellectual property rights being infringed, including name, address, telephone number and email address;
+被侵权作品或材料的信息；
+Information regarding works or materials being infringed upon;
+被控侵权作品或材料的信息，若知识产权权利人希望从某一位置移除该等被控侵权作品或材料，则还应提供该等位置的充分信息，使我方能够找到该等被控侵权作品或材料并进行确认；和
+Information regarding the works or materials that are claimed to be infringed upon, including information regarding the location of the infringing documents or materials that the intellectual property owner seeks to have removed, with sufficient detail so that we are capable of finding and verifying their existence; and
+关于通知方善意认为被控侵权材料未经知识产权权利人、其代理人或法律授权的声明。
+A statement that the notifying party has a good faith belief that the material identified is not authorized by the intellectual property rights owner, its agent, or the law.
+在收到关于侵犯知识产权的恰当通知后，我方将保留下述权利：
+Upon receipt of a proper notice of intellectual property rights infringement, we reserve the right to:
+移除或禁止访问侵权材料；
+remove or disable access to the infringing material;
+将我方已移除或禁止访问材料的事项，告知被控侵权的内容提供者；
+notify the content provider who is accused of infringement that we have removed or disabled access to the applicable material; and
+若被控侵权的内容提供者存在多次侵权行为，则我方将终止其访问或使用服务的权利。
+terminate such content provider's access to or use of the Service if he or she is a repeat offender.
+保密义务
+Obligation of Confidentiality
+保密信息的范围包括我方在比赛中向参赛者提供的，或参赛者通过比赛获取的关于我方的所有非公众所知的信息，包括但不限于：
+The scope of the confidential information includes all non-public information provided by us to the Participant during the Information, or all non-public information related to us acquired by the Participant through the Information, including but not limited to the following:
+我方数据集、任务内容、排名信息、运营记录、程序代码、操作手册、FAQ等；
+Our datasets, task, ranking information, operational record, procedure code, instruction as well as FAQ, etc.;
+我方从第三方处获得但应承担保密责任的信息；
+Information obtained by us from any third parties which we are obligated to keep confidential;
+任何其他机密或专有信息以及通常不为我方以外的其他方所知晓、未在公共领域被正式公开的信息。
+Any other information which is unknown to any parties other than us or which is not publicly available;
+我方及参赛者认可前款所有信息为保密信息（“保密信息”），且该等信息对于我方具有重要作用和价值，如有泄露或不当利用将造成严重影响和经济损失。参赛者同意对上述保密信息严格保密，如无法确认某些信息是否为保密信息，则参赛者亦应将此类信息作为保密信息进行保护。
+We and the Participant acknowledge that the above information is our confidential information (“Confidential Information”) and is of important functional and value to us, the disclosure or improper use of which will have a serious impact and cause economic losses.  The Participant agrees to keep the Confidential Information strictly confidential.  If the Participant is not able to confirm whether certain information is Confidential Information, then the Participant shall treat and protect such information as Confidential Information.
+保密信息的使用及保护：
+Use and Protection of Confidential Information:
+参赛者应承诺按照我方的指定要求在指定区域、指定场景内使用保密信息，参赛者不得以不符合我方要求的方式获取、使用保密信息，不得对保密信息进行效仿、逆向工程、反编译、试图破译源代码及潜在信息，也不得以任何形式向任何第三方泄露、传播、出售、转让、用于任何商业用途或用于获取任何商业利益等。
+The Participant undertakes to use the Confidential Information in accordance with our designated requirements and within the specified area, platform and time limit as designated by us.  Without our prior written consent, the Participant shall not obtain or use the Confidential Information in any way contrary to our requirements.  The Participant shall not imitate, reverse engineer, decompile or attempt to decode the source code or underlying information of the Confidential Information, or disclose, distribute, sell or transfer any Confidential Information to any third party or use any Confidential Information for any commercial purposes or to obtain any commercial interests.
+严禁参赛者利用保密信息从事任何本协议约定之外的目的；
+The Participant is prohibited from using the Confidential Information for any purposes not provided under this Agreement;
+参赛者应有意识地保护保密信息，并采取所有必要的保密措施。
+The Participant shall consciously and actively protect the Confidential Information and take all necessary confidentiality measures.
+我方无须对保密信息的真实性、适用性、完整性和合理性承担责任，以及并未对此做出一切明确表达的或暗含的陈述和担保。我方无须因参赛者对保密信息的使用行为承担任何责任。
+We are not responsible for the correctness, compatibility, completeness or reasonableness of the Confidential Information, and disclaim any express or implied representations or warranties in respect thereof.  We are not legally responsible for use of the Confidential Information by the Participant. 
+参赛者对保密信息的保密义务于本协议生效之日起至我方对外公开此等保密信息为止，并不因本协议终止而终止。
+The Participant’s obligation of confidentiality regarding the Confidential Information commences from the effective date of this Agreement to the date when we disclose such Confidential Information to the public and the obligation of confidentiality shall not terminate due to termination of this Agreement.
+违约责任
+Liability for Breach
+若参赛者违反本协议任何规定，我方有权立即终止本协议并禁止参赛者使用或接触信息。
+If the Participant breaches any stipulations under this Agreement, we are entitled to immediately terminate this Agreement and prohibit Participant from using or accessing the Information.
+就参赛者使用我方比赛信息而造成的任何损失、损害或法律后果，我方不承担任何责任。若参赛者或其雇员或代理人错误地或误导性地使用我方比赛信息，而对我方造成任何声誉损失或经济损失，则参赛者应当就该等法律后果负责，并向我方做出赔偿。
+We accept no liability for any losses, damages or legal consequences whatsoever caused by the Participant’s use of the Information.  In the case of any incorrect or misdirected use of the Information by the Participant or his/her employees or agents that causes us a loss of reputation or economic losses, the Participant shall be liable for such legal consequences and compensation;
+若参赛者违反了本协议下的或任何与本协议相关的义务而直接或间接导致我方发生了任何性质的损失、损害、费用、索赔、命令、责任或开支，参赛者同意向我方做出全部赔偿，未免歧义，该等赔偿包括但不限于我方为执行本条款的过程中，或由于主张本协议下责任的索赔而产生的任何费用或开支。
+If the Participant breaches any obligations under or in connection with this Agreement and directly or indirectly causes us any losses, damages, costs, claims, orders, liabilities or expenses of any nature, then the Participant shall fully compensate us.  For avoidance of doubt, such compensation shall include but be not limited to any expenses or costs which we incur from the execution of this provision or claiming liabilities under this Agreement.
+协议修改 
+VARIATION
+我方保留在任何时候修改本协议的权利。在该等情况下，我方将通过在http://lic2021.ccf.org.cn发布、发送邮件和/或其他方式通知参赛者。若参赛者不同意该等修改，则参赛者有权拒绝接受，但参赛者将无权继续使用比赛信息。若对本协议做出的任何修改生效后，参赛者以任何方式继续参加比赛并使用比赛信息的，则将视为参赛者同意接受所有该等修改的约束。
+We reserve the right to change this Agreement at any time.  Under such circumstances, we will bring it to your attention by placing a notice on the http://lic2020.cipsc.org.cn, by sending the Participant an email, and/or by other means.  If the Participant does not agree with such changes, then the Participant is free to reject them, but Participant will no longer be able to use the Information.  If the Participant uses the Information in any way after any changes to this Agreement are effective, then the Participant shall be deemed to have agreed to be bound by all such changes.
+语言、法律适用及争议解决
+LANGUAGE.GOVERNING LAW AND DISPUTE RESOLUTION
+本协议以中英文版本准备，中英文版本内容相冲突的，应以本协议中文版本为准。
+This agreement is made in both the Chinese and English languages.  If there is any conflict between the Chinese version and the English version, the Chinese version shall prevail.
+本协议的有效性、履行和与本协议及其修订本有关的所有事宜，将受中华人民共和国大陆法律管辖，本协议下及和本协议相关的任何争议均仅适用中华人民共和国大陆法律。
+The validity and implementation of this Agreement and all matters related to this Agreement and its amendments shall be governed by the laws of the People’s Republic of China and any disputes under or in connection with this Agreement shall all be governed solely by the laws of the People’s Republic of China.
+本协议下及和本协议相关的任何争议，参赛者与我方首先应友好协商解决，协商不成的，任何一方可向北京市海淀法院提起诉讼。
+We and the Participant shall attempt in the first instance to resolve disputes under or in connection with this Agreement through friendly consultation.  If the parties fail to resolve such disputes through consultation, either party may bring an action at Haidian District Court, Beijing.

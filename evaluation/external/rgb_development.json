@@ -1,0 +1,2130 @@
+{
+  "schema_version": 1,
+  "name": "rgb 中文扩充开发诊断",
+  "split": "development",
+  "annotation_status": "imported_pending_review",
+  "version": "external-v1",
+  "seed": 20261014,
+  "evaluation_track": "scoped_passage_retrieval",
+  "annotation_notes": "原始公开标注经转换；尚未经 sunyeu 人工审核，不代表官方基准成绩。各题只在授权候选篇章内检索，无答案标签仅在该范围有效。",
+  "sources": {
+    "rgb_1264a1d0d8b1f85a": {
+      "path": "../../data/external/prepared/documents/rgb_1264a1d0d8b1f85a.txt",
+      "title": "rgb 原始篇章 1264a1d0",
+      "text_sha256": "4b5e5543c8b94b96d84cb4a0a8cec1705ff72f104b493d0ca73a280c5ca3ac0b"
+    },
+    "rgb_5505be4c275b8c9f": {
+      "path": "../../data/external/prepared/documents/rgb_5505be4c275b8c9f.txt",
+      "title": "rgb 原始篇章 5505be4c",
+      "text_sha256": "d757298b5683c816d224c98705b9c0e34dfec601b7111d35a1aad32dab814e55"
+    },
+    "rgb_202a3c2778cd7621": {
+      "path": "../../data/external/prepared/documents/rgb_202a3c2778cd7621.txt",
+      "title": "rgb 原始篇章 202a3c27",
+      "text_sha256": "24a628f9483166de949fd45d715597572258b493df17b4de3cf16fb81fb907d5"
+    },
+    "rgb_2a8af305676afe98": {
+      "path": "../../data/external/prepared/documents/rgb_2a8af305676afe98.txt",
+      "title": "rgb 原始篇章 2a8af305",
+      "text_sha256": "7afc0b10ad95de1ee9c102203431f27983edbf58a1651a5cdca5d7548d71a929"
+    },
+    "rgb_69f50ae57e21c858": {
+      "path": "../../data/external/prepared/documents/rgb_69f50ae57e21c858.txt",
+      "title": "rgb 原始篇章 69f50ae5",
+      "text_sha256": "d0c14116b75b8ef77a868082c36b7a414508edf56e2bd5bc70e1cf04499823cf"
+    },
+    "rgb_4315c0464e07fca6": {
+      "path": "../../data/external/prepared/documents/rgb_4315c0464e07fca6.txt",
+      "title": "rgb 原始篇章 4315c046",
+      "text_sha256": "9d4027cdced82129d7fb0afa667a853ca486ff1d347885dac3e462afc629804d"
+    },
+    "rgb_98ad59047208a29b": {
+      "path": "../../data/external/prepared/documents/rgb_98ad59047208a29b.txt",
+      "title": "rgb 原始篇章 98ad5904",
+      "text_sha256": "b7de3480497cc46baa840e0b80d5dcd39f4f7c733d5aa78dded83da1ba4fdeda"
+    },
+    "rgb_29bfaeef8ddec8c8": {
+      "path": "../../data/external/prepared/documents/rgb_29bfaeef8ddec8c8.txt",
+      "title": "rgb 原始篇章 29bfaeef",
+      "text_sha256": "b4b138d16811dcc3950ea7d50f8b0917a01b42a9962234b2cb202a9fa50cc41e"
+    },
+    "rgb_dd70f33dbf610749": {
+      "path": "../../data/external/prepared/documents/rgb_dd70f33dbf610749.txt",
+      "title": "rgb 原始篇章 dd70f33d",
+      "text_sha256": "71aec2a039bed7420f9cc84a8d572ed32d4b33b17533bcb5c7513b17458edfdf"
+    },
+    "rgb_c61b8fb84a8393f2": {
+      "path": "../../data/external/prepared/documents/rgb_c61b8fb84a8393f2.txt",
+      "title": "rgb 原始篇章 c61b8fb8",
+      "text_sha256": "dc081b9c26945e38f7903e9cd70a91217e2b87c4daca770cfa7a49823cf8b563"
+    },
+    "rgb_519cbd5ca8cc7d65": {
+      "path": "../../data/external/prepared/documents/rgb_519cbd5ca8cc7d65.txt",
+      "title": "rgb 原始篇章 519cbd5c",
+      "text_sha256": "88cb14aed7f2fd1362b27faed9866e826892abd7fd3bccd8d3d51f993b27f36c"
+    },
+    "rgb_52a527132f99eb99": {
+      "path": "../../data/external/prepared/documents/rgb_52a527132f99eb99.txt",
+      "title": "rgb 原始篇章 52a52713",
+      "text_sha256": "671dab7936d840c7f1bc38667835031d06b53895c658a82315bb130fa8837379"
+    },
+    "rgb_d429e1c9fa1e3104": {
+      "path": "../../data/external/prepared/documents/rgb_d429e1c9fa1e3104.txt",
+      "title": "rgb 原始篇章 d429e1c9",
+      "text_sha256": "34668bc43602f48188ed1e695b722fc616dc28aa21d299c0d686b9e648a52776"
+    },
+    "rgb_2dabdce62e0ba79a": {
+      "path": "../../data/external/prepared/documents/rgb_2dabdce62e0ba79a.txt",
+      "title": "rgb 原始篇章 2dabdce6",
+      "text_sha256": "2dabdce62e0ba79a6e9432b65615a6aa41648d11fe6203d9efde1b7fbb965045"
+    },
+    "rgb_1b3abe2dd85effc8": {
+      "path": "../../data/external/prepared/documents/rgb_1b3abe2dd85effc8.txt",
+      "title": "rgb 原始篇章 1b3abe2d",
+      "text_sha256": "dbb2a0c27df2842b2262be1437aa2e015d08095eba8ac790e49405f33b787492"
+    },
+    "rgb_438a91ede0cf705e": {
+      "path": "../../data/external/prepared/documents/rgb_438a91ede0cf705e.txt",
+      "title": "rgb 原始篇章 438a91ed",
+      "text_sha256": "8dcb23432d43aa5302d344ed6397316d44cdda370c8ecb8dadbacf2c9565bea1"
+    },
+    "rgb_1fa9efb50290486b": {
+      "path": "../../data/external/prepared/documents/rgb_1fa9efb50290486b.txt",
+      "title": "rgb 原始篇章 1fa9efb5",
+      "text_sha256": "84cfe5cbcd8044bfff04f39fa5b01e288e5c18d69595121ff9b64b7a21f9f541"
+    },
+    "rgb_b081ea71a18f64d8": {
+      "path": "../../data/external/prepared/documents/rgb_b081ea71a18f64d8.txt",
+      "title": "rgb 原始篇章 b081ea71",
+      "text_sha256": "3554d3f05dab9ff35d4c136f60a90a677e6eafcf0545e23590fd19f47d1a8a0c"
+    },
+    "rgb_3b5b52087b7e8305": {
+      "path": "../../data/external/prepared/documents/rgb_3b5b52087b7e8305.txt",
+      "title": "rgb 原始篇章 3b5b5208",
+      "text_sha256": "c2c27b09a23b3edce8664af510102b7d4a9d4168edd4feee4da7e4ea4ba3cb10"
+    },
+    "rgb_c0d8f2e41225f7a7": {
+      "path": "../../data/external/prepared/documents/rgb_c0d8f2e41225f7a7.txt",
+      "title": "rgb 原始篇章 c0d8f2e4",
+      "text_sha256": "707b885199cb3b4ee6d2f2232fb02f95e77cfd3b0f2f2055b5b814bec338d048"
+    },
+    "rgb_a0093ffa832111e3": {
+      "path": "../../data/external/prepared/documents/rgb_a0093ffa832111e3.txt",
+      "title": "rgb 原始篇章 a0093ffa",
+      "text_sha256": "c6d014ed2e4e25d6ef2bfefb321b359ecb5204bfab4551ecb2cfc1e676d78bc4"
+    },
+    "rgb_d89b9366710b6230": {
+      "path": "../../data/external/prepared/documents/rgb_d89b9366710b6230.txt",
+      "title": "rgb 原始篇章 d89b9366",
+      "text_sha256": "87cdff3a9c00fb510ee9e5f79866868d0332a42ed5fe8435c83f399d3278b582"
+    },
+    "rgb_515faad0f25f5206": {
+      "path": "../../data/external/prepared/documents/rgb_515faad0f25f5206.txt",
+      "title": "rgb 原始篇章 515faad0",
+      "text_sha256": "21d2d4e53ce5e622806e6d8d50f082d1df875c471b7419573cd631848b2712fd"
+    },
+    "rgb_c3e8114c312d507e": {
+      "path": "../../data/external/prepared/documents/rgb_c3e8114c312d507e.txt",
+      "title": "rgb 原始篇章 c3e8114c",
+      "text_sha256": "4fbd6db35535e9c92e11de4b1bdbadfee7cff4f22124b3d464d22a3a28d2b912"
+    },
+    "rgb_21d3f0e424383c6f": {
+      "path": "../../data/external/prepared/documents/rgb_21d3f0e424383c6f.txt",
+      "title": "rgb 原始篇章 21d3f0e4",
+      "text_sha256": "fff67b940ab9fdffef174d79753f6913ecdf40ff2585618bcbaa14c46a95af76"
+    },
+    "rgb_2d1a5aaa79069844": {
+      "path": "../../data/external/prepared/documents/rgb_2d1a5aaa79069844.txt",
+      "title": "rgb 原始篇章 2d1a5aaa",
+      "text_sha256": "b9a4be87d5b9a9e1f879db56762ee2f8c814020941f9659c687529e93157f4f6"
+    },
+    "rgb_039dc09c1419528e": {
+      "path": "../../data/external/prepared/documents/rgb_039dc09c1419528e.txt",
+      "title": "rgb 原始篇章 039dc09c",
+      "text_sha256": "2633a4826be9893f237d64cfc9848a4822023b8369edd51bfedf34ddbc63e4e5"
+    },
+    "rgb_dc019355c0a42b88": {
+      "path": "../../data/external/prepared/documents/rgb_dc019355c0a42b88.txt",
+      "title": "rgb 原始篇章 dc019355",
+      "text_sha256": "a7e03c340f7b4b80f08294d88e67304131ce4aa2d44d5fa81047879401f42529"
+    },
+    "rgb_7fbeb10342ce061a": {
+      "path": "../../data/external/prepared/documents/rgb_7fbeb10342ce061a.txt",
+      "title": "rgb 原始篇章 7fbeb103",
+      "text_sha256": "0983a481750bf8849cb5e30fb5e3ba781df8441cc8e362f989eb11b2c9134f93"
+    },
+    "rgb_bdcd799c8853fe25": {
+      "path": "../../data/external/prepared/documents/rgb_bdcd799c8853fe25.txt",
+      "title": "rgb 原始篇章 bdcd799c",
+      "text_sha256": "0774b9fd41bc55c657807a80b82e185737e9f40725787ba6d0af91e0f35b0011"
+    },
+    "rgb_63f03db630964fe4": {
+      "path": "../../data/external/prepared/documents/rgb_63f03db630964fe4.txt",
+      "title": "rgb 原始篇章 63f03db6",
+      "text_sha256": "251b4bb79db435e6c5cbf73ee46fdc02a279c561041b5f7b501b8bdbf8784f20"
+    },
+    "rgb_69a3e001db3362db": {
+      "path": "../../data/external/prepared/documents/rgb_69a3e001db3362db.txt",
+      "title": "rgb 原始篇章 69a3e001",
+      "text_sha256": "5c75fe13a295597bf0d26c1b1282c94a4d80de77238f91e55bb53f374520fed2"
+    },
+    "rgb_6482c6823849c075": {
+      "path": "../../data/external/prepared/documents/rgb_6482c6823849c075.txt",
+      "title": "rgb 原始篇章 6482c682",
+      "text_sha256": "787e6f6a331737ba89693ccfe070d24516be5d853d11dbaa4f815d1ba2544d12"
+    },
+    "rgb_251cc3e45e8579b2": {
+      "path": "../../data/external/prepared/documents/rgb_251cc3e45e8579b2.txt",
+      "title": "rgb 原始篇章 251cc3e4",
+      "text_sha256": "c61ae513920fe38dd6483103b5f4573494ff9482e43927a2c096f123b5651c4a"
+    },
+    "rgb_d9b41fb0a88c890d": {
+      "path": "../../data/external/prepared/documents/rgb_d9b41fb0a88c890d.txt",
+      "title": "rgb 原始篇章 d9b41fb0",
+      "text_sha256": "382563c033b293b3a2f44b571fe4a9fea2ddd9863c735600a9ab7bec1ea59045"
+    },
+    "rgb_a135f19467ab2514": {
+      "path": "../../data/external/prepared/documents/rgb_a135f19467ab2514.txt",
+      "title": "rgb 原始篇章 a135f194",
+      "text_sha256": "7b869ad6e1d746ce1f6e3ff3f32ac6ea41c9f6f5483e4f34018e608dca33861c"
+    },
+    "rgb_609996957ae98f41": {
+      "path": "../../data/external/prepared/documents/rgb_609996957ae98f41.txt",
+      "title": "rgb 原始篇章 60999695",
+      "text_sha256": "eab3613b6400410bc94117e56445d9143b63af9e4dfc63ab7186bdbf5d3f5f38"
+    },
+    "rgb_43a2e9fe8eae85ec": {
+      "path": "../../data/external/prepared/documents/rgb_43a2e9fe8eae85ec.txt",
+      "title": "rgb 原始篇章 43a2e9fe",
+      "text_sha256": "d1ab9b0c69d68f133b6bbe43e43e6be65842a1bbf47900c63e191a1a1a7a4635"
+    },
+    "rgb_2ecd674090df683f": {
+      "path": "../../data/external/prepared/documents/rgb_2ecd674090df683f.txt",
+      "title": "rgb 原始篇章 2ecd6740",
+      "text_sha256": "541c31494e212783ed3d30371b5c7a91bac512be9f398ce6a336db06d8cee199"
+    },
+    "rgb_eaa8ba3289383593": {
+      "path": "../../data/external/prepared/documents/rgb_eaa8ba3289383593.txt",
+      "title": "rgb 原始篇章 eaa8ba32",
+      "text_sha256": "83302c7a802c8cc6a3c54fae006bb2937ced4cd76927fc3c8d20f8e972603d39"
+    },
+    "rgb_adcd7a07f3261e9a": {
+      "path": "../../data/external/prepared/documents/rgb_adcd7a07f3261e9a.txt",
+      "title": "rgb 原始篇章 adcd7a07",
+      "text_sha256": "ffb0d072696ef498f370f60deaedeabb4c4d9a61dfffcfb63a9b92893d5b550a"
+    },
+    "rgb_b888288738e841c5": {
+      "path": "../../data/external/prepared/documents/rgb_b888288738e841c5.txt",
+      "title": "rgb 原始篇章 b8882887",
+      "text_sha256": "08672bf5b0e464b783a6713c858c55350b64ec1e96a4914769430b8c88010f07"
+    },
+    "rgb_adcf8b4d37b34b70": {
+      "path": "../../data/external/prepared/documents/rgb_adcf8b4d37b34b70.txt",
+      "title": "rgb 原始篇章 adcf8b4d",
+      "text_sha256": "53971c77bb4c5d38ebadd98aefe8af43a7faaedd4c88117b5bc0c9a1c5b183ee"
+    },
+    "rgb_f75c4ff31d40cdda": {
+      "path": "../../data/external/prepared/documents/rgb_f75c4ff31d40cdda.txt",
+      "title": "rgb 原始篇章 f75c4ff3",
+      "text_sha256": "9b58461614e2506d29d2363d0ce54bd2c3d8a6136e105e73b17a511da61aa875"
+    },
+    "rgb_0bdc4802b4aebf5d": {
+      "path": "../../data/external/prepared/documents/rgb_0bdc4802b4aebf5d.txt",
+      "title": "rgb 原始篇章 0bdc4802",
+      "text_sha256": "68d897364a7a568f3277640cf6cb565627f5e4fc7bdcd7592390200af248cb16"
+    },
+    "rgb_80564de00c51d83c": {
+      "path": "../../data/external/prepared/documents/rgb_80564de00c51d83c.txt",
+      "title": "rgb 原始篇章 80564de0",
+      "text_sha256": "84692b6dab19f2ebb35d79b303866f0596a70429843e262850940ac56aa00108"
+    },
+    "rgb_4e2aaaecac2fdd5d": {
+      "path": "../../data/external/prepared/documents/rgb_4e2aaaecac2fdd5d.txt",
+      "title": "rgb 原始篇章 4e2aaaec",
+      "text_sha256": "13d56cdc12a657c2da893d9dd5dee7306f107d97e9a820a098ea5bd96d8f8b78"
+    },
+    "rgb_c24074d968b1761d": {
+      "path": "../../data/external/prepared/documents/rgb_c24074d968b1761d.txt",
+      "title": "rgb 原始篇章 c24074d9",
+      "text_sha256": "93cd3f5538a851b739f1f6bf07db68cde3219aa9f63f09bb678037ad04f67c68"
+    },
+    "rgb_b131f5d0dae85f1d": {
+      "path": "../../data/external/prepared/documents/rgb_b131f5d0dae85f1d.txt",
+      "title": "rgb 原始篇章 b131f5d0",
+      "text_sha256": "ab0f7409b1340f1791437b0a8dc69667f0409d7493bc1942bf8eada4bc98d653"
+    },
+    "rgb_a435f656f0e3a7cc": {
+      "path": "../../data/external/prepared/documents/rgb_a435f656f0e3a7cc.txt",
+      "title": "rgb 原始篇章 a435f656",
+      "text_sha256": "356f26b5f187576ae73155edf8567eb87bce0b22a776c44b27173382acf29b82"
+    },
+    "rgb_d59aaa5807694dbb": {
+      "path": "../../data/external/prepared/documents/rgb_d59aaa5807694dbb.txt",
+      "title": "rgb 原始篇章 d59aaa58",
+      "text_sha256": "1b49c4346cb536cfe67fd88f94e82e095a48e397a36cbb6954981801ab7d5fef"
+    },
+    "rgb_681f71e3df8d921a": {
+      "path": "../../data/external/prepared/documents/rgb_681f71e3df8d921a.txt",
+      "title": "rgb 原始篇章 681f71e3",
+      "text_sha256": "4408c31f387dc599cafa0070e7e08ae3845cb51512be0ddd7ccdf50ce544282c"
+    },
+    "rgb_f5b7c8616031dfa9": {
+      "path": "../../data/external/prepared/documents/rgb_f5b7c8616031dfa9.txt",
+      "title": "rgb 原始篇章 f5b7c861",
+      "text_sha256": "c63a701e617f6fa95829dee89b88b372e46f8fc4aa149e2048cea4b6e8f7dbaa"
+    },
+    "rgb_968883c6e459a71a": {
+      "path": "../../data/external/prepared/documents/rgb_968883c6e459a71a.txt",
+      "title": "rgb 原始篇章 968883c6",
+      "text_sha256": "c62e718feccaba479b8ccb77308bbb134a8c26e03dfc620cbb58ed9fe75fa655"
+    },
+    "rgb_fa16616fae912c81": {
+      "path": "../../data/external/prepared/documents/rgb_fa16616fae912c81.txt",
+      "title": "rgb 原始篇章 fa16616f",
+      "text_sha256": "d4dfb30fcb3f2afa99ffa3676771077f8fab2df835168ff3c8b57972c664c8da"
+    },
+    "rgb_bd0af74666582954": {
+      "path": "../../data/external/prepared/documents/rgb_bd0af74666582954.txt",
+      "title": "rgb 原始篇章 bd0af746",
+      "text_sha256": "454d80a6f09964c2bf9f38317e7a47abea4017276451374f5891b4bfd32dabef"
+    },
+    "rgb_06643668da40df9d": {
+      "path": "../../data/external/prepared/documents/rgb_06643668da40df9d.txt",
+      "title": "rgb 原始篇章 06643668",
+      "text_sha256": "3cdefa84e520510c11c00ee9d897ed6cec6a33ec197022be5ae97ae20fdcff8b"
+    },
+    "rgb_925e8124909ea158": {
+      "path": "../../data/external/prepared/documents/rgb_925e8124909ea158.txt",
+      "title": "rgb 原始篇章 925e8124",
+      "text_sha256": "82e58d51a21ec1d3dcb1ee27c11477ea9d42dabb8abb981b1872bb545c91a151"
+    },
+    "rgb_7826b970047ce1bf": {
+      "path": "../../data/external/prepared/documents/rgb_7826b970047ce1bf.txt",
+      "title": "rgb 原始篇章 7826b970",
+      "text_sha256": "c150d2e13df33e32bbed8ab999a152f13d95346fd02e9b577bd6876c1102a360"
+    },
+    "rgb_2c4f0ed23c00a6f5": {
+      "path": "../../data/external/prepared/documents/rgb_2c4f0ed23c00a6f5.txt",
+      "title": "rgb 原始篇章 2c4f0ed2",
+      "text_sha256": "25e7d3d844c6416a721afd162cb941735da2275d6a9eda84fa800c271f4d8870"
+    },
+    "rgb_b0e3c83d441df21d": {
+      "path": "../../data/external/prepared/documents/rgb_b0e3c83d441df21d.txt",
+      "title": "rgb 原始篇章 b0e3c83d",
+      "text_sha256": "e8e03a32030b74bb763c5feeca33f769e27abe61d3654fb9971efebf4d50a0d6"
+    },
+    "rgb_d989cc9188d6b318": {
+      "path": "../../data/external/prepared/documents/rgb_d989cc9188d6b318.txt",
+      "title": "rgb 原始篇章 d989cc91",
+      "text_sha256": "d25699258f1816430556ed9094dd92ad2574d787a3192e9fded405af06db398b"
+    },
+    "rgb_8f2fd7e8192a167e": {
+      "path": "../../data/external/prepared/documents/rgb_8f2fd7e8192a167e.txt",
+      "title": "rgb 原始篇章 8f2fd7e8",
+      "text_sha256": "796ac4ca0a69491ccec5d418d9c1a870755aae17e46ab4eaf50d5594d4b4b8a1"
+    },
+    "rgb_ee2a097aa50abc08": {
+      "path": "../../data/external/prepared/documents/rgb_ee2a097aa50abc08.txt",
+      "title": "rgb 原始篇章 ee2a097a",
+      "text_sha256": "ee2a097aa50abc08abdc7a34a139baab8d0759092ad12b539855e1cea2ddc6e8"
+    },
+    "rgb_45069d158c8500b7": {
+      "path": "../../data/external/prepared/documents/rgb_45069d158c8500b7.txt",
+      "title": "rgb 原始篇章 45069d15",
+      "text_sha256": "39cf2cb1307e029deea6d00248201e5cfb7cd704494580c3182613923ef43b22"
+    },
+    "rgb_4965a3125742cd1f": {
+      "path": "../../data/external/prepared/documents/rgb_4965a3125742cd1f.txt",
+      "title": "rgb 原始篇章 4965a312",
+      "text_sha256": "cc6c09c57fbd981d4fc1e04f24a89c9655d8d44ea182fb06b5c0f367ff65e39f"
+    },
+    "rgb_f25d05b8fdf0756d": {
+      "path": "../../data/external/prepared/documents/rgb_f25d05b8fdf0756d.txt",
+      "title": "rgb 原始篇章 f25d05b8",
+      "text_sha256": "cd40fc5a0e696bc752f09fc2d4266e8e2f480248725b9818b6809a584eb5542c"
+    },
+    "rgb_e46330b8a4de71c2": {
+      "path": "../../data/external/prepared/documents/rgb_e46330b8a4de71c2.txt",
+      "title": "rgb 原始篇章 e46330b8",
+      "text_sha256": "c17932b6ac426f041e055a662052083c6d5c0c48b1de4f0547f3dcf28ce70195"
+    },
+    "rgb_784eabc7df52bf7b": {
+      "path": "../../data/external/prepared/documents/rgb_784eabc7df52bf7b.txt",
+      "title": "rgb 原始篇章 784eabc7",
+      "text_sha256": "d7ccdf7b2bccabdbdd885426b69e08b5d370a3482bbc75489a8d7dbd056cae80"
+    },
+    "rgb_c6ca5aeba92959e4": {
+      "path": "../../data/external/prepared/documents/rgb_c6ca5aeba92959e4.txt",
+      "title": "rgb 原始篇章 c6ca5aeb",
+      "text_sha256": "f65906f25d94aa3b41f6e1421d471e96437a8b905c1a5cea44065addc697a0e1"
+    },
+    "rgb_88b747fe8f9b6839": {
+      "path": "../../data/external/prepared/documents/rgb_88b747fe8f9b6839.txt",
+      "title": "rgb 原始篇章 88b747fe",
+      "text_sha256": "e17a3fc2072d03912ad19cfeca8107f3808bc4c5206f98fab58d76b8f3f4364c"
+    },
+    "rgb_e60fb2cd33873ac5": {
+      "path": "../../data/external/prepared/documents/rgb_e60fb2cd33873ac5.txt",
+      "title": "rgb 原始篇章 e60fb2cd",
+      "text_sha256": "e60fb2cd33873ac5e131f503309c8b31b9d021997a8d619b65ee4afa5254800a"
+    },
+    "rgb_4c68e0a6c4aedf6a": {
+      "path": "../../data/external/prepared/documents/rgb_4c68e0a6c4aedf6a.txt",
+      "title": "rgb 原始篇章 4c68e0a6",
+      "text_sha256": "7adc724ca90f1e58f6d72c4e95ccba908d7c6667b815463593b22275cc9dba9c"
+    },
+    "rgb_5d3e7a87e19fef35": {
+      "path": "../../data/external/prepared/documents/rgb_5d3e7a87e19fef35.txt",
+      "title": "rgb 原始篇章 5d3e7a87",
+      "text_sha256": "734f37bbfbf0e27c09627e913a960021d6fc69e6e0b255957ee24a5fa0c99bf0"
+    },
+    "rgb_727440866930715a": {
+      "path": "../../data/external/prepared/documents/rgb_727440866930715a.txt",
+      "title": "rgb 原始篇章 72744086",
+      "text_sha256": "12726bd177df19bcf4117449694e061704ae838458d0b23b8e8ed89f0b7afaec"
+    },
+    "rgb_a11ad72cdf36a0a5": {
+      "path": "../../data/external/prepared/documents/rgb_a11ad72cdf36a0a5.txt",
+      "title": "rgb 原始篇章 a11ad72c",
+      "text_sha256": "5d0be8bb94414d13a55df063d0539936309487d8393ce576c58edbf293cc65e3"
+    },
+    "rgb_ffda52dbd0c2f5cc": {
+      "path": "../../data/external/prepared/documents/rgb_ffda52dbd0c2f5cc.txt",
+      "title": "rgb 原始篇章 ffda52db",
+      "text_sha256": "64e48e8aa91e4a57c6897b9fee0712d24cfa619d39c9f808b0eb7a95a0b71d5b"
+    },
+    "rgb_dc831c8492132eef": {
+      "path": "../../data/external/prepared/documents/rgb_dc831c8492132eef.txt",
+      "title": "rgb 原始篇章 dc831c84",
+      "text_sha256": "38e51e4fa3120b8a1ad8f44b46d54c8d8292744c254ab4b6ddee5c80275b5635"
+    },
+    "rgb_19a151b6f0ff0abd": {
+      "path": "../../data/external/prepared/documents/rgb_19a151b6f0ff0abd.txt",
+      "title": "rgb 原始篇章 19a151b6",
+      "text_sha256": "7468ab3525b31d2540ea643554f10da0875cd75bd19a790d71152fa77f86fc6e"
+    },
+    "rgb_8d2e9bcac072163b": {
+      "path": "../../data/external/prepared/documents/rgb_8d2e9bcac072163b.txt",
+      "title": "rgb 原始篇章 8d2e9bca",
+      "text_sha256": "fd6945c0b482d53c3840d5a9d8a90b4c74ab045bc42646e27c5b337f2249caca"
+    }
+  },
+  "cases": [
+    {
+      "id": "rgb-249-clean",
+      "source_id": "rgb_1264a1d0d8b1f85a",
+      "category": "fact",
+      "question": "三体电视剧古筝行动在哪一集？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "29",
+      "evidence": [
+        {
+          "source_id": "rgb_1264a1d0d8b1f85a",
+          "start": 0,
+          "end": 21,
+          "quote": "《三体》电视剧的第29集，都看过了没有啊？"
+        }
+      ],
+      "retrieval_source_ids": [
+        "rgb_1264a1d0d8b1f85a"
+      ],
+      "fact_groups": [
+        "rgb:zh_refine.json:249"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_refine.json",
+        "original_id": 249,
+        "variant": "clean",
+        "original_answer": [
+          "29"
+        ],
+        "evidence_annotation": "答案词面匹配提取的候选支持句，待人工检查主语与完整性",
+        "answerability_annotation": "原始 positive 篇章"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "第29集后紧接这一集呈现古筝行动，指代关系明确。"
+      }
+    },
+    {
+      "id": "rgb-249-noise",
+      "source_id": "rgb_1264a1d0d8b1f85a",
+      "category": "noise",
+      "question": "三体电视剧古筝行动在哪一集？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "29",
+      "evidence": [
+        {
+          "source_id": "rgb_1264a1d0d8b1f85a",
+          "start": 0,
+          "end": 21,
+          "quote": "《三体》电视剧的第29集，都看过了没有啊？"
+        }
+      ],
+      "retrieval_source_ids": [
+        "rgb_1264a1d0d8b1f85a",
+        "rgb_5505be4c275b8c9f",
+        "rgb_202a3c2778cd7621",
+        "rgb_2a8af305676afe98"
+      ],
+      "fact_groups": [
+        "rgb:zh_refine.json:249"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_refine.json",
+        "original_id": 249,
+        "variant": "noise",
+        "original_answer": [
+          "29"
+        ],
+        "evidence_annotation": "答案词面匹配提取的候选支持句，待人工检查主语与完整性",
+        "answerability_annotation": "原始 positive 篇章"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "正例篇章次句将第29集与古筝行动相连，干扰篇章未改变该关系。"
+      }
+    },
+    {
+      "id": "rgb-249-no_evidence",
+      "source_id": "rgb_2a8af305676afe98",
+      "category": "unanswerable",
+      "question": "三体电视剧古筝行动在哪一集？",
+      "history": [],
+      "answerable": false,
+      "reference_answer": "资料不足，应拒答。",
+      "evidence": [],
+      "retrieval_source_ids": [
+        "rgb_2a8af305676afe98",
+        "rgb_5505be4c275b8c9f",
+        "rgb_202a3c2778cd7621"
+      ],
+      "fact_groups": [
+        "rgb:zh_refine.json:249"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_refine.json",
+        "original_id": 249,
+        "variant": "no_evidence",
+        "original_answer": [
+          "29"
+        ],
+        "evidence_annotation": "答案词面匹配提取的候选支持句，待人工检查主语与完整性",
+        "answerability_annotation": "派生：仅提供原始 negative 篇章"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "候选仅有预告、动画剧评和新闻时间，未给电视剧对应集数。"
+      }
+    },
+    {
+      "id": "rgb-174-clean",
+      "source_id": "rgb_69f50ae57e21c858",
+      "category": "fact",
+      "question": "2022年G20峰会的时间？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "11月15日；16日",
+      "evidence": [
+        {
+          "source_id": "rgb_69f50ae57e21c858",
+          "start": 0,
+          "end": 37,
+          "quote": "2022年的峰会由印尼担任轮值主席国，于11月15日和16日在巴厘岛举行。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "rgb_69f50ae57e21c858"
+      ],
+      "fact_groups": [
+        "rgb:zh_refine.json:174"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_refine.json",
+        "original_id": 174,
+        "variant": "clean",
+        "original_answer": [
+          "11月15日",
+          "16日"
+        ],
+        "evidence_annotation": "答案词面匹配提取的候选支持句，待人工检查主语与完整性",
+        "answerability_annotation": "原始 positive 篇章"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "原文明示2022年峰会于11月15日和16日举行。"
+      }
+    },
+    {
+      "id": "rgb-174-noise",
+      "source_id": "rgb_69f50ae57e21c858",
+      "category": "noise",
+      "question": "2022年G20峰会的时间？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "11月15日；16日",
+      "evidence": [
+        {
+          "source_id": "rgb_69f50ae57e21c858",
+          "start": 0,
+          "end": 37,
+          "quote": "2022年的峰会由印尼担任轮值主席国，于11月15日和16日在巴厘岛举行。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "rgb_4315c0464e07fca6",
+        "rgb_69f50ae57e21c858",
+        "rgb_98ad59047208a29b",
+        "rgb_29bfaeef8ddec8c8"
+      ],
+      "fact_groups": [
+        "rgb:zh_refine.json:174"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_refine.json",
+        "original_id": 174,
+        "variant": "noise",
+        "original_answer": [
+          "11月15日",
+          "16日"
+        ],
+        "evidence_annotation": "答案词面匹配提取的候选支持句，待人工检查主语与完整性",
+        "answerability_annotation": "原始 positive 篇章"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": "原文明示2022年峰会于11月15日和16日举行"
+      }
+    },
+    {
+      "id": "rgb-174-no_evidence",
+      "source_id": "rgb_29bfaeef8ddec8c8",
+      "category": "unanswerable",
+      "question": "2022年G20峰会的时间？",
+      "history": [],
+      "answerable": false,
+      "reference_answer": "资料不足，应拒答。",
+      "evidence": [],
+      "retrieval_source_ids": [
+        "rgb_29bfaeef8ddec8c8",
+        "rgb_98ad59047208a29b",
+        "rgb_4315c0464e07fca6"
+      ],
+      "fact_groups": [
+        "rgb:zh_refine.json:174"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_refine.json",
+        "original_id": 174,
+        "variant": "no_evidence",
+        "original_answer": [
+          "11月15日",
+          "16日"
+        ],
+        "evidence_annotation": "答案词面匹配提取的候选支持句，待人工检查主语与完整性",
+        "answerability_annotation": "派生：仅提供原始 negative 篇章"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": "原资料未提及"
+      }
+    },
+    {
+      "id": "rgb-104-clean",
+      "source_id": "rgb_dd70f33dbf610749",
+      "category": "fact",
+      "question": "小米MIX4的处理器是什么",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "骁龙888Plus",
+      "evidence": [
+        {
+          "source_id": "rgb_dd70f33dbf610749",
+          "start": 159,
+          "end": 210,
+          "quote": "Xiaomi MIX 4采用高通骁龙888Plus八核处理器；摄像头总数四摄像头（后三），后置摄像头为1."
+        }
+      ],
+      "retrieval_source_ids": [
+        "rgb_dd70f33dbf610749"
+      ],
+      "fact_groups": [
+        "rgb:zh_refine.json:104"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_refine.json",
+        "original_id": 104,
+        "variant": "clean",
+        "original_answer": [
+          "骁龙888Plus"
+        ],
+        "evidence_annotation": "答案词面匹配提取的候选支持句，待人工检查主语与完整性",
+        "answerability_annotation": "原始 positive 篇章"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": "原文明示小米MIX4采用高通骁龙888Plus处理器"
+      }
+    },
+    {
+      "id": "rgb-104-noise",
+      "source_id": "rgb_dd70f33dbf610749",
+      "category": "noise",
+      "question": "小米MIX4的处理器是什么",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "骁龙888Plus",
+      "evidence": [
+        {
+          "source_id": "rgb_dd70f33dbf610749",
+          "start": 159,
+          "end": 210,
+          "quote": "Xiaomi MIX 4采用高通骁龙888Plus八核处理器；摄像头总数四摄像头（后三），后置摄像头为1."
+        }
+      ],
+      "retrieval_source_ids": [
+        "rgb_c61b8fb84a8393f2",
+        "rgb_dd70f33dbf610749",
+        "rgb_519cbd5ca8cc7d65",
+        "rgb_52a527132f99eb99"
+      ],
+      "fact_groups": [
+        "rgb:zh_refine.json:104"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_refine.json",
+        "original_id": 104,
+        "variant": "noise",
+        "original_answer": [
+          "骁龙888Plus"
+        ],
+        "evidence_annotation": "答案词面匹配提取的候选支持句，待人工检查主语与完整性",
+        "answerability_annotation": "原始 positive 篇章"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "证据明确小米MIX4采用高通骁龙888Plus，未混用麒麟710F。"
+      }
+    },
+    {
+      "id": "rgb-104-no_evidence",
+      "source_id": "rgb_52a527132f99eb99",
+      "category": "unanswerable",
+      "question": "小米MIX4的处理器是什么",
+      "history": [],
+      "answerable": false,
+      "reference_answer": "资料不足，应拒答。",
+      "evidence": [],
+      "retrieval_source_ids": [
+        "rgb_52a527132f99eb99",
+        "rgb_519cbd5ca8cc7d65",
+        "rgb_c61b8fb84a8393f2"
+      ],
+      "fact_groups": [
+        "rgb:zh_refine.json:104"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_refine.json",
+        "original_id": 104,
+        "variant": "no_evidence",
+        "original_answer": [
+          "骁龙888Plus"
+        ],
+        "evidence_annotation": "答案词面匹配提取的候选支持句，待人工检查主语与完整性",
+        "answerability_annotation": "派生：仅提供原始 negative 篇章"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "仅有机身参数、发布信息和其他机型处理器，未给MIX4处理器。"
+      }
+    },
+    {
+      "id": "rgb-212-clean",
+      "source_id": "rgb_d429e1c9fa1e3104",
+      "category": "fact",
+      "question": "劳荣枝二审判决",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "死刑",
+      "evidence": [
+        {
+          "source_id": "rgb_d429e1c9fa1e3104",
+          "start": 0,
+          "end": 27,
+          "quote": "虽然劳荣枝二审被判死刑，但是仍需要等待最高院复核结果。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "rgb_d429e1c9fa1e3104"
+      ],
+      "fact_groups": [
+        "rgb:zh_refine.json:212"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_refine.json",
+        "original_id": 212,
+        "variant": "clean",
+        "original_answer": [
+          "死刑"
+        ],
+        "evidence_annotation": "答案词面匹配提取的候选支持句，待人工检查主语与完整性",
+        "answerability_annotation": "原始 positive 篇章"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "证据明确劳荣枝二审被判死刑，与一审和待复核阶段区分。"
+      }
+    },
+    {
+      "id": "rgb-212-noise",
+      "source_id": "rgb_d429e1c9fa1e3104",
+      "category": "noise",
+      "question": "劳荣枝二审判决",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "死刑",
+      "evidence": [
+        {
+          "source_id": "rgb_d429e1c9fa1e3104",
+          "start": 0,
+          "end": 27,
+          "quote": "虽然劳荣枝二审被判死刑，但是仍需要等待最高院复核结果。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "rgb_2dabdce62e0ba79a",
+        "rgb_d429e1c9fa1e3104",
+        "rgb_1b3abe2dd85effc8",
+        "rgb_438a91ede0cf705e"
+      ],
+      "fact_groups": [
+        "rgb:zh_refine.json:212"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_refine.json",
+        "original_id": 212,
+        "variant": "noise",
+        "original_answer": [
+          "死刑"
+        ],
+        "evidence_annotation": "答案词面匹配提取的候选支持句，待人工检查主语与完整性",
+        "answerability_annotation": "原始 positive 篇章"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "正例直接给出二审死刑，其他篇章为争议和审查过程。"
+      }
+    },
+    {
+      "id": "rgb-212-no_evidence",
+      "source_id": "rgb_2dabdce62e0ba79a",
+      "category": "unanswerable",
+      "question": "劳荣枝二审判决",
+      "history": [],
+      "answerable": false,
+      "reference_answer": "资料不足，应拒答。",
+      "evidence": [],
+      "retrieval_source_ids": [
+        "rgb_2dabdce62e0ba79a",
+        "rgb_1b3abe2dd85effc8",
+        "rgb_438a91ede0cf705e"
+      ],
+      "fact_groups": [
+        "rgb:zh_refine.json:212"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_refine.json",
+        "original_id": 212,
+        "variant": "no_evidence",
+        "original_answer": [
+          "死刑"
+        ],
+        "evidence_annotation": "答案词面匹配提取的候选支持句，待人工检查主语与完整性",
+        "answerability_annotation": "派生：仅提供原始 negative 篇章"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "候选仅有辩护、定罪讨论及庭审图信息，未给二审判决结果。"
+      }
+    },
+    {
+      "id": "rgb-49-clean",
+      "source_id": "rgb_1fa9efb50290486b",
+      "category": "fact",
+      "question": "北京冬奥会吉祥物叫什么",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "冰墩墩",
+      "evidence": [
+        {
+          "source_id": "rgb_1fa9efb50290486b",
+          "start": 228,
+          "end": 252,
+          "quote": "也有不法分子以代购冰墩墩的名义制造骗局[23]。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "rgb_1fa9efb50290486b"
+      ],
+      "fact_groups": [
+        "rgb:zh_refine.json:49"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_refine.json",
+        "original_id": 49,
+        "variant": "clean",
+        "original_answer": [
+          "冰墩墩"
+        ],
+        "evidence_annotation": "答案词面匹配提取的候选支持句，待人工检查主语与完整性",
+        "answerability_annotation": "原始 positive 篇章"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": false,
+        "notes": "所标证据只说代购骗局，未证明冰墩墩的北京冬奥会吉祥物身份。"
+      }
+    },
+    {
+      "id": "rgb-49-noise",
+      "source_id": "rgb_1fa9efb50290486b",
+      "category": "noise",
+      "question": "北京冬奥会吉祥物叫什么",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "冰墩墩",
+      "evidence": [
+        {
+          "source_id": "rgb_1fa9efb50290486b",
+          "start": 228,
+          "end": 252,
+          "quote": "也有不法分子以代购冰墩墩的名义制造骗局[23]。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "rgb_b081ea71a18f64d8",
+        "rgb_3b5b52087b7e8305",
+        "rgb_1fa9efb50290486b",
+        "rgb_c0d8f2e41225f7a7"
+      ],
+      "fact_groups": [
+        "rgb:zh_refine.json:49"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_refine.json",
+        "original_id": 49,
+        "variant": "noise",
+        "original_answer": [
+          "冰墩墩"
+        ],
+        "evidence_annotation": "答案词面匹配提取的候选支持句，待人工检查主语与完整性",
+        "answerability_annotation": "原始 positive 篇章"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": false,
+        "notes": "所标句为冰墩墩代购骗局，不能作为吉祥物身份的支持句。"
+      }
+    },
+    {
+      "id": "rgb-49-no_evidence",
+      "source_id": "rgb_c0d8f2e41225f7a7",
+      "category": "unanswerable",
+      "question": "北京冬奥会吉祥物叫什么",
+      "history": [],
+      "answerable": false,
+      "reference_answer": "资料不足，应拒答。",
+      "evidence": [],
+      "retrieval_source_ids": [
+        "rgb_c0d8f2e41225f7a7",
+        "rgb_3b5b52087b7e8305",
+        "rgb_b081ea71a18f64d8"
+      ],
+      "fact_groups": [
+        "rgb:zh_refine.json:49"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_refine.json",
+        "original_id": 49,
+        "variant": "no_evidence",
+        "original_answer": [
+          "冰墩墩"
+        ],
+        "evidence_annotation": "答案词面匹配提取的候选支持句，待人工检查主语与完整性",
+        "answerability_annotation": "派生：仅提供原始 negative 篇章"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "候选只有造型、熊猫选择及起名过程，未给北京冬奥会吉祥物姓名。"
+      }
+    },
+    {
+      "id": "rgb-112-clean",
+      "source_id": "rgb_a0093ffa832111e3",
+      "category": "fact",
+      "question": "2022年乒乓球团体世锦赛会在哪举行",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "成都",
+      "evidence": [
+        {
+          "source_id": "rgb_a0093ffa832111e3",
+          "start": 72,
+          "end": 117,
+          "quote": "2019年10月至11月间，国际乒联男子、女子世界杯在四川成都举行，中国选手包揽全部冠军。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "rgb_a0093ffa832111e3"
+      ],
+      "fact_groups": [
+        "rgb:zh_refine.json:112"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_refine.json",
+        "original_id": 112,
+        "variant": "clean",
+        "original_answer": [
+          "成都"
+        ],
+        "evidence_annotation": "答案词面匹配提取的候选支持句，待人工检查主语与完整性",
+        "answerability_annotation": "原始 positive 篇章"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": false,
+        "notes": "证据指2019年世界杯，非2022年团体世锦赛；正确对应句在篇末。"
+      }
+    },
+    {
+      "id": "rgb-112-noise",
+      "source_id": "rgb_a0093ffa832111e3",
+      "category": "noise",
+      "question": "2022年乒乓球团体世锦赛会在哪举行",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "成都",
+      "evidence": [
+        {
+          "source_id": "rgb_a0093ffa832111e3",
+          "start": 72,
+          "end": 117,
+          "quote": "2019年10月至11月间，国际乒联男子、女子世界杯在四川成都举行，中国选手包揽全部冠军。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "rgb_d89b9366710b6230",
+        "rgb_515faad0f25f5206",
+        "rgb_a0093ffa832111e3",
+        "rgb_c3e8114c312d507e"
+      ],
+      "fact_groups": [
+        "rgb:zh_refine.json:112"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_refine.json",
+        "original_id": 112,
+        "variant": "noise",
+        "original_answer": [
+          "成都"
+        ],
+        "evidence_annotation": "答案词面匹配提取的候选支持句，待人工检查主语与完整性",
+        "answerability_annotation": "原始 positive 篇章"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": false,
+        "notes": "误标2019年世界杯成都举办句，应定位篇末2022年团体世锦赛句。"
+      }
+    },
+    {
+      "id": "rgb-112-no_evidence",
+      "source_id": "rgb_d89b9366710b6230",
+      "category": "unanswerable",
+      "question": "2022年乒乓球团体世锦赛会在哪举行",
+      "history": [],
+      "answerable": false,
+      "reference_answer": "资料不足，应拒答。",
+      "evidence": [],
+      "retrieval_source_ids": [
+        "rgb_d89b9366710b6230",
+        "rgb_c3e8114c312d507e",
+        "rgb_515faad0f25f5206"
+      ],
+      "fact_groups": [
+        "rgb:zh_refine.json:112"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_refine.json",
+        "original_id": 112,
+        "variant": "no_evidence",
+        "original_answer": [
+          "成都"
+        ],
+        "evidence_annotation": "答案词面匹配提取的候选支持句，待人工检查主语与完整性",
+        "answerability_annotation": "派生：仅提供原始 negative 篇章"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "候选仅有赛程时段、新闻索引及双打名单，未给2022年举办城市。"
+      }
+    },
+    {
+      "id": "rgb-29-clean",
+      "source_id": "rgb_21d3f0e424383c6f",
+      "category": "fact",
+      "question": "2021年中国外贸进出口规模是多少美元",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "6.05万亿美元",
+      "evidence": [
+        {
+          "source_id": "rgb_21d3f0e424383c6f",
+          "start": 29,
+          "end": 87,
+          "quote": "据其介绍，2021年，中国外贸进出口实现较快增长，年内突破5万亿、6万亿美元两个关口，规模6.05万亿美元再创新高。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "rgb_21d3f0e424383c6f"
+      ],
+      "fact_groups": [
+        "rgb:zh_refine.json:29"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_refine.json",
+        "original_id": 29,
+        "variant": "clean",
+        "original_answer": [
+          "6.05万亿美元"
+        ],
+        "evidence_annotation": "答案词面匹配提取的候选支持句，待人工检查主语与完整性",
+        "answerability_annotation": "原始 positive 篇章"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "证据明确2021年中国外贸进出口为6.05万亿美元。"
+      }
+    },
+    {
+      "id": "rgb-29-noise",
+      "source_id": "rgb_21d3f0e424383c6f",
+      "category": "noise",
+      "question": "2021年中国外贸进出口规模是多少美元",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "6.05万亿美元",
+      "evidence": [
+        {
+          "source_id": "rgb_21d3f0e424383c6f",
+          "start": 29,
+          "end": 87,
+          "quote": "据其介绍，2021年，中国外贸进出口实现较快增长，年内突破5万亿、6万亿美元两个关口，规模6.05万亿美元再创新高。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "rgb_2d1a5aaa79069844",
+        "rgb_039dc09c1419528e",
+        "rgb_dc019355c0a42b88",
+        "rgb_21d3f0e424383c6f"
+      ],
+      "fact_groups": [
+        "rgb:zh_refine.json:29"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_refine.json",
+        "original_id": 29,
+        "variant": "noise",
+        "original_answer": [
+          "6.05万亿美元"
+        ],
+        "evidence_annotation": "答案词面匹配提取的候选支持句，待人工检查主语与完整性",
+        "answerability_annotation": "原始 positive 篇章"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "正例明确6.05万亿美元，未混用人民币总额或东盟双边贸易额。"
+      }
+    },
+    {
+      "id": "rgb-29-no_evidence",
+      "source_id": "rgb_039dc09c1419528e",
+      "category": "unanswerable",
+      "question": "2021年中国外贸进出口规模是多少美元",
+      "history": [],
+      "answerable": false,
+      "reference_answer": "资料不足，应拒答。",
+      "evidence": [],
+      "retrieval_source_ids": [
+        "rgb_039dc09c1419528e",
+        "rgb_2d1a5aaa79069844",
+        "rgb_dc019355c0a42b88"
+      ],
+      "fact_groups": [
+        "rgb:zh_refine.json:29"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_refine.json",
+        "original_id": 29,
+        "variant": "no_evidence",
+        "original_answer": [
+          "6.05万亿美元"
+        ],
+        "evidence_annotation": "答案词面匹配提取的候选支持句，待人工检查主语与完整性",
+        "answerability_annotation": "派生：仅提供原始 negative 篇章"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "候选仅有人民币总额、分项及对东盟美元额，缺少全国美元总额和汇率。"
+      }
+    },
+    {
+      "id": "rgb-8-clean",
+      "source_id": "rgb_7fbeb10342ce061a",
+      "category": "fact",
+      "question": "2022春运开始时间",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "1月17日",
+      "evidence": [
+        {
+          "source_id": "rgb_7fbeb10342ce061a",
+          "start": 0,
+          "end": 30,
+          "quote": "2022年春运自1月17日开始，2月25日结束，共计40天。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "rgb_7fbeb10342ce061a"
+      ],
+      "fact_groups": [
+        "rgb:zh_refine.json:8"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_refine.json",
+        "original_id": 8,
+        "variant": "clean",
+        "original_answer": [
+          "1月17日"
+        ],
+        "evidence_annotation": "答案词面匹配提取的候选支持句，待人工检查主语与完整性",
+        "answerability_annotation": "原始 positive 篇章"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "证据明确2022年春运1月17日开始，非购票开始日1月3日。"
+      }
+    },
+    {
+      "id": "rgb-8-noise",
+      "source_id": "rgb_7fbeb10342ce061a",
+      "category": "noise",
+      "question": "2022春运开始时间",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "1月17日",
+      "evidence": [
+        {
+          "source_id": "rgb_7fbeb10342ce061a",
+          "start": 0,
+          "end": 30,
+          "quote": "2022年春运自1月17日开始，2月25日结束，共计40天。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "rgb_bdcd799c8853fe25",
+        "rgb_7fbeb10342ce061a",
+        "rgb_63f03db630964fe4",
+        "rgb_69a3e001db3362db"
+      ],
+      "fact_groups": [
+        "rgb:zh_refine.json:8"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_refine.json",
+        "original_id": 8,
+        "variant": "noise",
+        "original_answer": [
+          "1月17日"
+        ],
+        "evidence_annotation": "答案词面匹配提取的候选支持句，待人工检查主语与完整性",
+        "answerability_annotation": "原始 positive 篇章"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "正例直接给出春运开始日1月17日，其他候选仅讲保障措施。"
+      }
+    },
+    {
+      "id": "rgb-8-no_evidence",
+      "source_id": "rgb_69a3e001db3362db",
+      "category": "unanswerable",
+      "question": "2022春运开始时间",
+      "history": [],
+      "answerable": false,
+      "reference_answer": "资料不足，应拒答。",
+      "evidence": [],
+      "retrieval_source_ids": [
+        "rgb_69a3e001db3362db",
+        "rgb_bdcd799c8853fe25",
+        "rgb_63f03db630964fe4"
+      ],
+      "fact_groups": [
+        "rgb:zh_refine.json:8"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_refine.json",
+        "original_id": 8,
+        "variant": "no_evidence",
+        "original_answer": [
+          "1月17日"
+        ],
+        "evidence_annotation": "答案词面匹配提取的候选支持句，待人工检查主语与完整性",
+        "answerability_annotation": "派生：仅提供原始 negative 篇章"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "候选仅讲春运防疫和服务保障，没有开始日期。"
+      }
+    },
+    {
+      "id": "rgb-135-clean",
+      "source_id": "rgb_6482c6823849c075",
+      "category": "fact",
+      "question": "欧元区2022年8月通胀率是多少？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "9.1%",
+      "evidence": [
+        {
+          "source_id": "rgb_6482c6823849c075",
+          "start": 0,
+          "end": 49,
+          "quote": "8月31日，欧盟统计局数据显示，2022年8月，欧元区年通胀率预计为9.1%，高于7月的8.9%。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "rgb_6482c6823849c075"
+      ],
+      "fact_groups": [
+        "rgb:zh_refine.json:135"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_refine.json",
+        "original_id": 135,
+        "variant": "clean",
+        "original_answer": [
+          "9.1%"
+        ],
+        "evidence_annotation": "答案词面匹配提取的候选支持句，待人工检查主语与完整性",
+        "answerability_annotation": "原始 positive 篇章"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "证据对应2022年8月欧元区年通胀率预计9.1%，按该初步预计口径。"
+      }
+    },
+    {
+      "id": "rgb-135-noise",
+      "source_id": "rgb_6482c6823849c075",
+      "category": "noise",
+      "question": "欧元区2022年8月通胀率是多少？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "9.1%",
+      "evidence": [
+        {
+          "source_id": "rgb_6482c6823849c075",
+          "start": 0,
+          "end": 49,
+          "quote": "8月31日，欧盟统计局数据显示，2022年8月，欧元区年通胀率预计为9.1%，高于7月的8.9%。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "rgb_6482c6823849c075",
+        "rgb_251cc3e45e8579b2",
+        "rgb_d9b41fb0a88c890d",
+        "rgb_a135f19467ab2514"
+      ],
+      "fact_groups": [
+        "rgb:zh_refine.json:135"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_refine.json",
+        "original_id": 135,
+        "variant": "noise",
+        "original_answer": [
+          "9.1%"
+        ],
+        "evidence_annotation": "答案词面匹配提取的候选支持句，待人工检查主语与完整性",
+        "answerability_annotation": "原始 positive 篇章"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "正例给出当月预计年通胀率9.1%，未混用英国或其他年份通胀数据。"
+      }
+    },
+    {
+      "id": "rgb-135-no_evidence",
+      "source_id": "rgb_d9b41fb0a88c890d",
+      "category": "unanswerable",
+      "question": "欧元区2022年8月通胀率是多少？",
+      "history": [],
+      "answerable": false,
+      "reference_answer": "资料不足，应拒答。",
+      "evidence": [],
+      "retrieval_source_ids": [
+        "rgb_d9b41fb0a88c890d",
+        "rgb_251cc3e45e8579b2",
+        "rgb_a135f19467ab2514"
+      ],
+      "fact_groups": [
+        "rgb:zh_refine.json:135"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_refine.json",
+        "original_id": 135,
+        "variant": "no_evidence",
+        "original_answer": [
+          "9.1%"
+        ],
+        "evidence_annotation": "答案词面匹配提取的候选支持句，待人工检查主语与完整性",
+        "answerability_annotation": "派生：仅提供原始 negative 篇章"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "候选只谈通胀风险和预期，未给欧元区2022年8月数值。"
+      }
+    },
+    {
+      "id": "rgb-294-clean",
+      "source_id": "rgb_609996957ae98f41",
+      "category": "fact",
+      "question": "消失的她原型事件是什么",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "泰国坠崖案；孕妇坠崖案",
+      "evidence": [
+        {
+          "source_id": "rgb_609996957ae98f41",
+          "start": 0,
+          "end": 22,
+          "quote": "泰国孕妇坠崖案，想必大家多多少少都有所耳闻。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "rgb_609996957ae98f41"
+      ],
+      "fact_groups": [
+        "rgb:zh_refine.json:294"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_refine.json",
+        "original_id": 294,
+        "variant": "clean",
+        "original_answer": [
+          [
+            "泰国坠崖案",
+            "孕妇坠崖案"
+          ]
+        ],
+        "evidence_annotation": "答案词面匹配提取的候选支持句，待人工检查主语与完整性",
+        "answerability_annotation": "原始 positive 篇章"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "下句明确电影改编这个事件，指回前句泰国孕妇坠崖案。"
+      }
+    },
+    {
+      "id": "rgb-294-noise",
+      "source_id": "rgb_609996957ae98f41",
+      "category": "noise",
+      "question": "消失的她原型事件是什么",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "泰国坠崖案；孕妇坠崖案",
+      "evidence": [
+        {
+          "source_id": "rgb_609996957ae98f41",
+          "start": 0,
+          "end": 22,
+          "quote": "泰国孕妇坠崖案，想必大家多多少少都有所耳闻。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "rgb_43a2e9fe8eae85ec",
+        "rgb_2ecd674090df683f",
+        "rgb_609996957ae98f41",
+        "rgb_eaa8ba3289383593"
+      ],
+      "fact_groups": [
+        "rgb:zh_refine.json:294"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_refine.json",
+        "original_id": 294,
+        "variant": "noise",
+        "original_answer": [
+          [
+            "泰国坠崖案",
+            "孕妇坠崖案"
+          ]
+        ],
+        "evidence_annotation": "答案词面匹配提取的候选支持句，待人工检查主语与完整性",
+        "answerability_annotation": "原始 positive 篇章"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "正例以这个事件连接泰国孕妇坠崖案与电影改编关系。"
+      }
+    },
+    {
+      "id": "rgb-294-no_evidence",
+      "source_id": "rgb_2ecd674090df683f",
+      "category": "unanswerable",
+      "question": "消失的她原型事件是什么",
+      "history": [],
+      "answerable": false,
+      "reference_answer": "资料不足，应拒答。",
+      "evidence": [],
+      "retrieval_source_ids": [
+        "rgb_2ecd674090df683f",
+        "rgb_43a2e9fe8eae85ec",
+        "rgb_eaa8ba3289383593"
+      ],
+      "fact_groups": [
+        "rgb:zh_refine.json:294"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_refine.json",
+        "original_id": 294,
+        "variant": "no_evidence",
+        "original_answer": [
+          [
+            "泰国坠崖案",
+            "孕妇坠崖案"
+          ]
+        ],
+        "evidence_annotation": "答案词面匹配提取的候选支持句，待人工检查主语与完整性",
+        "answerability_annotation": "派生：仅提供原始 negative 篇章"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "候选描述王暖暖婚姻及坠崖经历，未与电影消失的她建立原型关系。"
+      }
+    },
+    {
+      "id": "rgb-int-65",
+      "source_id": "rgb_f75c4ff31d40cdda",
+      "category": "multi_evidence",
+      "question": "网易和腾讯2022年全年营收分别是多少？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "965亿元；5545.5亿元",
+      "evidence": [
+        {
+          "source_id": "rgb_f75c4ff31d40cdda",
+          "start": 41,
+          "end": 85,
+          "quote": "2022年总营收965亿元；非公认会计准则下，归属于公司股东的持续经营净利润228亿元。"
+        },
+        {
+          "source_id": "rgb_adcf8b4d37b34b70",
+          "start": 139,
+          "end": 195,
+          "quote": "整个2022年，腾讯营收5545.5亿元；净利润1882.4亿元，非国际财务报告准则下，净利润1156.5亿元。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "rgb_adcd7a07f3261e9a",
+        "rgb_b888288738e841c5",
+        "rgb_adcf8b4d37b34b70",
+        "rgb_f75c4ff31d40cdda"
+      ],
+      "fact_groups": [
+        "rgb:zh_int.json:65"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_int.json",
+        "original_id": 65,
+        "variant": "integration",
+        "original_answer": [
+          "965亿元",
+          "5545.5亿元"
+        ],
+        "evidence_annotation": "各子答案对应支持句，待人工检查"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "两篇分别明确网易2022年965亿元、腾讯2022年5545.5亿元营收。"
+      }
+    },
+    {
+      "id": "rgb-int-64",
+      "source_id": "rgb_c24074d968b1761d",
+      "category": "multi_evidence",
+      "question": "谷歌和百度推出的类ChatGPT是什么？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "文心一言；Bard",
+      "evidence": [
+        {
+          "source_id": "rgb_c24074d968b1761d",
+          "start": 165,
+          "end": 176,
+          "quote": "文心一言，位于模型层。"
+        },
+        {
+          "source_id": "rgb_80564de00c51d83c",
+          "start": 0,
+          "end": 28,
+          "quote": "谷歌希望通过这一阶段的测试，来提高 Bard 的质量和速度。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "rgb_0bdc4802b4aebf5d",
+        "rgb_80564de00c51d83c",
+        "rgb_4e2aaaecac2fdd5d",
+        "rgb_c24074d968b1761d"
+      ],
+      "fact_groups": [
+        "rgb:zh_int.json:64"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_int.json",
+        "original_id": 64,
+        "variant": "integration",
+        "original_answer": [
+          "文心一言",
+          "Bard"
+        ],
+        "evidence_annotation": "各子答案对应支持句，待人工检查"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "结合各自篇章，谷歌对应Bard、百度对应文心一言；参考答案按无序名称集合理解。"
+      }
+    },
+    {
+      "id": "rgb-int-46",
+      "source_id": "rgb_d59aaa5807694dbb",
+      "category": "multi_evidence",
+      "question": "电影《搜救》的导演和主演是谁",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "甄子丹；罗志良",
+      "evidence": [
+        {
+          "source_id": "rgb_d59aaa5807694dbb",
+          "start": 81,
+          "end": 90,
+          "quote": "甄子丹最弱的一次！"
+        },
+        {
+          "source_id": "rgb_b131f5d0dae85f1d",
+          "start": 0,
+          "end": 35,
+          "quote": "该片导演罗志良表示，期望《搜救》会为观众带来一部感动且震撼的电影作品。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "rgb_b131f5d0dae85f1d",
+        "rgb_a435f656f0e3a7cc",
+        "rgb_d59aaa5807694dbb",
+        "rgb_681f71e3df8d921a"
+      ],
+      "fact_groups": [
+        "rgb:zh_int.json:46"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_int.json",
+        "original_id": 46,
+        "variant": "integration",
+        "original_answer": [
+          "甄子丹",
+          "罗志良"
+        ],
+        "evidence_annotation": "各子答案对应支持句，待人工检查"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": false,
+        "notes": "罗志良导演有据；甄子丹所标句仅为评价标题，未证明其主演身份。"
+      }
+    },
+    {
+      "id": "rgb-int-78",
+      "source_id": "rgb_968883c6e459a71a",
+      "category": "multi_evidence",
+      "question": "2023年德班世乒赛男女单打冠军是谁",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "孙颖莎；樊振东",
+      "evidence": [
+        {
+          "source_id": "rgb_968883c6e459a71a",
+          "start": 186,
+          "end": 206,
+          "quote": "5月28日，陈梦与孙颖莎（左）在比赛中。"
+        },
+        {
+          "source_id": "rgb_fa16616fae912c81",
+          "start": 178,
+          "end": 187,
+          "quote": "”、“樊振东加油！"
+        }
+      ],
+      "retrieval_source_ids": [
+        "rgb_f5b7c8616031dfa9",
+        "rgb_968883c6e459a71a",
+        "rgb_fa16616fae912c81",
+        "rgb_bd0af74666582954"
+      ],
+      "fact_groups": [
+        "rgb:zh_int.json:78"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_int.json",
+        "original_id": 78,
+        "variant": "integration",
+        "original_answer": [
+          "孙颖莎",
+          "樊振东"
+        ],
+        "evidence_annotation": "各子答案对应支持句，待人工检查"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": false,
+        "notes": "孙颖莎证据仅为比赛图片说明，樊振东证据为赛前加油，均未证明本届夺冠。"
+      }
+    },
+    {
+      "id": "rgb-int-44",
+      "source_id": "rgb_7826b970047ce1bf",
+      "category": "multi_evidence",
+      "question": "2022广州网球巡回赛U14组男单和女单冠军分别是谁？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "王发；钟颖轩",
+      "evidence": [
+        {
+          "source_id": "rgb_7826b970047ce1bf",
+          "start": 0,
+          "end": 11,
+          "quote": "在赛场上背背篓的王发。"
+        },
+        {
+          "source_id": "rgb_925e8124909ea158",
+          "start": 0,
+          "end": 47,
+          "quote": "钟颖轩现在就读于广州市开元学校初二年级，2016年注册成为黄埔区队员，现在入选了广州市网球队。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "rgb_06643668da40df9d",
+        "rgb_925e8124909ea158",
+        "rgb_7826b970047ce1bf",
+        "rgb_2c4f0ed23c00a6f5"
+      ],
+      "fact_groups": [
+        "rgb:zh_int.json:44"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_int.json",
+        "original_id": 44,
+        "variant": "integration",
+        "original_answer": [
+          "王发",
+          "钟颖轩"
+        ],
+        "evidence_annotation": "各子答案对应支持句，待人工检查"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": false,
+        "notes": "王发夺男冠有正文支持，但钟颖轩资料仅有其他年份奖项，未证明该届女冠。"
+      }
+    },
+    {
+      "id": "rgb-int-91",
+      "source_id": "rgb_ee2a097aa50abc08",
+      "category": "multi_evidence",
+      "question": "电视剧《不期而至》的主演是谁？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "蔡文静；彭冠英",
+      "evidence": [
+        {
+          "source_id": "rgb_ee2a097aa50abc08",
+          "start": 0,
+          "end": 32,
+          "quote": "封面新闻记者荀超实习生赵雪青图据《不期而至》官博、蔡文静个人微博"
+        },
+        {
+          "source_id": "rgb_d989cc9188d6b318",
+          "start": 0,
+          "end": 35,
+          "quote": "而《不期而至》中彭冠英饰演的谭深，在察觉阮真真不对劲后，就开始试探了。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "rgb_b0e3c83d441df21d",
+        "rgb_d989cc9188d6b318",
+        "rgb_8f2fd7e8192a167e",
+        "rgb_ee2a097aa50abc08"
+      ],
+      "fact_groups": [
+        "rgb:zh_int.json:91"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_int.json",
+        "original_id": 91,
+        "variant": "integration",
+        "original_answer": [
+          "蔡文静",
+          "彭冠英"
+        ],
+        "evidence_annotation": "各子答案对应支持句，待人工检查"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": false,
+        "notes": "蔡文静证据仅为图片来源，不能证明主演身份；彭冠英句只明确饰演角色。"
+      }
+    },
+    {
+      "id": "rgb-int-79",
+      "source_id": "rgb_f25d05b8fdf0756d",
+      "category": "multi_evidence",
+      "question": "陈凯歌少年时代上映时间及主演",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "刘昊然；陈飞宇；张雪迎；文淇；8月17日",
+      "evidence": [
+        {
+          "source_id": "rgb_f25d05b8fdf0756d",
+          "start": 168,
+          "end": 196,
+          "quote": "少年如歌生生不息，刘昊然陈飞宇携手为命运拼搏为青春呐喊！"
+        },
+        {
+          "source_id": "rgb_784eabc7df52bf7b",
+          "start": 151,
+          "end": 187,
+          "quote": "”影片由刘昊然、陈飞宇、张雪迎、文淇主演，拍片时演员们都比现在更为青涩。"
+        },
+        {
+          "source_id": "rgb_45069d158c8500b7",
+          "start": 109,
+          "end": 155,
+          "quote": "然而许多人都忽略了，作为第五代导演代表人物之一陈凯歌同样有一部新片也将在8月17日正式上映。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "rgb_45069d158c8500b7",
+        "rgb_4965a3125742cd1f",
+        "rgb_f25d05b8fdf0756d",
+        "rgb_e46330b8a4de71c2",
+        "rgb_784eabc7df52bf7b"
+      ],
+      "fact_groups": [
+        "rgb:zh_int.json:79"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_int.json",
+        "original_id": 79,
+        "variant": "integration",
+        "original_answer": [
+          "刘昊然",
+          "陈飞宇",
+          "张雪迎",
+          "文淇",
+          "8月17日"
+        ],
+        "evidence_annotation": "各子答案对应支持句，待人工检查"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "主演句列四位领衔演员；上映句经后文这部电影明确指回少年时代，日期8月17日。"
+      }
+    },
+    {
+      "id": "rgb-int-27",
+      "source_id": "rgb_88b747fe8f9b6839",
+      "category": "multi_evidence",
+      "question": "《心居》的主演有谁，导演是谁？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "海清；童瑶；张颂文；滕华涛",
+      "evidence": [
+        {
+          "source_id": "rgb_88b747fe8f9b6839",
+          "start": 190,
+          "end": 212,
+          "quote": "童瑶、海清不是上海人，节冰和张颂文也是不是。"
+        },
+        {
+          "source_id": "rgb_e60fb2cd33873ac5",
+          "start": 156,
+          "end": 162,
+          "quote": "”滕华涛说。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "rgb_c6ca5aeba92959e4",
+        "rgb_88b747fe8f9b6839",
+        "rgb_e60fb2cd33873ac5",
+        "rgb_4c68e0a6c4aedf6a"
+      ],
+      "fact_groups": [
+        "rgb:zh_int.json:27"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_int.json",
+        "original_id": 27,
+        "variant": "integration",
+        "original_answer": [
+          "海清",
+          "童瑶",
+          "张颂文",
+          "滕华涛"
+        ],
+        "evidence_annotation": "各子答案对应支持句，待人工检查"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": false,
+        "notes": "演员籍贯句不是完整主演表，滕华涛说只证明发言，未证明导演身份。"
+      }
+    },
+    {
+      "id": "rgb-int-83",
+      "source_id": "rgb_a11ad72cdf36a0a5",
+      "category": "multi_evidence",
+      "question": "2023年温网男女单冠军",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "阿尔卡拉斯；万卓索娃",
+      "evidence": [
+        {
+          "source_id": "rgb_a11ad72cdf36a0a5",
+          "start": 52,
+          "end": 65,
+          "quote": "德约科维奇vs阿尔卡拉斯！"
+        },
+        {
+          "source_id": "rgb_5d3e7a87e19fef35",
+          "start": 121,
+          "end": 158,
+          "quote": "” 一年前接受过手腕手术的万卓索娃对于自己能否重返顶尖球员行列心中并没有底。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "rgb_5d3e7a87e19fef35",
+        "rgb_727440866930715a",
+        "rgb_a11ad72cdf36a0a5",
+        "rgb_ffda52dbd0c2f5cc"
+      ],
+      "fact_groups": [
+        "rgb:zh_int.json:83"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_int.json",
+        "original_id": 83,
+        "variant": "integration",
+        "original_answer": [
+          "阿尔卡拉斯",
+          "万卓索娃"
+        ],
+        "evidence_annotation": "各子答案对应支持句，待人工检查"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": false,
+        "notes": "男单所标句是决赛预告，女单句是手术经历，均不是2023温网夺冠证据。"
+      }
+    },
+    {
+      "id": "rgb-int-60",
+      "source_id": "rgb_8d2e9bcac072163b",
+      "category": "multi_evidence",
+      "question": "《流浪地球2》的主演和导演是谁？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "吴京；刘德华；李雪健；郭帆",
+      "evidence": [
+        {
+          "source_id": "rgb_8d2e9bcac072163b",
+          "start": 39,
+          "end": 76,
+          "quote": "刘慈欣原著、监制，吴京、李雪健、沙溢、王智、宁理领衔主演，刘德华特别演出。"
+        },
+        {
+          "source_id": "rgb_19a151b6f0ff0abd",
+          "start": 213,
+          "end": 258,
+          "quote": "[43]2023年1月15日晚，郭帆吴京等人聚在一起，刘德华身在香港参加抖音直播电影宣传。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "rgb_dc831c8492132eef",
+        "rgb_19a151b6f0ff0abd",
+        "rgb_8d2e9bcac072163b"
+      ],
+      "fact_groups": [
+        "rgb:zh_int.json:60"
+      ],
+      "external_origin": {
+        "dataset": "rgb",
+        "original_file": "zh_int.json",
+        "original_id": 60,
+        "variant": "integration",
+        "original_answer": [
+          "吴京",
+          "刘德华",
+          "李雪健",
+          "郭帆"
+        ],
+        "evidence_annotation": "各子答案对应支持句，待人工检查"
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": false,
+        "notes": "郭帆所标句只是同框，导演身份应标前文；主演还漏沙溢、王智、宁理，刘德华为特别演出。"
+      }
+    }
+  ],
+  "provenance": {
+    "repository": "https://github.com/chen700564/RGB",
+    "revision": "65ec39e40e7dc9abb50e9bf1b4f32be3f6f16615",
+    "raw_sha256": {
+      "zh_refine.json": "7a5c7547dcfa1b83429b53a41644453508f820f502d3817312cbf8051afb4563",
+      "zh_int.json": "e2ddb0461e2130f4b006996a574a89d5898989ff8b15f51d900c17162c7d1b17"
+    },
+    "license": "CC BY-NC-SA 4.0，非商业用途",
+    "selection_exclusions": [
+      {
+        "file": "zh_int.json",
+        "id": 95,
+        "reason": "参考答案不能按原文匹配定位，需要人工标注"
+      },
+      {
+        "file": "zh_int.json",
+        "id": 94,
+        "reason": "无法证明全部原始信息组均参与答案，需要人工标注"
+      }
+    ]
+  }
+}

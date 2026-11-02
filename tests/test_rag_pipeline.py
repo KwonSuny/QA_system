@@ -10,7 +10,7 @@ from unittest.mock import Mock, patch
 
 os.environ["ANONYMIZED_TELEMETRY"] = "False"
 
-from rag_pipeline import EvidencePipeline, document_fingerprint, heading_contexts, hybrid_order, json_object, merge_documents, source_documents
+from app.rag.rag_pipeline import EvidencePipeline, document_fingerprint, heading_contexts, hybrid_order, json_object, merge_documents, source_documents
 
 
 class PipelineTests(unittest.TestCase):
@@ -387,8 +387,8 @@ class SourceAndRetrievalTests(unittest.TestCase):
         self.assertGreater(next(r['lexical_score'] for r in result if r['id']=='b'),0)
 
     def test_real_manager_filters_document_and_rejects_other_user(self):
-        from db import Database,User
-        from kb_service import KnowledgeBaseManager
+        from app.core.db import Database,User
+        from app.knowledge.kb_service import KnowledgeBaseManager
         root=Path(__file__).resolve().parents[1]/'kb_store'
         root.mkdir(exist_ok=True)
         with tempfile.TemporaryDirectory(prefix='scope-test-',dir=root) as directory:
@@ -422,7 +422,7 @@ class SourceAndRetrievalTests(unittest.TestCase):
 
 class ServerPipelineTests(unittest.TestCase):
     def test_smart_web_excerpt_kind_survives_sse_and_history_save(self):
-        import server
+        import app.api.server as server
         fixture = PipelineTests(); fixture.setUp()
         evidence = {**fixture.hit, 'id': 'W1', 'source_title': '公开任命公告', 'source_type': 'web',
                     'content_kind': 'search_excerpt', 'url': 'https://example.org/appointment'}
@@ -455,7 +455,7 @@ class ServerPipelineTests(unittest.TestCase):
                 self.assertFalse(saved.kwargs['metadata']['search_results'][0]['verified'])
 
     def test_api_route_buffers_draft_and_persists_cited_sources_and_trace(self):
-        import server
+        import app.api.server as server
         fixture=PipelineTests();fixture.setUp()
         backend=Mock();backend.complete_messages.side_effect=[json.dumps(v,ensure_ascii=False) for v in
             [fixture.plan,fixture.draft,fixture.verdict]];backend.call_log=[]
@@ -489,7 +489,7 @@ class ServerPipelineTests(unittest.TestCase):
                 self.assertEqual(trace['trace']['model_calls'],3)
 
     def test_stale_index_reports_rebuild_and_does_not_publish_answer(self):
-        import server
+        import app.api.server as server
         fixture=PipelineTests();fixture.setUp()
         backend=Mock();backend.complete_messages.return_value=json.dumps(fixture.plan,ensure_ascii=False)
         manager=Mock();manager.get.return_value={'id':'kb'};manager.document_catalog.return_value=fixture.documents
@@ -509,12 +509,12 @@ class ServerPipelineTests(unittest.TestCase):
 
 class CompletionAndResumeTests(unittest.TestCase):
     def test_completion_records_tokens_and_hides_provider_errors(self):
-        from api_answerer import APIAnswerer,APIProvider
+        from app.llm.api_answerer import APIAnswerer,APIProvider
         client=Mock()
         usage=SimpleNamespace(model_dump=lambda **kw:{'prompt_tokens':10,'completion_tokens':3,'total_tokens':13})
         client.chat.completions.create.return_value=SimpleNamespace(model='qwen3.8-flash',usage=usage,
             choices=[SimpleNamespace(finish_reason='stop',message=SimpleNamespace(content='{}'))])
-        with patch('api_answerer.OpenAI',return_value=client) as factory:
+        with patch('app.llm.api_answerer.OpenAI',return_value=client) as factory:
             api=APIAnswerer(APIProvider('id','name','https://example.test/v1','test-key','qwen3.8-flash'),max_retries=0)
             self.assertEqual(api.complete_messages([],1536),'{}')
             self.assertEqual(factory.call_args.kwargs['max_retries'],0)
@@ -528,7 +528,7 @@ class CompletionAndResumeTests(unittest.TestCase):
             api.close()
 
     def test_controlled_checkpoint_resumes_without_repeating_completed_case(self):
-        from rag_evaluation import ROOT,digest,run_controlled,score_dataset
+        from app.evaluation.rag_evaluation import ROOT,digest,run_controlled,score_dataset
         fixture=PipelineTests();fixture.setUp()
         text=fixture.hit['text'];quote='甲学院教职工44人'
         data={'schema_version':1,'name':'resume-test','annotation_status':'draft','sources':{'doc':{'title':'甲学院'}},
@@ -542,9 +542,9 @@ class CompletionAndResumeTests(unittest.TestCase):
         embed=Mock();embed.encode.side_effect=lambda v:[[0.2,0.3,1.0] for _ in ([v] if isinstance(v,str) else v)]
         with tempfile.TemporaryDirectory(prefix='controlled-resume-test-',dir=ROOT/'kb_store') as directory:
             output=Path(directory)/'run'
-            with patch.multiple('rag_evaluation',API_KEY='test-key',BASE_URL='https://example.test/v1'),\
-                 patch('kb_service.KnowledgeBaseManager._embedder',return_value=embed),\
-                 patch('api_answerer.APIAnswerer',side_effect=[first,second]):
+            with patch.multiple('app.evaluation.rag_evaluation',API_KEY='test-key',BASE_URL='https://example.test/v1'),\
+                 patch('app.knowledge.kb_service.KnowledgeBaseManager._embedder',return_value=embed),\
+                 patch('app.llm.api_answerer.APIAnswerer',side_effect=[first,second]):
                 with self.assertRaises(RuntimeError):run_controlled(data,{'doc':text},args,output)
                 saved=json.loads((output/'predictions.partial.json').read_text(encoding='utf-8'))
                 self.assertEqual(len(saved['predictions']),1)

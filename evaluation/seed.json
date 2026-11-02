@@ -1,378 +1,536 @@
 {
   "schema_version": 1,
-  "name": "虚构机构·证据分析开发诊断",
+  "name": "qasystem-seed-v1.1-relocated",
   "split": "development",
-  "annotation_status": "assistant_draft",
-  "annotation_notes": "仅用于开发诊断，标注由助手构造，待独立人工审核；不得宣称未见测试成绩。机构和数值均为虚构，不复用原留出题事实。",
+  "annotation_status": "human_reviewed",
+  "annotation_notes": "原30题的问题、参考答案和原文证据已由 sunyeu 在本对话中确认审核通过。只更新资料路径和审核元数据；标注内容及去空白后原文保持不变。评价仍基于原文快照，不代表机构现状。",
+  "offset_convention": "去除全部空白后的Unicode字符偏移，start包含、end不包含。",
   "sources": {
-    "chengchuan": {
-      "path": "fixtures/chengchuan.txt",
-      "title": "澄川研究所",
-      "text_sha256": "b684e5b26f0b936c130a87f6c0b8bdc9262a9057e7611cce9337bb8582a81065"
+    "college": {
+      "path": "../data/aidata.txt",
+      "text_sha256": "d336bfe88d16056881ed05454278e5316b992af602a1f90b4a6c818ccae8323e"
     },
-    "yunting": {
-      "path": "fixtures/yunting.txt",
-      "title": "云汀研究所",
-      "text_sha256": "b463c05ebecdec88a10ecf33ec8073c70e2f0718ba5148222de34b4fbaac0766"
+    "university": {
+      "path": "../data/sysudata.txt",
+      "text_sha256": "be2f4dccc491e39263cc02f1756eae940fe3eab6637b3ec837a88a885d5ac673"
     }
   },
   "cases": [
     {
-      "id": "reason-01",
-      "source_id": "chengchuan",
-      "category": "multi_evidence",
-      "question": "2023—2024年澄川研究所基础与应用项目合计、省级协作项目各多少？",
+      "id": "seed-01",
+      "source_id": "college",
+      "category": "fact",
+      "question": "中山大学人工智能学院是哪一年成立的？",
       "answerable": true,
-      "reference_answer": "基础与应用项目合计12项，省级协作7项；不应新增基础和应用的单项要求。",
+      "reference_answer": "2020年。",
       "evidence": [
         {
-          "source_id": "chengchuan",
-          "quote": "基础与应用项目合计12项，省级协作项目7项。",
-          "start": 46,
-          "end": 68
+          "quote": "中山大学于2020年正式成立人工智能学院。",
+          "start": 14,
+          "end": 35
         }
       ],
-      "history": [],
-      "retrieval_source_ids": [
-        "chengchuan",
-        "yunting"
-      ],
-      "fact_groups": [
-        "fiction.grouped"
-      ],
-      "annotation_status": "assistant_draft",
-      "annotation_review": {
-        "reviewer": null,
-        "approved": null,
-        "notes": ""
-      }
+      "history": []
     },
     {
-      "id": "reason-02",
-      "source_id": "chengchuan",
-      "category": "unanswerable",
-      "question": "澄川研究所基础项目、应用项目分别有多少项？",
-      "answerable": false,
-      "reference_answer": "资料只有两类合计12项，不能确定各自数量。可说明合计口径，但不能将12项分配给任一单项。",
-      "evidence": [],
-      "history": [],
-      "retrieval_source_ids": [
-        "chengchuan",
-        "yunting"
-      ],
-      "fact_groups": [
-        "fiction.individual"
-      ],
-      "annotation_status": "assistant_draft",
-      "annotation_review": {
-        "reviewer": null,
-        "approved": null,
-        "notes": ""
-      }
-    },
-    {
-      "id": "reason-03",
-      "source_id": "chengchuan",
-      "category": "multi_evidence",
-      "question": "两研究所分别有什么局部榜单名次，这些指标可以直接比较机构整体水平吗？",
+      "id": "seed-02",
+      "source_id": "college",
+      "category": "fact",
+      "question": "人工智能学院在哪个校区办学？",
       "answerable": true,
-      "reference_answer": "澄川机器视觉论文榜第9，云汀绿色材料行业专利榜第6；领域及指标不同，不能直接比较整体水平。",
+      "reference_answer": "珠海校区。",
       "evidence": [
         {
-          "source_id": "chengchuan",
-          "quote": "澄川研究所在机器视觉论文榜位列第9，该榜单仅统计机器视觉论文数量。",
-          "start": 122,
-          "end": 155
-        },
-        {
-          "source_id": "yunting",
-          "quote": "云汀研究所在绿色材料行业专利榜位列第6，该榜单仅统计绿色材料授权专利数量。",
-          "start": 55,
-          "end": 92
+          "quote": "学院定位于珠海校区办学",
+          "start": 35,
+          "end": 46
         }
       ],
-      "history": [],
-      "retrieval_source_ids": [
-        "chengchuan",
-        "yunting"
-      ],
-      "fact_groups": [
-        "fiction.scope"
-      ],
-      "annotation_status": "assistant_draft",
-      "annotation_review": {
-        "reviewer": null,
-        "approved": null,
-        "notes": ""
-      }
+      "history": []
     },
     {
-      "id": "reason-04",
-      "source_id": "chengchuan",
-      "category": "analysis",
-      "question": "2024年澄川研究人员约占在编职工的百分之多少？",
+      "id": "seed-03",
+      "source_id": "college",
+      "category": "fact",
+      "question": "学院重点发展的三个研究方向是什么？",
       "answerable": true,
-      "reference_answer": "32除以54，约59.26%（合理四舍五入均可），保留人员口径。",
+      "reference_answer": "智能计算、智能感知、智能控制。",
       "evidence": [
         {
-          "source_id": "chengchuan",
-          "quote": "2024年度在编职工总数54人，其中研究人员32人，其他岗位22人。",
-          "start": 88,
-          "end": 122
+          "quote": "重点发展智能计算、智能感知、智能控制三大研究方向",
+          "start": 56,
+          "end": 80
         }
       ],
-      "history": [],
-      "retrieval_source_ids": [
-        "chengchuan",
-        "yunting"
-      ],
-      "fact_groups": [
-        "fiction.ratio"
-      ],
-      "annotation_status": "assistant_draft",
-      "annotation_review": {
-        "reviewer": null,
-        "approved": null,
-        "notes": ""
-      }
+      "history": []
     },
     {
-      "id": "reason-05",
-      "source_id": "yunting",
-      "category": "unanswerable",
-      "question": "云汀研究所2024年的运营预算具体多少元？",
-      "answerable": false,
-      "reference_answer": "资料未提供运营预算金额，不能推算。",
-      "evidence": [],
-      "history": [],
-      "retrieval_source_ids": [
-        "chengchuan",
-        "yunting"
-      ],
-      "fact_groups": [
-        "fiction.budget"
-      ],
-      "annotation_status": "assistant_draft",
-      "annotation_review": {
-        "reviewer": null,
-        "approved": null,
-        "notes": ""
-      }
-    },
-    {
-      "id": "reason-06",
-      "source_id": "chengchuan",
-      "category": "analysis",
-      "question": "资料能证明导师制导致澄川论文数量上升吗？",
+      "id": "seed-04",
+      "source_id": "college",
+      "category": "fact",
+      "question": "学院有多少名教职工和专任教师？",
       "answerable": true,
-      "reference_answer": "不能证明；只有同期变化，没有对照或因果研究。",
+      "reference_answer": "教职工44人，专任教师26人。",
       "evidence": [
         {
-          "source_id": "chengchuan",
-          "quote": "2024年推行导师制，同期论文数量上升；资料只记录同期变化，未提供对照试验或因果研究。",
-          "start": 155,
+          "quote": "学院现有教职工44人，其中专任教师26人",
+          "start": 240,
+          "end": 260
+        }
+      ],
+      "history": []
+    },
+    {
+      "id": "seed-05",
+      "source_id": "college",
+      "category": "fact",
+      "question": "专任教师中教授、副教授和助理教授分别多少人？",
+      "answerable": true,
+      "reference_answer": "教授8人、副教授16人、助理教授2人。",
+      "evidence": [
+        {
+          "quote": "包括教授8人、副教授16人、助理教授2人",
+          "start": 261,
+          "end": 281
+        }
+      ],
+      "history": []
+    },
+    {
+      "id": "seed-06",
+      "source_id": "college",
+      "category": "fact",
+      "question": "学院学生总人数是多少，本科、硕士、博士各有多少人？",
+      "answerable": true,
+      "reference_answer": "共876人，本科675人、硕士146人、博士55人。",
+      "evidence": [
+        {
+          "quote": "学院目前共有在校学生876人（其中本科生675人、硕士研究生146人、博士研究生55人）。",
+          "start": 361,
+          "end": 406
+        }
+      ],
+      "history": []
+    },
+    {
+      "id": "seed-07",
+      "source_id": "college",
+      "category": "fact",
+      "question": "学院本科阶段设置什么专业？",
+      "answerable": true,
+      "reference_answer": "人工智能专业。",
+      "evidence": [
+        {
+          "quote": "本科阶段设置人工智能专业",
+          "start": 406,
+          "end": 418
+        }
+      ],
+      "history": []
+    },
+    {
+      "id": "seed-08",
+      "source_id": "college",
+      "category": "fact",
+      "question": "学院研究生阶段设置哪些专业？",
+      "answerable": true,
+      "reference_answer": "计算机科学与技术、控制科学与工程、人工智能。",
+      "evidence": [
+        {
+          "quote": "研究生阶段设置计算机科学与技术、控制科学与工程和人工智能三个专业",
+          "start": 457,
+          "end": 489
+        }
+      ],
+      "history": []
+    },
+    {
+      "id": "seed-09",
+      "source_id": "college",
+      "category": "fact",
+      "question": "学院牵头建设或共建的国家级、省部级、珠海市科研平台各有多少？",
+      "answerable": true,
+      "reference_answer": "国家级2个、省部级实验室3个、珠海市重点实验室1个。",
+      "evidence": [
+        {
+          "quote": "学院牵头建设（含共建）2个国家级科研平台、3个省部级实验室、1个珠海市重点实验室",
+          "start": 722,
+          "end": 762
+        }
+      ],
+      "history": []
+    },
+    {
+      "id": "seed-10",
+      "source_id": "college",
+      "category": "fact",
+      "question": "学院前沿实验中心包含哪些有名称的中心或训练场？",
+      "answerable": true,
+      "reference_answer": "“智启”机器人中心和“智飞”虚实融合训练场。",
+      "evidence": [
+        {
+          "quote": "由“智启”机器人中心和“智飞”虚实融合训练场等构成的前沿实验中心",
+          "start": 845,
+          "end": 877
+        }
+      ],
+      "history": []
+    },
+    {
+      "id": "seed-11",
+      "source_id": "university",
+      "category": "fact",
+      "question": "中山大学由谁在哪一年创办？",
+      "answerable": true,
+      "reference_answer": "孙中山于1924年创办。",
+      "evidence": [
+        {
+          "quote": "孙中山先生于1924年亲手创办",
+          "start": 33,
+          "end": 48
+        }
+      ],
+      "history": []
+    },
+    {
+      "id": "seed-12",
+      "source_id": "university",
+      "category": "fact",
+      "question": "中山大学最初叫什么名字？",
+      "answerable": true,
+      "reference_answer": "国立广东大学。",
+      "evidence": [
+        {
+          "quote": "中山大学起初校名为国立广东大学。",
+          "start": 109,
+          "end": 125
+        }
+      ],
+      "history": []
+    },
+    {
+      "id": "seed-13",
+      "source_id": "university",
+      "category": "fact",
+      "question": "学校在哪一年定名为国立中山大学？",
+      "answerable": true,
+      "reference_answer": "1926年。",
+      "evidence": [
+        {
+          "quote": "学校于1926年定名为国立中山大学。",
+          "start": 134,
+          "end": 152
+        }
+      ],
+      "history": []
+    },
+    {
+      "id": "seed-14",
+      "source_id": "university",
+      "category": "fact",
+      "question": "今日的中山大学由哪两所学校何时合并而成？",
+      "answerable": true,
+      "reference_answer": "由中山大学和中山医科大学于2001年10月合并而成。",
+      "evidence": [
+        {
+          "quote": "中山大学和中山医科大学于2001年10月合并而成",
+          "start": 174,
           "end": 198
         }
       ],
-      "history": [],
-      "retrieval_source_ids": [
-        "chengchuan",
-        "yunting"
-      ],
-      "fact_groups": [
-        "fiction.causal"
-      ],
-      "annotation_status": "assistant_draft",
-      "annotation_review": {
-        "reviewer": null,
-        "approved": null,
-        "notes": ""
-      }
+      "history": []
     },
     {
-      "id": "reason-07",
-      "source_id": "chengchuan",
-      "category": "analysis",
-      "question": "澄川机器视觉论文榜第9，可以说它的全国综合排名也是第9吗？",
-      "answerable": true,
-      "reference_answer": "不能据局部论文榜推出全国综合排名；资料未提供全国综合排名。",
-      "evidence": [
-        {
-          "source_id": "chengchuan",
-          "quote": "澄川研究所在机器视觉论文榜位列第9，该榜单仅统计机器视觉论文数量。",
-          "start": 122,
-          "end": 155
-        }
-      ],
-      "history": [],
-      "retrieval_source_ids": [
-        "chengchuan",
-        "yunting"
-      ],
-      "fact_groups": [
-        "fiction.local"
-      ],
-      "annotation_status": "assistant_draft",
-      "annotation_review": {
-        "reviewer": null,
-        "approved": null,
-        "notes": ""
-      }
-    },
-    {
-      "id": "reason-08",
-      "source_id": "chengchuan",
-      "category": "multi_evidence",
-      "question": "两研究所2024年度在编职工和研究人员分别多少？",
-      "answerable": true,
-      "reference_answer": "澄川54、32；云汀64、41，不能混用机构数据。",
-      "evidence": [
-        {
-          "source_id": "chengchuan",
-          "quote": "2024年度在编职工总数54人，其中研究人员32人，其他岗位22人。",
-          "start": 88,
-          "end": 122
-        },
-        {
-          "source_id": "yunting",
-          "quote": "2024年度在编职工总数64人，其中研究人员41人。",
-          "start": 29,
-          "end": 55
-        }
-      ],
-      "history": [],
-      "retrieval_source_ids": [
-        "chengchuan",
-        "yunting"
-      ],
-      "fact_groups": [
-        "fiction.ownership"
-      ],
-      "annotation_status": "assistant_draft",
-      "annotation_review": {
-        "reviewer": null,
-        "approved": null,
-        "notes": ""
-      }
-    },
-    {
-      "id": "reason-09",
-      "source_id": "yunting",
-      "category": "multi_evidence",
-      "question": "请列齐云汀竞赛记录中的区域赛、晋级及总决赛数量和最好名次。",
-      "answerable": true,
-      "reference_answer": "区域赛3次冠军、4次亚军；8次晋级总决赛；总决赛1银2铜，最佳第12名。",
-      "evidence": [
-        {
-          "source_id": "yunting",
-          "quote": "竞赛记录：区域赛3次冠军、4次亚军；8次晋级总决赛，总决赛获1银2铜，最佳名次为第12名。",
-          "start": 92,
-          "end": 137
-        }
-      ],
-      "history": [],
-      "retrieval_source_ids": [
-        "chengchuan",
-        "yunting"
-      ],
-      "fact_groups": [
-        "fiction.list"
-      ],
-      "annotation_status": "assistant_draft",
-      "annotation_review": {
-        "reviewer": null,
-        "approved": null,
-        "notes": ""
-      }
-    },
-    {
-      "id": "reason-10",
-      "source_id": "chengchuan",
-      "category": "analysis",
-      "question": "2024年哪个研究所的在编职工更多，多多少人？",
-      "answerable": true,
-      "reference_answer": "云汀64比澄川54多10人；两个数字均是2024年度在编职工口径。",
-      "evidence": [
-        {
-          "source_id": "chengchuan",
-          "quote": "2024年度在编职工总数54人，其中研究人员32人，其他岗位22人。",
-          "start": 88,
-          "end": 122
-        },
-        {
-          "source_id": "yunting",
-          "quote": "2024年度在编职工总数64人，其中研究人员41人。",
-          "start": 29,
-          "end": 55
-        }
-      ],
-      "history": [],
-      "retrieval_source_ids": [
-        "chengchuan",
-        "yunting"
-      ],
-      "fact_groups": [
-        "fiction.difference"
-      ],
-      "annotation_status": "assistant_draft",
-      "annotation_review": {
-        "reviewer": null,
-        "approved": null,
-        "notes": ""
-      }
-    },
-    {
-      "id": "reason-11",
-      "source_id": "yunting",
-      "category": "unanswerable",
-      "question": "列出云汀研究所全部研究人员的姓名。",
-      "answerable": false,
-      "reference_answer": "资料只给人员数量，没有姓名名单，应说明无法提供。",
-      "evidence": [],
-      "history": [],
-      "retrieval_source_ids": [
-        "chengchuan",
-        "yunting"
-      ],
-      "fact_groups": [
-        "fiction.names"
-      ],
-      "annotation_status": "assistant_draft",
-      "annotation_review": {
-        "reviewer": null,
-        "approved": null,
-        "notes": ""
-      }
-    },
-    {
-      "id": "reason-12",
-      "source_id": "yunting",
+      "id": "seed-15",
+      "source_id": "university",
       "category": "fact",
-      "question": "云汀研究所2024年度在编职工有多少人？",
+      "question": "中山大学拥有多少家直属附属医院？",
       "answerable": true,
-      "reference_answer": "64人。",
+      "reference_answer": "10家。",
       "evidence": [
         {
-          "source_id": "yunting",
-          "quote": "2024年度在编职工总数64人，其中研究人员41人。",
-          "start": 29,
-          "end": 55
+          "quote": "拥有10家直属附属医院",
+          "start": 1402,
+          "end": 1413
         }
       ],
-      "history": [],
-      "retrieval_source_ids": [
-        "chengchuan",
-        "yunting"
+      "history": []
+    },
+    {
+      "id": "seed-16",
+      "source_id": "university",
+      "category": "fact",
+      "question": "学校学部制改革后的三级学术治理体系是什么？",
+      "answerable": true,
+      "reference_answer": "学校、学部、院系。",
+      "evidence": [
+        {
+          "quote": "“学校—学部—院系”三级学术治理体系",
+          "start": 1914,
+          "end": 1932
+        }
       ],
-      "fact_groups": [
-        "fiction.simple"
+      "history": []
+    },
+    {
+      "id": "seed-17",
+      "source_id": "college",
+      "category": "paraphrase",
+      "question": "学院本科生毕业后继续去其他高校深造的比例大概是多少？",
+      "answerable": true,
+      "reference_answer": "70%以上。",
+      "evidence": [
+        {
+          "quote": "本科毕业生70%以上赴国内外知名院校深造。",
+          "start": 661,
+          "end": 682
+        }
       ],
-      "annotation_status": "assistant_draft",
-      "annotation_review": {
-        "reviewer": null,
-        "approved": null,
-        "notes": ""
-      }
+      "history": []
+    },
+    {
+      "id": "seed-18",
+      "source_id": "college",
+      "category": "paraphrase",
+      "question": "学生参加省级及以上学科竞赛的获奖规模如何？",
+      "answerable": true,
+      "reference_answer": "近年来累计200余名学生获奖。",
+      "evidence": [
+        {
+          "quote": "近年来累计200余名学生在省级以上学科竞赛中获奖",
+          "start": 610,
+          "end": 634
+        }
+      ],
+      "history": []
+    },
+    {
+      "id": "seed-19",
+      "source_id": "college",
+      "category": "paraphrase",
+      "question": "学院给学生做无人系统和机器人实验准备了什么装备？",
+      "answerable": true,
+      "reference_answer": "无人机测试风墙、无人机、无人车、无人船、机器人等实验装备。",
+      "evidence": [
+        {
+          "quote": "拥有国际先进的无人机测试风墙、无人机、无人车、无人船、机器人等实验装备",
+          "start": 878,
+          "end": 913
+        }
+      ],
+      "history": []
+    },
+    {
+      "id": "seed-20",
+      "source_id": "college",
+      "category": "multi_evidence",
+      "question": "学院什么时候成立，建立了哪些学段的一体化培养体系？",
+      "answerable": true,
+      "reference_answer": "2020年成立，构建本科、硕士、博士一体化工科人才培养体系。",
+      "evidence": [
+        {
+          "quote": "中山大学于2020年正式成立人工智能学院。",
+          "start": 14,
+          "end": 35
+        },
+        {
+          "quote": "构建了“本-硕-博”一体化工科人才培养体系",
+          "start": 339,
+          "end": 360
+        }
+      ],
+      "history": []
+    },
+    {
+      "id": "seed-21",
+      "source_id": "college",
+      "category": "multi_evidence",
+      "question": "学院的育人理念是什么，多少比例的本科生参与创新创业项目？",
+      "answerable": true,
+      "reference_answer": "“厚基强智，创新赋能”；90%以上的本科生参与大学生创新创业项目。",
+      "evidence": [
+        {
+          "quote": "学院秉持“厚基强智，创新赋能”的育人理念",
+          "start": 307,
+          "end": 327
+        },
+        {
+          "quote": "本科生90%以上参与大学生创新创业项目",
+          "start": 575,
+          "end": 594
+        }
+      ],
+      "history": []
+    },
+    {
+      "id": "seed-22",
+      "source_id": "university",
+      "category": "multi_evidence",
+      "question": "广州、珠海和深圳校区各自重点发展的学科是什么？",
+      "answerable": true,
+      "reference_answer": "广州提升文、理、医传统优势学科；珠海发展深海、深空、深地、深蓝学科群；深圳建设新医科、新工科。",
+      "evidence": [
+        {
+          "quote": "广州校区重点提升文、理、医传统优势学科",
+          "start": 838,
+          "end": 857
+        },
+        {
+          "quote": "珠海校区重点发展深海、深空、深地、深蓝学科群",
+          "start": 858,
+          "end": 880
+        },
+        {
+          "quote": "深圳校区重点建设新医科、新工科",
+          "start": 881,
+          "end": 896
+        }
+      ],
+      "history": []
+    },
+    {
+      "id": "seed-23",
+      "source_id": "university",
+      "category": "multi_evidence",
+      "question": "学校有多少院系，以及多少国家级和省部级科研创新平台？",
+      "answerable": true,
+      "reference_answer": "69个院系，43个国家级平台、270个省部级平台。",
+      "evidence": [
+        {
+          "quote": "中山大学现有69个院系",
+          "start": 1697,
+          "end": 1708
+        },
+        {
+          "quote": "中山大学现有国家级科研创新平台43个、省部级平台270个",
+          "start": 1491,
+          "end": 1519
+        }
+      ],
+      "history": []
+    },
+    {
+      "id": "seed-24",
+      "source_id": "college",
+      "category": "multi_turn",
+      "question": "它是哪一年成立的？",
+      "answerable": true,
+      "reference_answer": "中山大学人工智能学院于2020年成立。",
+      "evidence": [
+        {
+          "quote": "中山大学于2020年正式成立人工智能学院。",
+          "start": 14,
+          "end": 35
+        }
+      ],
+      "history": [
+        {
+          "role": "user",
+          "content": "中山大学人工智能学院在哪个校区？"
+        },
+        {
+          "role": "assistant",
+          "content": "珠海校区。"
+        }
+      ],
+      "standalone_question": "中山大学人工智能学院是哪一年成立的？"
+    },
+    {
+      "id": "seed-25",
+      "source_id": "college",
+      "category": "multi_turn",
+      "question": "第二个方向叫什么？",
+      "answerable": true,
+      "reference_answer": "智能感知。",
+      "evidence": [
+        {
+          "quote": "重点发展智能计算、智能感知、智能控制三大研究方向",
+          "start": 56,
+          "end": 80
+        }
+      ],
+      "history": [
+        {
+          "role": "user",
+          "content": "人工智能学院有哪些研究方向？"
+        },
+        {
+          "role": "assistant",
+          "content": "智能计算、智能感知、智能控制。"
+        }
+      ],
+      "standalone_question": "人工智能学院的研究方向按资料顺序列出的第二项是什么？"
+    },
+    {
+      "id": "seed-26",
+      "source_id": "university",
+      "category": "multi_turn",
+      "question": "那深圳呢？",
+      "answerable": true,
+      "reference_answer": "深圳校区重点建设新医科、新工科。",
+      "evidence": [
+        {
+          "quote": "深圳校区重点建设新医科、新工科",
+          "start": 881,
+          "end": 896
+        }
+      ],
+      "history": [
+        {
+          "role": "user",
+          "content": "中山大学广州校区重点发展的学科是什么？"
+        },
+        {
+          "role": "assistant",
+          "content": "文、理、医传统优势学科。"
+        }
+      ],
+      "standalone_question": "中山大学深圳校区重点建设哪些学科？"
+    },
+    {
+      "id": "seed-27",
+      "source_id": "college",
+      "category": "unanswerable",
+      "question": "人工智能专业每年的学费具体是多少？",
+      "answerable": false,
+      "reference_answer": "资料未提供学费金额，应说明无法从知识库确认。",
+      "evidence": [],
+      "history": []
+    },
+    {
+      "id": "seed-28",
+      "source_id": "college",
+      "category": "unanswerable",
+      "question": "学院2026年的博士招生名额是多少？",
+      "answerable": false,
+      "reference_answer": "资料未提供2026年博士招生名额；在校博士人数不是招生名额。",
+      "evidence": [],
+      "history": []
+    },
+    {
+      "id": "seed-29",
+      "source_id": "college",
+      "category": "unanswerable",
+      "question": "人工智能学院现任院长叫什么名字？",
+      "answerable": false,
+      "reference_answer": "资料未提供院长姓名，应说明无法从知识库确认。",
+      "evidence": [],
+      "history": []
+    },
+    {
+      "id": "seed-30",
+      "source_id": "university",
+      "category": "unanswerable",
+      "question": "中山大学目前全国综合排名第几？",
+      "answerable": false,
+      "reference_answer": "资料未提供具体全国综合排名，不能由“国内高校前列”推算名次。",
+      "evidence": [],
+      "history": []
     }
-  ]
+  ],
+  "review": {
+    "reviewer": "sunyeu",
+    "scope": "questions_reference_answers_and_evidence",
+    "confirmation": "用户在本对话中明确确认原数据审核通过；不包含模型生成答案评分。"
+  }
 }

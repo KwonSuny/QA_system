@@ -1,0 +1,1801 @@
+{
+  "schema_version": 1,
+  "name": "dureader_checklist 中文扩充开发诊断",
+  "split": "development",
+  "annotation_status": "imported_pending_review",
+  "version": "external-v1",
+  "seed": 20261014,
+  "evaluation_track": "scoped_passage_retrieval",
+  "annotation_notes": "原始公开标注经转换；尚未经 sunyeu 人工审核，不代表官方基准成绩。各题只在授权候选篇章内检索，无答案标签仅在该范围有效。",
+  "sources": {
+    "dureader_checklist_2bf36834b42477df": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_2bf36834b42477df.txt",
+      "title": "领结婚证需要新户口本吗",
+      "text_sha256": "2bf36834b42477df8eda5ed0b8595e16eb58a2651f408ad067f7367cc6a74c6f"
+    },
+    "dureader_checklist_ab69c698478cb744": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_ab69c698478cb744.txt",
+      "title": "猫能吃蛋黄吗",
+      "text_sha256": "ab69c698478cb7443706d43f899f6276662c5b18d711937a36e0b2e3e9140304"
+    },
+    "dureader_checklist_08b123d453d45d82": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_08b123d453d45d82.txt",
+      "title": "京东的小白信用卡能提现吗_百度知道",
+      "text_sha256": "bf3b7c709caff50528dc5ab982e1545e25245077e9946c58ef7e238ea17ef3a5"
+    },
+    "dureader_checklist_2cefccc46f2debc2": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_2cefccc46f2debc2.txt",
+      "title": "兰花需要阳光照吗，没有阳光能养兰花吗",
+      "text_sha256": "2cefccc46f2debc29fc67f48ecadc385665d4169ab48742b322a1c1a70e2cb52"
+    },
+    "dureader_checklist_c8953d5ca93d1900": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_c8953d5ca93d1900.txt",
+      "title": "狗狗为什么互相闻屁股",
+      "text_sha256": "c8953d5ca93d1900b914fecb55ce1387c1de2eccd7a45fcd44f5d2f8a00a5fb6"
+    },
+    "dureader_checklist_8b76b962d959a137": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_8b76b962d959a137.txt",
+      "title": "裤子32码是多少尺",
+      "text_sha256": "8b76b962d959a1378766e28e95f77e1da10b0e6e97c7b277bf5fdd6f37d8baf8"
+    },
+    "dureader_checklist_8089498275854c64": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_8089498275854c64.txt",
+      "title": "dureader_checklist 原始篇章 80894982",
+      "text_sha256": "8089498275854c649cb9687118326f20d18c40584c4f2c9c3eec0b8f4f919e2b"
+    },
+    "dureader_checklist_5afa078d64948adf": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_5afa078d64948adf.txt",
+      "title": "夫妻单方面借钱怎么还",
+      "text_sha256": "5afa078d64948adfa0758a82e2109b1e3cf352ee22aefceec9292c8b8de8cd06"
+    },
+    "dureader_checklist_253a304f8e2f4257": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_253a304f8e2f4257.txt",
+      "title": "高铁和动车上能充电吗? - 知乎",
+      "text_sha256": "253a304f8e2f42576058a20ca499f83dcbb01ad1d4a457b19329610281d8b0d1"
+    },
+    "dureader_checklist_ba3b63c1aef4530a": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_ba3b63c1aef4530a.txt",
+      "title": "怎么修改电脑开机密码?_酷知经验网",
+      "text_sha256": "ba3b63c1aef4530a80b16a55221e0786af00feaf3f967fed393904a32d57bc0e"
+    },
+    "dureader_checklist_e84adfb5543b8ceb": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_e84adfb5543b8ceb.txt",
+      "title": "地球存在多久了",
+      "text_sha256": "e84adfb5543b8ceb9c5bf16af0d43e50e9b8017eccaa4466ba7f0bba380ae3cf"
+    },
+    "dureader_checklist_53c0926101790e40": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_53c0926101790e40.txt",
+      "title": "办护照需要准备什么？",
+      "text_sha256": "53c0926101790e40a4f50659f63a65b0b8454b6d87c4c47a5dcfac98238bf120"
+    },
+    "dureader_checklist_3ab0cf0dc8a33fc8": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_3ab0cf0dc8a33fc8.txt",
+      "title": "精华在乳液前还是后",
+      "text_sha256": "3ab0cf0dc8a33fc849ec819e0b1ae12e097f1b4260c34431c24e33f42d2d1af5"
+    },
+    "dureader_checklist_b69fb4651c78685d": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_b69fb4651c78685d.txt",
+      "title": "乌龟白眼病用什么药",
+      "text_sha256": "b69fb4651c78685d026bbecac33c8cb4900ea93e863b53eba442dc481af0765d"
+    },
+    "dureader_checklist_397767571773a8fd": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_397767571773a8fd.txt",
+      "title": "地瓜是红薯吗",
+      "text_sha256": "397767571773a8fd3980965f2bc85578ef3750fa365c6ef6a6ff266339f66c6a"
+    },
+    "dureader_checklist_b4f5c3fc1d9dc005": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_b4f5c3fc1d9dc005.txt",
+      "title": "已满多少岁的人犯贩卖毒品罪应负刑事责任",
+      "text_sha256": "b4f5c3fc1d9dc0053e7999e45ac75854f07559a373078fbc818373a35abda0e4"
+    },
+    "dureader_checklist_d3ab820bf0bce7b9": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_d3ab820bf0bce7b9.txt",
+      "title": "梦见用手抓鱼是什么意思",
+      "text_sha256": "d3ab820bf0bce7b9db3bcd1727433112251ae04f6c521abd8f0b7886ee12b293"
+    },
+    "dureader_checklist_68fa45aeb9b84fb1": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_68fa45aeb9b84fb1.txt",
+      "title": "狗吃了一点葱怎么办",
+      "text_sha256": "68fa45aeb9b84fb14f7b72cb70a328e6cbeab12719fa2c2c7465109c003c2827"
+    },
+    "dureader_checklist_dac833d1cbd78264": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_dac833d1cbd78264.txt",
+      "title": "装了电脑管家还有必要再装Mcafee吗_百度知道",
+      "text_sha256": "9ff8099ad6f29b087601d46bf83c86739a0e976bde1f71da8facee45b6afd840"
+    },
+    "dureader_checklist_1119de44cc1dff9b": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_1119de44cc1dff9b.txt",
+      "title": "牛肉和狗肉能一起吃吗",
+      "text_sha256": "1119de44cc1dff9b87c47f2e0df7af90ffacdb13357db29dd7bedfe6b10ab3d6"
+    },
+    "dureader_checklist_746a05c2ad50d436": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_746a05c2ad50d436.txt",
+      "title": "switch可以联机吗",
+      "text_sha256": "746a05c2ad50d4366d0dba8941e54e26e838e9bf0adf52ce2414f88c5d38a2c7"
+    },
+    "dureader_checklist_250849ecbc76ca65": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_250849ecbc76ca65.txt",
+      "title": "淘宝怎么换绑支付宝",
+      "text_sha256": "250849ecbc76ca6565d2d335dc92a077637616c159870c321e18c03837e3f4db"
+    },
+    "dureader_checklist_f7330cdc476e8dd4": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_f7330cdc476e8dd4.txt",
+      "title": "橙子能和桃子一起吃吗 橙子和桃子一起吃有什么好处",
+      "text_sha256": "f7330cdc476e8dd4861fb62f181b3fbf16b9c60f031d51d58bce746cbdf80987"
+    },
+    "dureader_checklist_82d661d18655b844": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_82d661d18655b844.txt",
+      "title": "保险公司和医院联网吗",
+      "text_sha256": "82d661d18655b844d05337d95c18f71fe9ef5997890893195fb2b1584bcafb8c"
+    },
+    "dureader_checklist_f8428939956402a8": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_f8428939956402a8.txt",
+      "title": "语音怎么发朋友圈",
+      "text_sha256": "f8428939956402a8fcee89da6f4a81597c3361e5b10b030af54dac2f8065414a"
+    },
+    "dureader_checklist_22afc1720e4ed179": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_22afc1720e4ed179.txt",
+      "title": "只有欠条没有转账记录可以起诉吗",
+      "text_sha256": "22afc1720e4ed17915d5f20c9223970fba3e68118e5694221eb9375e3a4d4f57"
+    },
+    "dureader_checklist_2443d7b077c72266": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_2443d7b077c72266.txt",
+      "title": "女儿梦见妈妈怀孕了-易奇八字在线算命",
+      "text_sha256": "2443d7b077c72266c99e54e9eb3372517ec4ad90c7295a9d34f559dc93fef657"
+    },
+    "dureader_checklist_262230d35cb954e3": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_262230d35cb954e3.txt",
+      "title": "男生见到暗恋女生反应",
+      "text_sha256": "262230d35cb954e3f8e6da0938815d51cfd46491356af971184834c00bb7a766"
+    },
+    "dureader_checklist_25c94d6b82fe9d32": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_25c94d6b82fe9d32.txt",
+      "title": "腮红可以当眼影用吗",
+      "text_sha256": "25c94d6b82fe9d32e5f657558c7612168cf6b04de5788cf46fe7da5e35c8966b"
+    },
+    "dureader_checklist_4bba92a023f92a7b": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_4bba92a023f92a7b.txt",
+      "title": "怎么把pdf转换成word",
+      "text_sha256": "9d5695c2d3cf5f2de7168588cb26161c7c69b7adfa133f4d071cdfa9c4512039"
+    },
+    "dureader_checklist_1b240a8e555f511e": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_1b240a8e555f511e.txt",
+      "title": "芒果可以催熟香蕉吗",
+      "text_sha256": "1b240a8e555f511ebbf2212003007c687071586a661eb4c94601561d354d51fe"
+    },
+    "dureader_checklist_f5947ee15ed9a79d": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_f5947ee15ed9a79d.txt",
+      "title": "晚上吃苹果好吗",
+      "text_sha256": "f5947ee15ed9a79d92b2b56be3abd673164b2ae4b2f40d22c15dffa52b0e1f86"
+    },
+    "dureader_checklist_2e705c42f6e8bc1b": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_2e705c42f6e8bc1b.txt",
+      "title": "信用卡逾期被冻结了还能解冻吗",
+      "text_sha256": "2e705c42f6e8bc1b40e9ec13abe7afad173a56e14a0c9088436591823f0c6eba"
+    },
+    "dureader_checklist_8969ba24ad652f91": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_8969ba24ad652f91.txt",
+      "title": "出租房隔音差怎么解决",
+      "text_sha256": "8969ba24ad652f913f93f3e5b4e7807a46d02c18b2c5c7923722e5f3814ff3e9"
+    },
+    "dureader_checklist_4c27ff086145cf5f": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_4c27ff086145cf5f.txt",
+      "title": "最近深圳限行吗",
+      "text_sha256": "4c27ff086145cf5fb62f15d1221e07451e2e1980c67f5ae7fd119c912a8cde20"
+    },
+    "dureader_checklist_d0f1f6dbbbd72c1e": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_d0f1f6dbbbd72c1e.txt",
+      "title": "狗的鼻子干是怎么回事",
+      "text_sha256": "d0f1f6dbbbd72c1e4a2a4e7b64c3799f7bc7c8f680d4939f6220d236dc658d4c"
+    },
+    "dureader_checklist_ca78f2d7d85ebd91": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_ca78f2d7d85ebd91.txt",
+      "title": "什么肉蛋白质高",
+      "text_sha256": "ca78f2d7d85ebd919af352b6dd4a0502037e5b68a107e79e234f49fd27212e0c"
+    },
+    "dureader_checklist_524cd8a4cf127d26": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_524cd8a4cf127d26.txt",
+      "title": "梦见梦见救落水小孩成功",
+      "text_sha256": "524cd8a4cf127d26ed17b9b3a09400dd890f1a9e958697775ee0718d34dd64be"
+    },
+    "dureader_checklist_3d9fc2437d964c20": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_3d9fc2437d964c20.txt",
+      "title": "什么猫最粘人",
+      "text_sha256": "3d9fc2437d964c20ee346c403d7f781d3b4d06963f10f8a42f9538971d819514"
+    },
+    "dureader_checklist_8e766c90243298b4": {
+      "path": "../../data/external/prepared/documents/dureader_checklist_8e766c90243298b4.txt",
+      "title": "做梦梦见自己结婚",
+      "text_sha256": "8e766c90243298b4c4310b927db8e30ae7b0eac6b0513aa7a6f43665af7d78e8"
+    }
+  },
+  "cases": [
+    {
+      "id": "checklist-1a9f290c86cf1e682fa6a8956d591460",
+      "source_id": "dureader_checklist_2bf36834b42477df",
+      "category": "vocab",
+      "question": "领结婚证需要户口本吗",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "男女双方符合《婚姻法》的规定，办理结婚证需要携带的证明：1、居民身份证；2、户口簿(或者集体户籍证明)；3、婚姻状况证明。",
+      "evidence": [
+        {
+          "source_id": "dureader_checklist_2bf36834b42477df",
+          "start": 51,
+          "end": 112,
+          "quote": "男女双方符合《婚姻法》的规定，办理结婚证需要携带的证明：1、居民身份证；2、户口簿(或者集体户籍证明)；3、婚姻状况证明。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "dureader_checklist_2bf36834b42477df"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:1a9f290c86cf1e682fa6a8956d591460"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "1a9f290c86cf1e682fa6a8956d591460",
+        "original_type": "vocab_adj",
+        "original_title": "领结婚证需要新户口本吗",
+        "original_answers": [
+          {
+            "text": "男女双方符合《婚姻法》的规定，办理结婚证需要携带的证明：1、居民身份证；2、户口簿(或者集体户籍证明)；3、婚姻状况证明。",
+            "answer_start": 51
+          }
+        ],
+        "is_impossible": false
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "所列材料含户口簿；篇首不需要指无需更换新户口本。"
+      }
+    },
+    {
+      "id": "checklist-c98573c18f943d3ccac76cb9de650ba3",
+      "source_id": "dureader_checklist_ab69c698478cb744",
+      "category": "vocab",
+      "question": "猫咪可以吃生蛋黄吗",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "不能",
+      "evidence": [
+        {
+          "source_id": "dureader_checklist_ab69c698478cb744",
+          "start": 23,
+          "end": 25,
+          "quote": "不能"
+        }
+      ],
+      "retrieval_source_ids": [
+        "dureader_checklist_ab69c698478cb744"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:c98573c18f943d3ccac76cb9de650ba3"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "c98573c18f943d3ccac76cb9de650ba3",
+        "original_type": "vocab_adj",
+        "original_title": "猫能吃蛋黄吗",
+        "original_answers": [
+          {
+            "text": "不能",
+            "answer_start": 23
+          }
+        ],
+        "is_impossible": false
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "不能在原文中指猫咪吃生鸡蛋，与熟蛋黄明确区分。"
+      }
+    },
+    {
+      "id": "checklist-e2ef75a5d2bc14e0fb68614a154655a8",
+      "source_id": "dureader_checklist_08b123d453d45d82",
+      "category": "vocab",
+      "question": "广州银行京东信用卡能提现吗",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "京东小白卡是可以提现的。",
+      "evidence": [
+        {
+          "source_id": "dureader_checklist_08b123d453d45d82",
+          "start": 0,
+          "end": 12,
+          "quote": "京东小白卡是可以提现的。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "dureader_checklist_08b123d453d45d82"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:e2ef75a5d2bc14e0fb68614a154655a8"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "e2ef75a5d2bc14e0fb68614a154655a8",
+        "original_type": "vocab_named-entity",
+        "original_title": "京东的小白信用卡能提现吗_百度知道",
+        "original_answers": [
+          {
+            "text": "京东小白卡是可以提现的。",
+            "answer_start": 0
+          }
+        ],
+        "is_impossible": false
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": false,
+        "notes": "原文仅谈京东小白卡和招商信用卡，未确认广州银行联名卡。"
+      }
+    },
+    {
+      "id": "checklist-4b4e762709c4bab1901f27cca54080bd",
+      "source_id": "dureader_checklist_2cefccc46f2debc2",
+      "category": "vocab",
+      "question": "兰花喜欢阳光吗",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "一般的兰花不是特别喜光，适合放在有散射光的半阴处养殖。而也有一些兰花品种，比如蕙兰，喜欢光照充足的环境，养护时需要提供给它足量的光照才能让它长好。",
+      "evidence": [
+        {
+          "source_id": "dureader_checklist_2cefccc46f2debc2",
+          "start": 74,
+          "end": 147,
+          "quote": "一般的兰花不是特别喜光，适合放在有散射光的半阴处养殖。而也有一些兰花品种，比如蕙兰，喜欢光照充足的环境，养护时需要提供给它足量的光照才能让它长好。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "dureader_checklist_2cefccc46f2debc2"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:4b4e762709c4bab1901f27cca54080bd"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "4b4e762709c4bab1901f27cca54080bd",
+        "original_type": "vocab_v",
+        "original_title": "兰花需要阳光照吗，没有阳光能养兰花吗",
+        "original_answers": [
+          {
+            "text": "一般的兰花不是特别喜光，适合放在有散射光的半阴处养殖。而也有一些兰花品种，比如蕙兰，喜欢光照充足的环境，养护时需要提供给它足量的光照才能让它长好。",
+            "answer_start": 74
+          }
+        ],
+        "is_impossible": false
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "证据区分一般兰花喜散射光与蕙兰喜充足光照。"
+      }
+    },
+    {
+      "id": "checklist-2560b9c3431dc60f58c8f08e0dbf0c23",
+      "source_id": "dureader_checklist_c8953d5ca93d1900",
+      "category": "vocab",
+      "question": "狗狗为什么总是闻屁股",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "打招呼的一种方式",
+      "evidence": [
+        {
+          "source_id": "dureader_checklist_c8953d5ca93d1900",
+          "start": 8,
+          "end": 16,
+          "quote": "打招呼的一种方式"
+        }
+      ],
+      "retrieval_source_ids": [
+        "dureader_checklist_c8953d5ca93d1900"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:2560b9c3431dc60f58c8f08e0dbf0c23"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "2560b9c3431dc60f58c8f08e0dbf0c23",
+        "original_type": "vocab_adv",
+        "original_title": "狗狗为什么互相闻屁股",
+        "original_answers": [
+          {
+            "text": "打招呼的一种方式",
+            "answer_start": 8
+          }
+        ],
+        "is_impossible": false
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "原文明确将狗互闻屁股解释为打招呼。"
+      }
+    },
+    {
+      "id": "checklist-441b8f42cb55c1a11ade044174631ad8",
+      "source_id": "dureader_checklist_8b76b962d959a137",
+      "category": "unanswerable",
+      "question": "裤子32码是多少厘米",
+      "history": [],
+      "answerable": false,
+      "reference_answer": "资料不足，应拒答。",
+      "evidence": [],
+      "retrieval_source_ids": [
+        "dureader_checklist_8b76b962d959a137"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:441b8f42cb55c1a11ade044174631ad8"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "441b8f42cb55c1a11ade044174631ad8",
+        "original_type": "vocab_units",
+        "original_title": "裤子32码是多少尺",
+        "original_answers": [
+          {
+            "text": "",
+            "answer_start": -1
+          }
+        ],
+        "is_impossible": true
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "仅给32码对应二尺五，未提供厘米值或尺厘米换算依据。"
+      }
+    },
+    {
+      "id": "checklist-304effcfac56f488c63ec5daa504dc2f",
+      "source_id": "dureader_checklist_8089498275854c64",
+      "category": "unanswerable",
+      "question": "西行记谁写的",
+      "history": [],
+      "answerable": false,
+      "reference_answer": "资料不足，应拒答。",
+      "evidence": [],
+      "retrieval_source_ids": [
+        "dureader_checklist_8089498275854c64"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:304effcfac56f488c63ec5daa504dc2f"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "304effcfac56f488c63ec5daa504dc2f",
+        "original_type": "vocab_named-entity",
+        "original_title": "",
+        "original_answers": [
+          {
+            "text": "",
+            "answer_start": -1
+          }
+        ],
+        "is_impossible": true
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "候选资料谈西厢记及王实甫，不是题问西行记。"
+      }
+    },
+    {
+      "id": "checklist-498496c1e7d819b50387f319b172d8da",
+      "source_id": "dureader_checklist_5afa078d64948adf",
+      "category": "unanswerable",
+      "question": "夫妻一起借钱怎么还",
+      "history": [],
+      "answerable": false,
+      "reference_answer": "资料不足，应拒答。",
+      "evidence": [],
+      "retrieval_source_ids": [
+        "dureader_checklist_5afa078d64948adf"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:498496c1e7d819b50387f319b172d8da"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "498496c1e7d819b50387f319b172d8da",
+        "original_type": "vocab_adv",
+        "original_title": "夫妻单方面借钱怎么还",
+        "original_answers": [
+          {
+            "text": "",
+            "answer_start": -1
+          }
+        ],
+        "is_impossible": true
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": false,
+        "notes": "原文已说明共同债务由共同债务人共同偿还，可回答夫妻共同借款。"
+      }
+    },
+    {
+      "id": "checklist-ebbe3fc466f0f04177b8a64d2ee0de69",
+      "source_id": "dureader_checklist_253a304f8e2f4257",
+      "category": "unanswerable",
+      "question": "高铁站可以充电吗",
+      "history": [],
+      "answerable": false,
+      "reference_answer": "资料不足，应拒答。",
+      "evidence": [],
+      "retrieval_source_ids": [
+        "dureader_checklist_253a304f8e2f4257"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:ebbe3fc466f0f04177b8a64d2ee0de69"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "ebbe3fc466f0f04177b8a64d2ee0de69",
+        "original_type": "vocab_noun",
+        "original_title": "高铁和动车上能充电吗? - 知乎",
+        "original_answers": [
+          {
+            "text": "",
+            "answer_start": -1
+          }
+        ],
+        "is_impossible": true
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "原文说明列车上能充电，未说明高铁站设施。"
+      }
+    },
+    {
+      "id": "checklist-4d511014331738562409861feade97fe",
+      "source_id": "dureader_checklist_ba3b63c1aef4530a",
+      "category": "unanswerable",
+      "question": "怎么删除电脑开机密码",
+      "history": [],
+      "answerable": false,
+      "reference_answer": "资料不足，应拒答。",
+      "evidence": [],
+      "retrieval_source_ids": [
+        "dureader_checklist_ba3b63c1aef4530a"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:4d511014331738562409861feade97fe"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "4d511014331738562409861feade97fe",
+        "original_type": "vocab_v",
+        "original_title": "怎么修改电脑开机密码?_酷知经验网",
+        "original_answers": [
+          {
+            "text": "",
+            "answer_start": -1
+          }
+        ],
+        "is_impossible": true
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "原文只讲设置和更改开机密码，未给删除密码步骤。"
+      }
+    },
+    {
+      "id": "checklist-e0d6d467035ad9787fb46c48d0af5a70",
+      "source_id": "dureader_checklist_e84adfb5543b8ceb",
+      "category": "unanswerable",
+      "question": "地球还能存在多少年",
+      "history": [],
+      "answerable": false,
+      "reference_answer": "资料不足，应拒答。",
+      "evidence": [],
+      "retrieval_source_ids": [
+        "dureader_checklist_e84adfb5543b8ceb"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:e0d6d467035ad9787fb46c48d0af5a70"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "e0d6d467035ad9787fb46c48d0af5a70",
+        "original_type": "vocab_adv",
+        "original_title": "地球存在多久了",
+        "original_answers": [
+          {
+            "text": "",
+            "answer_start": -1
+          }
+        ],
+        "is_impossible": true
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "已存在45亿年和人类可居住20亿年均非地球剩余寿命。"
+      }
+    },
+    {
+      "id": "checklist-e43a7e73174b915e60bfa68e714b79ac",
+      "source_id": "dureader_checklist_53c0926101790e40",
+      "category": "phrase",
+      "question": "办护照有什么要求?",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "需要准备材料：符合《出入境证件相片照相指引》标准的照片；居民身份证；省级公安机关出入境管理机构报经国家移民管理局批准的其他材料；未满十六周岁的，由其监护人陪同，除提交上述申请材料外，还应提交监护证明（如出生证明、户口簿等）以及监护人身份证。准备费用：护照120元/本。",
+      "evidence": [
+        {
+          "source_id": "dureader_checklist_53c0926101790e40",
+          "start": 0,
+          "end": 134,
+          "quote": "需要准备材料：符合《出入境证件相片照相指引》标准的照片；居民身份证；省级公安机关出入境管理机构报经国家移民管理局批准的其他材料；未满十六周岁的，由其监护人陪同，除提交上述申请材料外，还应提交监护证明（如出生证明、户口簿等）以及监护人身份证。准备费用：护照120元/本。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "dureader_checklist_53c0926101790e40"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:e43a7e73174b915e60bfa68e714b79ac"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "e43a7e73174b915e60bfa68e714b79ac",
+        "original_type": "phrase",
+        "original_title": "办护照需要准备什么？",
+        "original_answers": [
+          {
+            "text": "需要准备材料：符合《出入境证件相片照相指引》标准的照片；居民身份证；省级公安机关出入境管理机构报经国家移民管理局批准的其他材料；未满十六周岁的，由其监护人陪同，除提交上述申请材料外，还应提交监护证明（如出生证明、户口簿等）以及监护人身份证。准备费用：护照120元/本。",
+            "answer_start": 0
+          }
+        ],
+        "is_impossible": false
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "原文完整列出申请材料、未满16岁附加要求及费用。"
+      }
+    },
+    {
+      "id": "checklist-15d08c0ca35d728dacfafb061dfd572a",
+      "source_id": "dureader_checklist_3ab0cf0dc8a33fc8",
+      "category": "phrase",
+      "question": "先涂精华还是乳液",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "正常应该是在使用乳液之前使用一定的精华，不仅可以滋养肌肤还可以帮助后续护肤产品的吸收。",
+      "evidence": [
+        {
+          "source_id": "dureader_checklist_3ab0cf0dc8a33fc8",
+          "start": 39,
+          "end": 82,
+          "quote": "正常应该是在使用乳液之前使用一定的精华，不仅可以滋养肌肤还可以帮助后续护肤产品的吸收。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "dureader_checklist_3ab0cf0dc8a33fc8"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:15d08c0ca35d728dacfafb061dfd572a"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "15d08c0ca35d728dacfafb061dfd572a",
+        "original_type": "phrase",
+        "original_title": "精华在乳液前还是后",
+        "original_answers": [
+          {
+            "text": "正常应该是在使用乳液之前使用一定的精华，不仅可以滋养肌肤还可以帮助后续护肤产品的吸收。",
+            "answer_start": 39
+          }
+        ],
+        "is_impossible": false
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "原文明确精华应在乳液之前使用。"
+      }
+    },
+    {
+      "id": "checklist-2ac64f7ff83158c12c541d1946173d55",
+      "source_id": "dureader_checklist_b69fb4651c78685d",
+      "category": "phrase",
+      "question": "乌龟白眼病怎么治疗?",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "补充维生素A",
+      "evidence": [
+        {
+          "source_id": "dureader_checklist_b69fb4651c78685d",
+          "start": 30,
+          "end": 36,
+          "quote": "补充维生素A"
+        }
+      ],
+      "retrieval_source_ids": [
+        "dureader_checklist_b69fb4651c78685d"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:2ac64f7ff83158c12c541d1946173d55"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "2ac64f7ff83158c12c541d1946173d55",
+        "original_type": "phrase",
+        "original_title": "乌龟白眼病用什么药",
+        "original_answers": [
+          {
+            "text": "补充维生素A",
+            "answer_start": 30
+          }
+        ],
+        "is_impossible": false
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "原文将病因联系维生素A缺乏，并提出补充维生素A这一措施。"
+      }
+    },
+    {
+      "id": "checklist-37aa8bac010814ea2665191b13067c73",
+      "source_id": "dureader_checklist_397767571773a8fd",
+      "category": "phrase",
+      "question": "地瓜和红薯一样吗",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "地瓜不是红薯",
+      "evidence": [
+        {
+          "source_id": "dureader_checklist_397767571773a8fd",
+          "start": 0,
+          "end": 6,
+          "quote": "地瓜不是红薯"
+        }
+      ],
+      "retrieval_source_ids": [
+        "dureader_checklist_397767571773a8fd"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:37aa8bac010814ea2665191b13067c73"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "37aa8bac010814ea2665191b13067c73",
+        "original_type": "phrase",
+        "original_title": "地瓜是红薯吗",
+        "original_answers": [
+          {
+            "text": "地瓜不是红薯",
+            "answer_start": 0
+          }
+        ],
+        "is_impossible": false
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "按原文当地瓜指白肉可生吃的植物时，明确区别于红薯。"
+      }
+    },
+    {
+      "id": "checklist-58b744cea6ac256703b19a633051ba79",
+      "source_id": "dureader_checklist_b4f5c3fc1d9dc005",
+      "category": "phrase",
+      "question": "已满几周岁的人贩卖毒品罪应当负刑事责任",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "十四周岁",
+      "evidence": [
+        {
+          "source_id": "dureader_checklist_b4f5c3fc1d9dc005",
+          "start": 32,
+          "end": 36,
+          "quote": "十四周岁"
+        }
+      ],
+      "retrieval_source_ids": [
+        "dureader_checklist_b4f5c3fc1d9dc005"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:58b744cea6ac256703b19a633051ba79"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "58b744cea6ac256703b19a633051ba79",
+        "original_type": "phrase",
+        "original_title": "已满多少岁的人犯贩卖毒品罪应负刑事责任",
+        "original_answers": [
+          {
+            "text": "十四周岁",
+            "answer_start": 32
+          }
+        ],
+        "is_impossible": false
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "十四周岁所在条款明确包含贩卖毒品罪，年龄与罪名对应。"
+      }
+    },
+    {
+      "id": "checklist-6092884d20927add94c362fc6e3ab998",
+      "source_id": "dureader_checklist_d3ab820bf0bce7b9",
+      "category": "unanswerable",
+      "question": "梦见钓大鱼是什么意思",
+      "history": [],
+      "answerable": false,
+      "reference_answer": "资料不足，应拒答。",
+      "evidence": [],
+      "retrieval_source_ids": [
+        "dureader_checklist_d3ab820bf0bce7b9"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:6092884d20927add94c362fc6e3ab998"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "6092884d20927add94c362fc6e3ab998",
+        "original_type": "phrase",
+        "original_title": "梦见用手抓鱼是什么意思",
+        "original_answers": [
+          {
+            "text": "",
+            "answer_start": -1
+          }
+        ],
+        "is_impossible": true
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "原文仅解释用手抓鱼，未解释钓大鱼。"
+      }
+    },
+    {
+      "id": "checklist-4b1b2b0f452096ad1f7e672bed9ae08a",
+      "source_id": "dureader_checklist_68fa45aeb9b84fb1",
+      "category": "unanswerable",
+      "question": "狗吃东西吐了怎么办",
+      "history": [],
+      "answerable": false,
+      "reference_answer": "资料不足，应拒答。",
+      "evidence": [],
+      "retrieval_source_ids": [
+        "dureader_checklist_68fa45aeb9b84fb1"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:4b1b2b0f452096ad1f7e672bed9ae08a"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "4b1b2b0f452096ad1f7e672bed9ae08a",
+        "original_type": "phrase",
+        "original_title": "狗吃了一点葱怎么办",
+        "original_answers": [
+          {
+            "text": "",
+            "answer_start": -1
+          }
+        ],
+        "is_impossible": true
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "原文是狗误食葱后催吐，非一般进食后呕吐的处理。"
+      }
+    },
+    {
+      "id": "checklist-246dee97fd9a5d048c4b636f28bdce91",
+      "source_id": "dureader_checklist_dac833d1cbd78264",
+      "category": "unanswerable",
+      "question": "电脑管家有必要装吗",
+      "history": [],
+      "answerable": false,
+      "reference_answer": "资料不足，应拒答。",
+      "evidence": [],
+      "retrieval_source_ids": [
+        "dureader_checklist_dac833d1cbd78264"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:246dee97fd9a5d048c4b636f28bdce91"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "246dee97fd9a5d048c4b636f28bdce91",
+        "original_type": "phrase",
+        "original_title": "装了电脑管家还有必要再装Mcafee吗_百度知道",
+        "original_answers": [
+          {
+            "text": "",
+            "answer_start": -1
+          }
+        ],
+        "is_impossible": true
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "原文只判断同时安装两个杀毒软件，未指明电脑管家是否必要。"
+      }
+    },
+    {
+      "id": "checklist-862b2320b64825ec0715bc30dc31ad72",
+      "source_id": "dureader_checklist_1119de44cc1dff9b",
+      "category": "unanswerable",
+      "question": "狗狗可以吃牛肉吗",
+      "history": [],
+      "answerable": false,
+      "reference_answer": "资料不足，应拒答。",
+      "evidence": [],
+      "retrieval_source_ids": [
+        "dureader_checklist_1119de44cc1dff9b"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:862b2320b64825ec0715bc30dc31ad72"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "862b2320b64825ec0715bc30dc31ad72",
+        "original_type": "phrase",
+        "original_title": "牛肉和狗肉能一起吃吗",
+        "original_answers": [
+          {
+            "text": "",
+            "answer_start": -1
+          }
+        ],
+        "is_impossible": true
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "原文说牛肉与狗肉可同食，未说狗能否吃牛肉。"
+      }
+    },
+    {
+      "id": "checklist-9419d381e75ed24baa2f2ef42017afea",
+      "source_id": "dureader_checklist_746a05c2ad50d436",
+      "category": "unanswerable",
+      "question": "switch可以和pc联机吗",
+      "history": [],
+      "answerable": false,
+      "reference_answer": "资料不足，应拒答。",
+      "evidence": [],
+      "retrieval_source_ids": [
+        "dureader_checklist_746a05c2ad50d436"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:9419d381e75ed24baa2f2ef42017afea"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "9419d381e75ed24baa2f2ef42017afea",
+        "original_type": "phrase",
+        "original_title": "switch可以联机吗",
+        "original_answers": [
+          {
+            "text": "",
+            "answer_start": -1
+          }
+        ],
+        "is_impossible": true
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "原文仅讲Switch本地或线上联机，未给与PC跨平台联机信息。"
+      }
+    },
+    {
+      "id": "checklist-b78b062e4146225201007c2b66c4b214",
+      "source_id": "dureader_checklist_250849ecbc76ca65",
+      "category": "semantic-role",
+      "question": "支付宝怎么换绑淘宝",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "打开手机淘宝，在淘宝主界面选择右下方的我的淘宝，然后找到设置图标，点击进入，选择账户与安全-支付宝绑定设置选项，之后按照系统提示操作即可。",
+      "evidence": [
+        {
+          "source_id": "dureader_checklist_250849ecbc76ca65",
+          "start": 0,
+          "end": 69,
+          "quote": "打开手机淘宝，在淘宝主界面选择右下方的我的淘宝，然后找到设置图标，点击进入，选择账户与安全-支付宝绑定设置选项，之后按照系统提示操作即可。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "dureader_checklist_250849ecbc76ca65"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:b78b062e4146225201007c2b66c4b214"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "b78b062e4146225201007c2b66c4b214",
+        "original_type": "semantic-role",
+        "original_title": "淘宝怎么换绑支付宝",
+        "original_answers": [
+          {
+            "text": "打开手机淘宝，在淘宝主界面选择右下方的我的淘宝，然后找到设置图标，点击进入，选择账户与安全-支付宝绑定设置选项，之后按照系统提示操作即可。",
+            "answer_start": 0
+          }
+        ],
+        "is_impossible": false
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "原文给出淘宝账户与安全中的支付宝绑定设置路径。"
+      }
+    },
+    {
+      "id": "checklist-79489b00aaa04c44bb04b82bac3f3006",
+      "source_id": "dureader_checklist_f7330cdc476e8dd4",
+      "category": "semantic-role",
+      "question": "桃子能和橙子一起吃吗",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "能",
+      "evidence": [
+        {
+          "source_id": "dureader_checklist_f7330cdc476e8dd4",
+          "start": 2,
+          "end": 3,
+          "quote": "能"
+        }
+      ],
+      "retrieval_source_ids": [
+        "dureader_checklist_f7330cdc476e8dd4"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:79489b00aaa04c44bb04b82bac3f3006"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "79489b00aaa04c44bb04b82bac3f3006",
+        "original_type": "semantic-role",
+        "original_title": "橙子能和桃子一起吃吗 橙子和桃子一起吃有什么好处",
+        "original_answers": [
+          {
+            "text": "能",
+            "answer_start": 2
+          }
+        ],
+        "is_impossible": false
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "能所在句明确为橙子和桃子一起吃，交换列举顺序不改变关系。"
+      }
+    },
+    {
+      "id": "checklist-9f0f9e97281fe7c83e0de9090a336d04",
+      "source_id": "dureader_checklist_82d661d18655b844",
+      "category": "semantic-role",
+      "question": "医院和保险公司联网",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "目前大多数的医院联网的是各地社保中的医疗保险，只有少数部分的医院和保险公司进行了联网。不过在2018年，经过银保监会的批准，首个保险＋医疗模式的医院试点正式启动，试点结束以后，保险公司将和医院进行全面联网。",
+      "evidence": [
+        {
+          "source_id": "dureader_checklist_82d661d18655b844",
+          "start": 0,
+          "end": 103,
+          "quote": "目前大多数的医院联网的是各地社保中的医疗保险，只有少数部分的医院和保险公司进行了联网。不过在2018年，经过银保监会的批准，首个保险＋医疗模式的医院试点正式启动，试点结束以后，保险公司将和医院进行全面联网。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "dureader_checklist_82d661d18655b844"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:9f0f9e97281fe7c83e0de9090a336d04"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "9f0f9e97281fe7c83e0de9090a336d04",
+        "original_type": "semantic-role",
+        "original_title": "保险公司和医院联网吗",
+        "original_answers": [
+          {
+            "text": "目前大多数的医院联网的是各地社保中的医疗保险，只有少数部分的医院和保险公司进行了联网。不过在2018年，经过银保监会的批准，首个保险＋医疗模式的医院试点正式启动，试点结束以后，保险公司将和医院进行全面联网。",
+            "answer_start": 0
+          }
+        ],
+        "is_impossible": false
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "证据区分医保联网与商业保险公司联网，与参考答案一致。"
+      }
+    },
+    {
+      "id": "checklist-901fbbf580b0ac26994e3ca5551be1a1",
+      "source_id": "dureader_checklist_f8428939956402a8",
+      "category": "semantic-role",
+      "question": "朋友圈怎么发语音",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "打开手机微信，点击我，点击收藏，点击右上角的加号，点击输入法上方的麦克风标识，说出想要发表的语音，再点击麦克风完成录制，点击右上角三个点击，选择分享到朋友圈即可。",
+      "evidence": [
+        {
+          "source_id": "dureader_checklist_f8428939956402a8",
+          "start": 0,
+          "end": 81,
+          "quote": "打开手机微信，点击我，点击收藏，点击右上角的加号，点击输入法上方的麦克风标识，说出想要发表的语音，再点击麦克风完成录制，点击右上角三个点击，选择分享到朋友圈即可。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "dureader_checklist_f8428939956402a8"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:901fbbf580b0ac26994e3ca5551be1a1"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "901fbbf580b0ac26994e3ca5551be1a1",
+        "original_type": "semantic-role",
+        "original_title": "语音怎么发朋友圈",
+        "original_answers": [
+          {
+            "text": "打开手机微信，点击我，点击收藏，点击右上角的加号，点击输入法上方的麦克风标识，说出想要发表的语音，再点击麦克风完成录制，点击右上角三个点击，选择分享到朋友圈即可。",
+            "answer_start": 0
+          }
+        ],
+        "is_impossible": false
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "收藏录音并分享到朋友圈的步骤与原文一致。"
+      }
+    },
+    {
+      "id": "checklist-94142f5fc9ff3bb709238a83b00b446c",
+      "source_id": "dureader_checklist_22afc1720e4ed179",
+      "category": "semantic-role",
+      "question": "没有欠条只有转账记录可以起诉吗",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "根据《民事诉讼法》规定，当事人需要符合相关条件即可起诉：原告是与本案有利害关系的，有明确的被告，有具体的诉讼请求和事实理由，属于人民法院受理民事诉讼的范围和受诉人民法院管辖。",
+      "evidence": [
+        {
+          "source_id": "dureader_checklist_22afc1720e4ed179",
+          "start": 16,
+          "end": 103,
+          "quote": "根据《民事诉讼法》规定，当事人需要符合相关条件即可起诉：原告是与本案有利害关系的，有明确的被告，有具体的诉讼请求和事实理由，属于人民法院受理民事诉讼的范围和受诉人民法院管辖。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "dureader_checklist_22afc1720e4ed179"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:94142f5fc9ff3bb709238a83b00b446c"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "94142f5fc9ff3bb709238a83b00b446c",
+        "original_type": "semantic-role",
+        "original_title": "只有欠条没有转账记录可以起诉吗",
+        "original_answers": [
+          {
+            "text": "根据《民事诉讼法》规定，当事人需要符合相关条件即可起诉：原告是与本案有利害关系的，有明确的被告，有具体的诉讼请求和事实理由，属于人民法院受理民事诉讼的范围和受诉人民法院管辖。",
+            "answer_start": 16
+          }
+        ],
+        "is_impossible": false
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": false,
+        "notes": "原文具体情形是有欠条无转账；所选通用起诉条件未明确支持相反证据组合。"
+      }
+    },
+    {
+      "id": "checklist-ac2733353672e7cc840f45795d26d564",
+      "source_id": "dureader_checklist_2443d7b077c72266",
+      "category": "unanswerable",
+      "question": "妈妈梦见女儿怀孕了",
+      "history": [],
+      "answerable": false,
+      "reference_answer": "资料不足，应拒答。",
+      "evidence": [],
+      "retrieval_source_ids": [
+        "dureader_checklist_2443d7b077c72266"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:ac2733353672e7cc840f45795d26d564"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "ac2733353672e7cc840f45795d26d564",
+        "original_type": "semantic-role",
+        "original_title": "女儿梦见妈妈怀孕了-易奇八字在线算命",
+        "original_answers": [
+          {
+            "text": "",
+            "answer_start": -1
+          }
+        ],
+        "is_impossible": true
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "原文是女儿梦见妈妈怀孕，题问双方角色相反。"
+      }
+    },
+    {
+      "id": "checklist-373f6a64ef37110da447d83d76777d76",
+      "source_id": "dureader_checklist_262230d35cb954e3",
+      "category": "unanswerable",
+      "question": "女生见到暗恋男生反应",
+      "history": [],
+      "answerable": false,
+      "reference_answer": "资料不足，应拒答。",
+      "evidence": [],
+      "retrieval_source_ids": [
+        "dureader_checklist_262230d35cb954e3"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:373f6a64ef37110da447d83d76777d76"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "373f6a64ef37110da447d83d76777d76",
+        "original_type": "semantic-role",
+        "original_title": "男生见到暗恋女生反应",
+        "original_answers": [
+          {
+            "text": "",
+            "answer_start": -1
+          }
+        ],
+        "is_impossible": true
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "原文是男生见到暗恋女生的反应，不能直接反推女生反应。"
+      }
+    },
+    {
+      "id": "checklist-793942319f1c86b95b2400166c8bd3cc",
+      "source_id": "dureader_checklist_25c94d6b82fe9d32",
+      "category": "unanswerable",
+      "question": "眼影可以当腮红用吗",
+      "history": [],
+      "answerable": false,
+      "reference_answer": "资料不足，应拒答。",
+      "evidence": [],
+      "retrieval_source_ids": [
+        "dureader_checklist_25c94d6b82fe9d32"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:793942319f1c86b95b2400166c8bd3cc"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "793942319f1c86b95b2400166c8bd3cc",
+        "original_type": "semantic-role",
+        "original_title": "腮红可以当眼影用吗",
+        "original_answers": [
+          {
+            "text": "",
+            "answer_start": -1
+          }
+        ],
+        "is_impossible": true
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "原文仅说腮红可当眼影，未证明眼影可当腮红。"
+      }
+    },
+    {
+      "id": "checklist-1de53a2056ef3b85a4eba779f99f42c3",
+      "source_id": "dureader_checklist_4bba92a023f92a7b",
+      "category": "unanswerable",
+      "question": "怎么把word转换成pdf",
+      "history": [],
+      "answerable": false,
+      "reference_answer": "资料不足，应拒答。",
+      "evidence": [],
+      "retrieval_source_ids": [
+        "dureader_checklist_4bba92a023f92a7b"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:1de53a2056ef3b85a4eba779f99f42c3"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "1de53a2056ef3b85a4eba779f99f42c3",
+        "original_type": "semantic-role",
+        "original_title": "怎么把pdf转换成word",
+        "original_answers": [
+          {
+            "text": "",
+            "answer_start": -1
+          }
+        ],
+        "is_impossible": true
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "原文仅有PDF转Word操作，转换方向与问题相反。"
+      }
+    },
+    {
+      "id": "checklist-15e6fcd09c3e1c37457e4df082d17527",
+      "source_id": "dureader_checklist_1b240a8e555f511e",
+      "category": "unanswerable",
+      "question": "香蕉可以催熟芒果吗",
+      "history": [],
+      "answerable": false,
+      "reference_answer": "资料不足，应拒答。",
+      "evidence": [],
+      "retrieval_source_ids": [
+        "dureader_checklist_1b240a8e555f511e"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:15e6fcd09c3e1c37457e4df082d17527"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "15e6fcd09c3e1c37457e4df082d17527",
+        "original_type": "semantic-role",
+        "original_title": "芒果可以催熟香蕉吗",
+        "original_answers": [
+          {
+            "text": "",
+            "answer_start": -1
+          }
+        ],
+        "is_impossible": true
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "原文只明确芒果催熟香蕉，未证明香蕉催熟芒果。"
+      }
+    },
+    {
+      "id": "checklist-0d3e3a029581d368d3e2f8e962da20ba",
+      "source_id": "dureader_checklist_f5947ee15ed9a79d",
+      "category": "reasoning",
+      "question": "晚上吃苹果不好吗",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "苹果早晚吃没区别",
+      "evidence": [
+        {
+          "source_id": "dureader_checklist_f5947ee15ed9a79d",
+          "start": 62,
+          "end": 70,
+          "quote": "苹果早晚吃没区别"
+        }
+      ],
+      "retrieval_source_ids": [
+        "dureader_checklist_f5947ee15ed9a79d"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:0d3e3a029581d368d3e2f8e962da20ba"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "0d3e3a029581d368d3e2f8e962da20ba",
+        "original_type": "reasoning_negative",
+        "original_title": "晚上吃苹果好吗",
+        "original_answers": [
+          {
+            "text": "苹果早晚吃没区别",
+            "answer_start": 62
+          }
+        ],
+        "is_impossible": false
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "证据直接否定晚上吃苹果有害，并说早晚吃无区别。"
+      }
+    },
+    {
+      "id": "checklist-e2896030a34064f51ccc3e0b8e497570",
+      "source_id": "dureader_checklist_2e705c42f6e8bc1b",
+      "category": "reasoning",
+      "question": "信用卡没有逾期被冻结了还能解冻吗",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "信用卡被冻结后是否能够解冻，具体要看和银行之间的交涉情况。持卡人和银行沟通良好，银行有可能将信用卡解冻。因为信用卡不良使用、欠款逾期等行为被银行冻结封卡的，需要持卡人本人向银行申请解冻才可以。",
+      "evidence": [
+        {
+          "source_id": "dureader_checklist_2e705c42f6e8bc1b",
+          "start": 0,
+          "end": 96,
+          "quote": "信用卡被冻结后是否能够解冻，具体要看和银行之间的交涉情况。持卡人和银行沟通良好，银行有可能将信用卡解冻。因为信用卡不良使用、欠款逾期等行为被银行冻结封卡的，需要持卡人本人向银行申请解冻才可以。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "dureader_checklist_2e705c42f6e8bc1b"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:e2896030a34064f51ccc3e0b8e497570"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "e2896030a34064f51ccc3e0b8e497570",
+        "original_type": "reasoning_negative",
+        "original_title": "信用卡逾期被冻结了还能解冻吗",
+        "original_answers": [
+          {
+            "text": "信用卡被冻结后是否能够解冻，具体要看和银行之间的交涉情况。持卡人和银行沟通良好，银行有可能将信用卡解冻。因为信用卡不良使用、欠款逾期等行为被银行冻结封卡的，需要持卡人本人向银行申请解冻才可以。",
+            "answer_start": 0
+          }
+        ],
+        "is_impossible": false
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "原文的一般解冻规则未限定必须逾期，支持沟通后可能解冻。"
+      }
+    },
+    {
+      "id": "checklist-1ee3dcccc19539339943d93df5efda57",
+      "source_id": "dureader_checklist_8969ba24ad652f91",
+      "category": "reasoning",
+      "question": "出租房隔音不好怎么解决",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "在窗户上贴一层隔音膜",
+      "evidence": [
+        {
+          "source_id": "dureader_checklist_8969ba24ad652f91",
+          "start": 2,
+          "end": 12,
+          "quote": "在窗户上贴一层隔音膜"
+        }
+      ],
+      "retrieval_source_ids": [
+        "dureader_checklist_8969ba24ad652f91"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:1ee3dcccc19539339943d93df5efda57"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "1ee3dcccc19539339943d93df5efda57",
+        "original_type": "reasoning_negative",
+        "original_title": "出租房隔音差怎么解决",
+        "original_answers": [
+          {
+            "text": "在窗户上贴一层隔音膜",
+            "answer_start": 2
+          }
+        ],
+        "is_impossible": false
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "原文明确建议窗户贴隔音膜，可作为一种解决办法。"
+      }
+    },
+    {
+      "id": "checklist-1abc391f71732dccfa4515f8b73db172",
+      "source_id": "dureader_checklist_4c27ff086145cf5f",
+      "category": "reasoning",
+      "question": "最近深圳没有限行吗",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "现在由于疫情的影响，深圳市不限行的了",
+      "evidence": [
+        {
+          "source_id": "dureader_checklist_4c27ff086145cf5f",
+          "start": 0,
+          "end": 18,
+          "quote": "现在由于疫情的影响，深圳市不限行的了"
+        }
+      ],
+      "retrieval_source_ids": [
+        "dureader_checklist_4c27ff086145cf5f"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:1abc391f71732dccfa4515f8b73db172"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "1abc391f71732dccfa4515f8b73db172",
+        "original_type": "reasoning_negative",
+        "original_title": "最近深圳限行吗",
+        "original_answers": [
+          {
+            "text": "现在由于疫情的影响，深圳市不限行的了",
+            "answer_start": 0
+          }
+        ],
+        "is_impossible": false
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "答案忠实对应原文疫情时段的不限行描述，仅按该资料快照审核。"
+      }
+    },
+    {
+      "id": "checklist-b08331a86006949b8cebaaa9bfd297b6",
+      "source_id": "dureader_checklist_d0f1f6dbbbd72c1e",
+      "category": "reasoning",
+      "question": "狗的鼻子不湿是怎么回事",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "首先狗鼻子一般情况下是保持湿润的，在狗狗睡觉的时候狗狗的鼻子会变得干燥。如果在日常生活中发现狗狗鼻子是干燥的，就看看狗狗最近有什么异常现象，比如最近的吃喝情况有什么异常不，还有最近大小便有没有成型等等，如果还是不放心的话，就可以带到附近宠物医院，做些基本检查。",
+      "evidence": [
+        {
+          "source_id": "dureader_checklist_d0f1f6dbbbd72c1e",
+          "start": 0,
+          "end": 130,
+          "quote": "首先狗鼻子一般情况下是保持湿润的，在狗狗睡觉的时候狗狗的鼻子会变得干燥。如果在日常生活中发现狗狗鼻子是干燥的，就看看狗狗最近有什么异常现象，比如最近的吃喝情况有什么异常不，还有最近大小便有没有成型等等，如果还是不放心的话，就可以带到附近宠物医院，做些基本检查。"
+        }
+      ],
+      "retrieval_source_ids": [
+        "dureader_checklist_d0f1f6dbbbd72c1e"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:b08331a86006949b8cebaaa9bfd297b6"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "b08331a86006949b8cebaaa9bfd297b6",
+        "original_type": "reasoning_negative",
+        "original_title": "狗的鼻子干是怎么回事",
+        "original_answers": [
+          {
+            "text": "首先狗鼻子一般情况下是保持湿润的，在狗狗睡觉的时候狗狗的鼻子会变得干燥。如果在日常生活中发现狗狗鼻子是干燥的，就看看狗狗最近有什么异常现象，比如最近的吃喝情况有什么异常不，还有最近大小便有没有成型等等，如果还是不放心的话，就可以带到附近宠物医院，做些基本检查。",
+            "answer_start": 0
+          }
+        ],
+        "is_impossible": false
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "原文说明睡觉时鼻子会干燥，并给出观察异常和就诊建议。"
+      }
+    },
+    {
+      "id": "checklist-7722a08d7f4ca8794cc866b409462cd7",
+      "source_id": "dureader_checklist_ca78f2d7d85ebd91",
+      "category": "unanswerable",
+      "question": "什么肉蛋白质不高",
+      "history": [],
+      "answerable": false,
+      "reference_answer": "资料不足，应拒答。",
+      "evidence": [],
+      "retrieval_source_ids": [
+        "dureader_checklist_ca78f2d7d85ebd91"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:7722a08d7f4ca8794cc866b409462cd7"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "7722a08d7f4ca8794cc866b409462cd7",
+        "original_type": "reasoning_negative",
+        "original_title": "什么肉蛋白质高",
+        "original_answers": [
+          {
+            "text": "",
+            "answer_start": -1
+          }
+        ],
+        "is_impossible": true
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "资料列的是蛋白质含量高的肉，未给低蛋白肉类判断标准。"
+      }
+    },
+    {
+      "id": "checklist-183b9b71952bd2f0b8401249ab2b3960",
+      "source_id": "dureader_checklist_524cd8a4cf127d26",
+      "category": "unanswerable",
+      "question": "梦见救落水小孩不成功",
+      "history": [],
+      "answerable": false,
+      "reference_answer": "资料不足，应拒答。",
+      "evidence": [],
+      "retrieval_source_ids": [
+        "dureader_checklist_524cd8a4cf127d26"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:183b9b71952bd2f0b8401249ab2b3960"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "183b9b71952bd2f0b8401249ab2b3960",
+        "original_type": "reasoning_negative",
+        "original_title": "梦见梦见救落水小孩成功",
+        "original_answers": [
+          {
+            "text": "",
+            "answer_start": -1
+          }
+        ],
+        "is_impossible": true
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "候选正文未交代救落水小孩失败这一梦境，无法确认对应解读。"
+      }
+    },
+    {
+      "id": "checklist-e82247884b62c7f42541ed06155ebf82",
+      "source_id": "dureader_checklist_3d9fc2437d964c20",
+      "category": "unanswerable",
+      "question": "什么猫最不粘人",
+      "history": [],
+      "answerable": false,
+      "reference_answer": "资料不足，应拒答。",
+      "evidence": [],
+      "retrieval_source_ids": [
+        "dureader_checklist_3d9fc2437d964c20"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:e82247884b62c7f42541ed06155ebf82"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "e82247884b62c7f42541ed06155ebf82",
+        "original_type": "reasoning_negative",
+        "original_title": "什么猫最粘人",
+        "original_answers": [
+          {
+            "text": "",
+            "answer_start": -1
+          }
+        ],
+        "is_impossible": true
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "原文介绍黏人的布偶猫，未提供最不黏人的猫及比较依据。"
+      }
+    },
+    {
+      "id": "checklist-f42c9e6d6b7e375f67bb684e097e754d",
+      "source_id": "dureader_checklist_8e766c90243298b4",
+      "category": "unanswerable",
+      "question": "做梦梦见自己没有结婚",
+      "history": [],
+      "answerable": false,
+      "reference_answer": "资料不足，应拒答。",
+      "evidence": [],
+      "retrieval_source_ids": [
+        "dureader_checklist_8e766c90243298b4"
+      ],
+      "fact_groups": [
+        "dureader_checklist:dev:f42c9e6d6b7e375f67bb684e097e754d"
+      ],
+      "external_origin": {
+        "dataset": "dureader_checklist",
+        "original_split": "dev",
+        "original_id": "f42c9e6d6b7e375f67bb684e097e754d",
+        "original_type": "reasoning_negative",
+        "original_title": "做梦梦见自己结婚",
+        "original_answers": [
+          {
+            "text": "",
+            "answer_start": -1
+          }
+        ],
+        "is_impossible": true
+      },
+      "annotation_status": "imported_pending_review",
+      "annotation_review": {
+        "reviewer": "Codex",
+        "approved": true,
+        "notes": "原文解释梦见自己结婚，不能移植到没有结婚的相反梦境。"
+      }
+    }
+  ],
+  "provenance": {
+    "repository": "https://github.com/baidu/DuReader/tree/master/DuReader-Checklist",
+    "revision": "c625076b06da8f56d59f19c41c73bd580a98a347",
+    "archive_sha256": "d51553cfe1e025f8706e40417da065cbd097240ab2bf99077744489ada0e0ede",
+    "raw_sha256": "bd100d8f5326361f51be2bfbf2242417fe659ef23b0173bbbd72625fb0d68c7e",
+    "license": "原始参赛者协议，仅限非商业科研或学术用途；见 data/external/DuReader-License.txt"
+  }
+}
