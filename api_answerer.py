@@ -9,6 +9,9 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import ipaddress
+import os
+import socket
 from urllib.parse import urlparse
 
 from openai import OpenAI
@@ -37,6 +40,30 @@ def _validate_base_url(url: str) -> str:
     if not parsed.netloc:
         raise ValueError("base_url 格式不正确")
     return url.rstrip("/")
+
+
+def validate_embedding_endpoint(url: str, resolve: bool = False) -> str:
+    """在线嵌入只接受管理员准许的公网 HTTPS 服务，禁止重定向绕过。"""
+    url = _validate_base_url(url)
+    parsed = urlparse(url)
+    host = (parsed.hostname or "").lower().rstrip(".")
+    allowed = os.getenv("EMBEDDING_ALLOWED_HOSTS", "api.openai.com,dashscope.aliyuncs.com,maas.aliyuncs.com")
+    hosts = [item.strip().lower().lstrip(".") for item in allowed.split(",") if item.strip()]
+    if (parsed.scheme != "https" or parsed.username or parsed.password or parsed.query or parsed.fragment
+            or parsed.port not in (None, 443) or not any(host == h or host.endswith("." + h) for h in hosts)):
+        raise ValueError("嵌入地址必须是管理员允许的公网 HTTPS 服务（EMBEDDING_ALLOWED_HOSTS）")
+    try:
+        addresses = [ipaddress.ip_address(host)]
+    except ValueError:
+        addresses = []
+    if resolve:
+        try:
+            addresses = [ipaddress.ip_address(item[4][0]) for item in socket.getaddrinfo(host, 443, type=socket.SOCK_STREAM)]
+        except OSError:
+            raise ValueError("嵌入服务地址无法解析") from None
+    if any(not address.is_global for address in addresses) or (resolve and not addresses):
+        raise ValueError("嵌入服务不能访问本机、内网或保留地址")
+    return url
 
 
 def _validate_model(model: str) -> str:

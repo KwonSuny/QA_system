@@ -19,7 +19,7 @@ from types import SimpleNamespace
 
 
 ROOT = Path(__file__).resolve().parent
-DEFAULT_DATASET = ROOT / "evaluation" / "reasoning_development.json"
+DEFAULT_DATASET = ROOT / "evaluation" / "seed.json"
 REVIEW_FIELDS = ("answer_correct", "supported_by_context", "refused")
 API_KEY = os.getenv("DASHSCOPE_API_KEY")
 BASE_URL = os.getenv("DASHSCOPE_BASE_URL")

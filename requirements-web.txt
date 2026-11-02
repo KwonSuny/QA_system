@@ -1,0 +1,12 @@
+# -*- coding: utf-8 -*-
+# Web 服务所需增量依赖（其余复用项目已有环境：torch/chromadb/transformers）
+fastapi>=0.115,<0.116
+starlette>=0.40,<0.47
+uvicorn>=0.30
+python-multipart>=0.0.9
+openai>=1.0
+sqlalchemy>=2.0
+cryptography>=41.0
+python-docx>=1.2,<2
+pypdf>=6.20.1,<7
+httpx>=0.28,<1

@@ -92,6 +92,39 @@ class KnowledgeBase(Base):
     updated_at = Column(String(32), nullable=False, default=now_str)
 
 
+class EmbeddingProfile(Base):
+    __tablename__ = "embedding_profiles"
+
+    id = Column(String(32), primary_key=True)
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True)
+    name = Column(String(100), nullable=False)
+    base_url = Column(String(500), nullable=False)
+    api_key_enc = Column(Text, nullable=False)
+    model = Column(String(200), nullable=False)
+    dimensions = Column(Integer, nullable=True)
+    batch_size = Column(Integer, nullable=False, default=10)
+    created_at = Column(String(32), nullable=False, default=now_str)
+
+
+class KnowledgeIndex(Base):
+    __tablename__ = "knowledge_indexes"
+
+    id = Column(String(32), primary_key=True)
+    kb_id = Column(String(32), ForeignKey("knowledge_bases.id", ondelete="CASCADE"), nullable=False, index=True)
+    collection_name = Column(String(100), nullable=False, unique=True)
+    profile_id = Column(String(32), nullable=False, default="")
+    fingerprint = Column(String(64), nullable=False)
+    active = Column(Integer, nullable=False, default=1)
+    created_at = Column(String(32), nullable=False, default=now_str)
+
+
+class SearchSetting(Base):
+    __tablename__ = "search_settings"
+
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), primary_key=True)
+    api_key_enc = Column(Text, nullable=False)
+
+
 class Conversation(Base):
     __tablename__ = "conversations"
 

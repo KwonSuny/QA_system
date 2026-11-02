@@ -20,10 +20,12 @@ import uuid
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
+from types import SimpleNamespace
 
 import chromadb
 
-from db import Database, KnowledgeBase
+from db import Database, KnowledgeBase, KnowledgeIndex
+from embedding_service import RemoteEmbeddingModel, embedding_fingerprint
 from local_model import resolve_embedding_model_path
 from local_rag_engine import LocalEmbeddingModel, _pick_device
 from rag_pipeline import document_fingerprint, heading_contexts, hybrid_order, merge_documents, normalize, source_documents
@@ -65,6 +67,7 @@ class KnowledgeBaseManager:
         device: str | None = None,
         chunk_size: int = 260,
         chunk_overlap: int = 60,
+        embedding_store=None,
     ) -> None:
         self.db = db
         self.store_dir = Path(store_dir)
@@ -77,6 +80,8 @@ class KnowledgeBaseManager:
         self.device = device or _pick_device()
         self.chunk_size = chunk_size
         self.chunk_overlap = chunk_overlap
+        self.embedding_store = embedding_store
+        self._mutation_lock = threading.RLock()
 
         self.collection_name = _safe_collection_name(self.embedding_model_name)
         self.db_client = chromadb.PersistentClient(path=str(self.chroma_dir))
@@ -135,7 +140,8 @@ class KnowledgeBaseManager:
         digest = hashlib.sha1(f"{kb_id}:{index}:{chunk}".encode("utf-8")).hexdigest()
         return f"{kb_id}_{digest[:20]}"
 
-    def _ingest(self, kb_id: str, text: str, user_id: int, title: str = "") -> int:
+    def _ingest(self, kb_id: str, text: str, user_id: int, title: str = "", collection=None, embedder=None) -> int:
+        collection = collection if collection is not None else self.collection
         chunks, origins = [], []
         for document in source_documents(text, title or kb_id):
             document_chunks = self._split_text(document["text"])
@@ -144,10 +150,10 @@ class KnowledgeBaseManager:
                 chunks.append(chunk)
                 origins.append({**document, "document_sha256": fingerprint, "section_context": sections})
         if not chunks:
-            self.collection.delete(where={"kb_id": kb_id})
+            collection.delete(where={"kb_id": kb_id})
             return 0
 
-        embeddings = self._embedder().encode(chunks)
+        embeddings = (embedder if embedder is not None else self._embedder()).encode(chunks)
         ids = [self._chunk_id(kb_id, i, c) for i, c in enumerate(chunks)]
         metadatas = [
             {"kb_id": kb_id, "user_id": user_id, "chunk": i,
@@ -157,14 +163,77 @@ class KnowledgeBaseManager:
             for i in range(len(chunks))
         ]
 
-        self.collection.delete(where={"kb_id": kb_id})
-        self.collection.add(
+        collection.delete(where={"kb_id": kb_id})
+        collection.add(
             ids=ids,
             embeddings=embeddings,
             documents=chunks,
             metadatas=metadatas,
         )
         return len(chunks)
+
+    def _config(self, user_id, profile_id):
+        if not profile_id:
+            return {"provider": "local", "model": self.embedding_model_name, "pooling": "mean"}
+        if self.embedding_store is None:
+            raise ValueError("在线嵌入配置服务不可用")
+        return {**self.embedding_store.get(user_id, profile_id), "provider": "api"}
+
+    def _index(self, kb_id):
+        with self.db.session() as session:
+            return session.query(KnowledgeIndex).filter_by(kb_id=kb_id, active=1).first()
+
+    def _backend(self, user_id, kb_id):
+        index = self._index(kb_id)
+        config = self._config(user_id, index.profile_id if index else "")
+        if index and embedding_fingerprint(config) != index.fingerprint:
+            raise ValueError("索引的嵌入配置已变化，请重建索引")
+        collection = self.db_client.get_collection(index.collection_name) if index else self.collection
+        embedder = self._encoding_model(config)
+        return collection, embedder
+
+    def _encoding_model(self, config):
+        if config["provider"] == "api":
+            return RemoteEmbeddingModel(config)
+        return SimpleNamespace(encode=lambda values: self._embedder().encode(values))
+
+    def _index_view(self, kb_id):
+        index = self._index(kb_id)
+        return {"embedding_profile_id": index.profile_id if index else "",
+                "embedding_provider": "api" if index and index.profile_id else "local",
+                "index_id": index.id if index else "legacy-local"}
+
+    def _build_index(self, user_id, kb_id, text, title, profile_id):
+        config = self._config(user_id, profile_id)
+        name = f"kb_{kb_id[:16]}_{uuid.uuid4().hex[:16]}"
+        collection = self.db_client.create_collection(name, metadata={"hnsw:space": "cosine"})
+        try:
+            embedder = self._encoding_model(config)
+            count = self._ingest(kb_id, text, user_id, title, collection, embedder)
+        except Exception:
+            self.db_client.delete_collection(name)
+            raise
+        return KnowledgeIndex(id=uuid.uuid4().hex, kb_id=kb_id, collection_name=name,
+                              profile_id=profile_id, fingerprint=embedding_fingerprint(config), active=1), count
+
+    def reindex(self, user_id, kb_id, profile_id=""):
+        with self._mutation_lock:
+            kb = self.get(user_id, kb_id)
+            if kb is None:
+                raise KeyError("知识库不存在")
+            index, count = self._build_index(user_id, kb_id, kb["text"], kb["name"], profile_id)
+            try:
+                with self.db.session() as session:
+                    row = self._owned_row(session, user_id, kb_id)
+                    if row is None or self._read_text(self._kb_file(kb_id)) != kb["text"]:
+                        raise ValueError("知识库在重建期间发生变化，请重试")
+                    session.query(KnowledgeIndex).filter_by(kb_id=kb_id, active=1).update({"active": 0})
+                    session.add(index)
+                    row.chunk_count, row.updated_at = count, _now()
+            except Exception:
+                self.db_client.delete_collection(index.collection_name)
+                raise
+            return self.get(user_id, kb_id)
 
     def _kb_file(self, kb_id: str) -> Path:
         return self.data_dir / f"{kb_id}.txt"
@@ -199,7 +268,7 @@ class KnowledgeBaseManager:
                 .order_by(KnowledgeBase.updated_at.desc())
                 .all()
             )
-            return [self._row_to_dict(r) for r in rows]
+            return [{**self._row_to_dict(r), **self._index_view(r.id)} for r in rows]
 
     def get(self, user_id: int, kb_id: str) -> dict | None:
         with self.db.session() as s:
@@ -209,16 +278,16 @@ class KnowledgeBaseManager:
             item = self._row_to_dict(row)
         path = self._kb_file(kb_id)
         item["text"] = self._read_text(path) if path.is_file() else ""
+        item.update(self._index_view(kb_id))
         return item
 
-    def create(self, user_id: int, name: str, description: str = "", text: str = "") -> dict:
+    def create(self, user_id: int, name: str, description: str = "", text: str = "", embedding_profile_id: str = "") -> dict:
         name = (name or "").strip()
         if not name:
             raise ValueError("知识库名称不能为空")
         kb_id = uuid.uuid4().hex
         # 重活（切分 + 向量化）在数据库事务之外完成，避免长时间持锁
-        chunk_count = self._ingest(kb_id, text, user_id, name)
-        self._kb_file(kb_id).write_text(text, encoding="utf-8")
+        index, chunk_count = self._build_index(user_id, kb_id, text, name, embedding_profile_id)
         now = _now()
         row = KnowledgeBase(
             id=kb_id,
@@ -229,9 +298,17 @@ class KnowledgeBaseManager:
             created_at=now,
             updated_at=now,
         )
-        with self.db.session() as s:
-            s.add(row)
-        return self._row_to_dict(row)
+        try:
+            self._kb_file(kb_id).write_text(text, encoding="utf-8")
+            with self.db.session() as s:
+                s.add(row)
+                s.flush()
+                s.add(index)
+        except Exception:
+            self.db_client.delete_collection(index.collection_name)
+            self._kb_file(kb_id).unlink(missing_ok=True)
+            raise
+        return {**self._row_to_dict(row), **self._index_view(kb_id)}
 
     def update(
         self,
@@ -241,6 +318,10 @@ class KnowledgeBaseManager:
         description: str | None = None,
         text: str | None = None,
     ) -> dict:
+        with self._mutation_lock:
+            return self._update(user_id, kb_id, name, description, text)
+
+    def _update(self, user_id, kb_id, name, description, text):
         # 1) 先校验归属（短事务）
         with self.db.session() as s:
             owned = self._owned_row(s, user_id, kb_id)
@@ -250,7 +331,8 @@ class KnowledgeBaseManager:
         # 2) 事务外完成向量化与文件写入
         chunk_count = None
         if text is not None:
-            chunk_count = self._ingest(kb_id, text, user_id, name or old_name)
+            collection, embedder = self._backend(user_id, kb_id)
+            chunk_count = self._ingest(kb_id, text, user_id, name or old_name, collection, embedder)
             self._kb_file(kb_id).write_text(text, encoding="utf-8")
         # 3) 更新元数据（短事务）
         with self.db.session() as s:
@@ -265,15 +347,18 @@ class KnowledgeBaseManager:
                 row.chunk_count = chunk_count
             row.updated_at = _now()
             s.flush()
-            return self._row_to_dict(row)
+            return {**self._row_to_dict(row), **self._index_view(kb_id)}
 
     def delete(self, user_id: int, kb_id: str) -> None:
         with self.db.session() as s:
             row = self._owned_row(s, user_id, kb_id)
             if row is None:
                 raise KeyError(f"知识库不存在: {kb_id}")
+            collections = [index.collection_name for index in s.query(KnowledgeIndex).filter_by(kb_id=kb_id).all()]
             s.delete(row)
         self.collection.delete(where={"kb_id": kb_id})
+        for name in collections:
+            self.db_client.delete_collection(name)
         path = self._kb_file(kb_id)
         if path.is_file():
             path.unlink()
@@ -285,6 +370,7 @@ class KnowledgeBaseManager:
         new_name: str,
         description: str = "",
         delete_sources: bool = False,
+        embedding_profile_id: str = "",
     ) -> dict:
         """把多个知识库正文合并为一个新知识库（仅限本人所有）。"""
         ordered = [k for k in dict.fromkeys(kb_ids or []) if k]
@@ -312,7 +398,7 @@ class KnowledgeBaseManager:
                 parts.extend(source_documents(text, found[kb_id]))
         merged_text = merge_documents(parts)
 
-        new_kb = self.create(user_id, new_name, description, merged_text)
+        new_kb = self.create(user_id, new_name, description, merged_text, embedding_profile_id)
 
         if delete_sources:
             for kb_id in ordered:
@@ -327,12 +413,13 @@ class KnowledgeBaseManager:
         with self.db.session() as s:
             if self._owned_row(s, user_id, kb_id) is None:
                 return []
-        count = self.collection.count()
+        collection, embedder = self._backend(user_id, kb_id)
+        count = collection.count()
         if count == 0:
             return []
         n_results = min(max(top_k, 1), count)
-        query_embedding = self._embedder().encode(question)[0]
-        result = self.collection.query(
+        query_embedding = embedder.encode(question)[0]
+        result = collection.query(
             query_embeddings=[query_embedding],
             n_results=n_results,
             where={"kb_id": kb_id},
@@ -370,7 +457,8 @@ class KnowledgeBaseManager:
         if document_id not in catalog:
             return []
         # 包括旧索引的D1回退；所有候选仍限定于已校验归属的知识库。
-        found = self.collection.get(where={"kb_id": kb_id}, include=["documents", "metadatas"])
+        collection, embedder = self._backend(user_id, kb_id)
+        found = collection.get(where={"kb_id": kb_id}, include=["documents", "metadatas"])
         rows = []
         for rid, text, metadata in zip(found["ids"], found["documents"], found["metadatas"]):
             metadata = metadata or {}
@@ -397,11 +485,11 @@ class KnowledgeBaseManager:
                 raise ValueError("旧索引无法与当前来源对应，请重新保存或融合原始知识库")
             for row, sections in zip(ordered, heading_contexts(document["text"], expected)):
                 row["document_sha256"], row["section_context"] = current_hash, sections
-        embedding = self._embedder().encode(question)[0]
+        embedding = embedder.encode(question)[0]
         # 有文档元数据的新索引在向量召回时就过滤；旧索引只有一个D1文档。
         has_document_metadata = all((m or {}).get("document_id") for m in found["metadatas"])
         where = {"$and": [{"kb_id": kb_id}, {"document_id": document_id}]} if has_document_metadata else {"kb_id": kb_id}
-        dense = self.collection.query(query_embeddings=[embedding], n_results=min(max(top_k*4, 12), len(rows)),
+        dense = collection.query(query_embeddings=[embedding], n_results=min(max(top_k*4, 12), len(rows)),
                                       where=where, include=["distances"])
         dense_ids = dense["ids"][0]
         similarities = {rid: 1-float(distance) for rid, distance in zip(dense_ids, dense["distances"][0])}

@@ -1,55 +1,39 @@
-# Python / 本地开发环境
+# Python
 __pycache__/
-*.py[cod]
+*.pyc
+*.pyo
 .venv/
 venv/
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
-.coverage
-htmlcov/
-build/
-dist/
-*.egg-info/
 
-# 密钥、用户数据、会话、向量索引和问答追踪
-.env
-.env.*
-!.env.example
-*.key
-*.pem
-*.db
-*.db-*
-*.sqlite
-*.sqlite3
-kb_store/
-knowledge_base/
-txt_knowledge_base/
-
-# 模型权重与下载缓存
+# 模型权重（体积大，不应提交）
 models/
 model/
-.cache/
 *.safetensors
 *.bin
-*.pt
-*.pth
-*.onnx
+pytorch_model*
 
-# 个人资料、实验输出和第三方仓库
-data/*
-!data/sample.md
-evaluation/external/
-output/
-release/
-T2Retrieval/
+# Chroma / 知识库数据（运行时生成）
+*.sqlite3
+knowledge_base/
+txt_knowledge_base/
+kb_store/
+data/external/raw/
+
+# 历史归档（含旧 .git 历史，其中残留已泄漏的 API Key，务必排除）
 old/
-*.log
-*.zip
 
-# 编辑器与操作系统
+# 工作区数据
 .workbuddy/
-.idea/
-.vscode/
+
+# 系统/编辑
 .DS_Store
 Thumbs.db
+.idea/
+.vscode/
+
+# 发布包运行数据与本地密钥
+.env
+*.db
+secret.key
+kb_store/
+chroma/

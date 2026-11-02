@@ -14,6 +14,24 @@ from rag_pipeline import EvidencePipeline, document_fingerprint, heading_context
 
 
 class PipelineTests(unittest.TestCase):
+    def test_verifier_narrowing_sources_preserves_still_supported_claim(self):
+        self.documents.append({**self.documents[0], 'source_id': 'web/1', 'source_type': 'web',
+                               'title': '甲学院其他网页', 'document_id': 'W1', 'kb_id': 'web'})
+        self.plan['requirements'][0]['source_ids'] = ['S1', 'S2']
+        self.verdict['requirements'][0]['source_ids'] = ['S1']
+        result, _, _ = self.run_pipeline([self.plan, self.draft, self.verdict])
+        self.assertEqual(result['status'], 'answered')
+        self.assertEqual(result['claims'][0]['citations'][0]['evidence_id'], 'E1')
+
+    def test_reused_plan_still_rejects_unknown_source_before_retrieval(self):
+        search = Mock()
+        plan = {'action': 'answer', 'resolved_question': '甲学院人数', 'requirements': [
+            {'question': '甲学院人数', 'source_ids': ['OTHER_USER']}]}
+        complete = Mock()
+        result = EvidencePipeline(complete, search).run('甲学院人数', [], self.documents, initial_plan=plan)
+        self.assertEqual(result['status'], 'failed')
+        complete.assert_not_called(); search.assert_not_called()
+
     def setUp(self):
         self.documents = [{"source_id": "kb/D1", "kb_id": "kb", "document_id": "D1",
                            "title": "甲学院", "opening": "甲学院人数资料"}]
@@ -120,6 +138,15 @@ class PipelineTests(unittest.TestCase):
         result,complete,_=self.run_pipeline([self.plan],Mock(return_value=[]))
         self.assertEqual(result["status"],"refused")
         self.assertEqual(complete.call_count,1)
+
+    def test_empty_uncovered_correction_is_evidence_gap_not_structure_failure(self):
+        draft = {"claims": [], "unanswered": ["R1"]}
+        verdict = {**self.verdict, "claims": [], "requirements": [
+            {"id": "R1", "covered": False, "source_ids": [], "reason": "未找到相同主体的资料"}]}
+        result, _, _ = self.run_pipeline([self.plan, draft, verdict, draft, verdict])
+        self.assertEqual(result["status"], "refused")
+        self.assertNotEqual(result["trace"].get("reason"), "invalid_generation_or_verdict")
+        self.assertEqual(result["claims"], [])
 
     def test_original_intent_must_be_verified_even_if_plan_is_covered(self):
         self.verdict['intent_complete'] = False
@@ -394,6 +421,39 @@ class SourceAndRetrievalTests(unittest.TestCase):
 
 
 class ServerPipelineTests(unittest.TestCase):
+    def test_smart_web_excerpt_kind_survives_sse_and_history_save(self):
+        import server
+        fixture = PipelineTests(); fixture.setUp()
+        evidence = {**fixture.hit, 'id': 'W1', 'source_title': '公开任命公告', 'source_type': 'web',
+                    'content_kind': 'search_excerpt', 'url': 'https://example.org/appointment'}
+        result = {'status': 'answered', 'answer': '甲学院教职工44人。 [W1]', 'evidence': [evidence],
+                  'citations': ['W1'], 'answer_sources': ['web'], 'warnings': [], 'trace': {'model_calls': 5},
+                  'search_results': [{'title': '其他网页', 'url': 'https://example.org/other', 'text': '未核验内容', 'verified': False}],
+                  'show_search_results': True}
+        manager = Mock(); manager.get.return_value = {'id': 'kb'}
+        conversations = Mock(); conversations.create.return_value = {'id': 'conversation'}
+        backend = Mock(); backend.call_log = []
+        providers = Mock(); providers.get.return_value = SimpleNamespace(model='qwen3.8-flash')
+        root = Path(__file__).resolve().parents[1] / 'kb_store'
+        with tempfile.TemporaryDirectory(prefix='web-provenance-test-', dir=root) as directory:
+            with patch.object(server, 'get_manager', return_value=manager), \
+                 patch.object(server, 'get_conversations', return_value=conversations), \
+                 patch.object(server, 'get_api_store', return_value=providers), \
+                 patch.object(server, 'APIAnswerer', return_value=backend), \
+                 patch.object(server, 'AgenticPipeline') as pipeline, \
+                 patch.object(server, 'STORE_DIR', Path(directory)), \
+                 patch.object(server, 'StreamingResponse', side_effect=lambda iterator, **kw: iterator):
+                pipeline.return_value.run.return_value = result
+                req = server.ChatRequest(kb_id='kb', question='甲学院有多少人？', provider='api', provider_id='p', source_mode='smart')
+                events = [json.loads(item.removeprefix('data: ').strip()) for item in server.chat(req, {'id': 1})]
+                metadata = [e for e in events if e['type'] == 'meta'][-1]
+                self.assertEqual(metadata['chunks'][0]['content_kind'], 'search_excerpt')
+                saved = conversations.add_message.call_args
+                self.assertEqual(saved.args[4][0]['content_kind'], 'search_excerpt')
+                self.assertEqual(saved.args[4][0]['url'], evidence['url'])
+                self.assertTrue(metadata['metadata']['show_search_results'])
+                self.assertFalse(saved.kwargs['metadata']['search_results'][0]['verified'])
+
     def test_api_route_buffers_draft_and_persists_cited_sources_and_trace(self):
         import server
         fixture=PipelineTests();fixture.setUp()

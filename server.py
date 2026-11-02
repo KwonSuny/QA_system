@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import json
 import hashlib
+import os
 import threading
 from pathlib import Path
 
@@ -43,13 +44,16 @@ from db import (
 )
 from kb_service import KnowledgeBaseManager
 from document_reader import MAX_UPLOAD_BYTES, decode_text, parse_document
+from embedding_service import EmbeddingStore
+from web_search import SearchStore, TavilySearch
+from agentic_pipeline import AgenticPipeline
 from llm_answerer import GenerationConfig, LLMAnswerer, build_messages
 from rag_pipeline import EvidencePipeline
 
 BASE_DIR = Path(__file__).resolve().parent
 STATIC_DIR = BASE_DIR / "static"
 STORE_DIR = BASE_DIR / "kb_store"
-DEFAULT_DATA_FILE = BASE_DIR / "data" / "sample.md"
+DEFAULT_DATA_FILE = BASE_DIR / "data" / "aidata.txt"
 
 app = FastAPI(title="知识库问答助手", version="3.0")
 
@@ -61,6 +65,8 @@ _manager: KnowledgeBaseManager | None = None
 _api_store: APIConfigStore | None = None
 _convs: ConversationService | None = None
 _answerer: LLMAnswerer | None = None
+_embedding_store: EmbeddingStore | None = None
+_search_store: SearchStore | None = None
 _init_lock = threading.Lock()
 _gen_lock = threading.Lock()  # 串行化本地 LLM 推理，避免并发 OOM
 _seed_done = threading.Event()
@@ -69,6 +75,7 @@ _seed_done = threading.Event()
 def _init_core() -> None:
     """初始化数据库、加密器、各服务（幂等）。"""
     global _db, _cipher, _auth, _manager, _api_store, _convs
+    global _embedding_store, _search_store
     with _init_lock:
         if _db is not None:
             return
@@ -78,7 +85,9 @@ def _init_core() -> None:
         _db = database
         _cipher = cipher
         _auth = AuthManager(database)
-        _manager = KnowledgeBaseManager(database, STORE_DIR)
+        _embedding_store = EmbeddingStore(database, cipher)
+        _search_store = SearchStore(database, cipher)
+        _manager = KnowledgeBaseManager(database, STORE_DIR, embedding_store=_embedding_store)
         _api_store = APIConfigStore(database, cipher)
         _convs = ConversationService(database)
 
@@ -122,11 +131,25 @@ def get_answerer() -> LLMAnswerer:
     return _answerer
 
 
+def get_embedding_store() -> EmbeddingStore:
+    _init_core()
+    assert _embedding_store is not None
+    return _embedding_store
+
+
+def get_search_store() -> SearchStore:
+    _init_core()
+    assert _search_store is not None
+    return _search_store
+
+
 def _seed_default_kb() -> None:
-    """后台播种：若管理员尚无知识库且存在示例资料，则建一个默认知识库。"""
+    """后台播种：若管理员尚无知识库且存在学院资料，则建一个默认知识库。"""
     try:
         _init_core()
         database = get_db()
+        if os.getenv("APP_SEED_DEFAULT_KB", "1") == "0":
+            return
         if not DEFAULT_DATA_FILE.is_file():
             return
         with database.session() as s:
@@ -138,7 +161,7 @@ def _seed_default_kb() -> None:
         if manager.list(admin_id):
             return
         text = manager._read_text(DEFAULT_DATA_FILE)
-        manager.create(admin_id, "虚构研究所示例", "由 data/sample.md 自动导入，仅供演示", text)
+        manager.create(admin_id, "学院介绍", "由 data/aidata.txt 自动导入", text)
     except Exception as exc:  # pragma: no cover
         print(f"[seed] 默认知识库初始化失败: {exc}")
     finally:
@@ -186,6 +209,7 @@ class KBCreate(BaseModel):
     name: str = Field(..., min_length=1, max_length=100)
     description: str = ""
     text: str = ""
+    embedding_profile_id: str = ""
 
 
 class KBUpdate(BaseModel):
@@ -199,10 +223,11 @@ class KBMerge(BaseModel):
     name: str = Field(..., min_length=1, max_length=100)
     description: str = ""
     delete_sources: bool = False
+    embedding_profile_id: str = ""
 
 
 class ChatRequest(BaseModel):
-    kb_id: str
+    kb_id: str = ""
     question: str = Field(..., min_length=1, max_length=2000)
     history: list[dict] = []
     top_k: int = 4
@@ -212,6 +237,26 @@ class ChatRequest(BaseModel):
     provider_id: str | None = None  # provider=api 时指定使用哪个配置
     conversation_id: str | None = None
     pipeline: str = Field(default="controlled", pattern="^(controlled|legacy)$")
+    source_mode: str = Field(default="strict", pattern="^(strict|smart)$")
+    allow_web: bool = False
+
+
+class EmbeddingCreate(BaseModel):
+    name: str = Field(default="", max_length=100)
+    base_url: str = Field(..., min_length=1, max_length=500)
+    api_key: str = Field(..., min_length=1, max_length=500)
+    model: str = Field(..., min_length=1, max_length=200)
+    dimensions: int | None = Field(default=None, ge=1, le=8192)
+    batch_size: int = Field(default=10, ge=1, le=128)
+
+
+class SecretUpdate(BaseModel):
+    api_key: str = Field(..., min_length=1, max_length=500)
+
+
+class ReindexRequest(BaseModel):
+    embedding_profile_id: str = ""
+    confirm_external: bool = False
 
 
 class ConversationCreate(BaseModel):
@@ -315,7 +360,7 @@ def list_kbs(user: dict = Depends(get_current_user)):
 @app.post("/api/kbs")
 def create_kb(req: KBCreate, user: dict = Depends(get_current_user)):
     try:
-        kb = get_manager().create(user["id"], req.name, req.description, req.text)
+        kb = get_manager().create(user["id"], req.name, req.description, req.text, req.embedding_profile_id)
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc))
     return {"kb": kb}
@@ -325,7 +370,7 @@ def create_kb(req: KBCreate, user: dict = Depends(get_current_user)):
 def merge_kbs(req: KBMerge, user: dict = Depends(get_current_user)):
     try:
         result = get_manager().merge(
-            user["id"], req.kb_ids, req.name, req.description, req.delete_sources
+            user["id"], req.kb_ids, req.name, req.description, req.delete_sources, req.embedding_profile_id
         )
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc))
@@ -341,9 +386,11 @@ def upload_kb(
     description: str = Form(default=""),
     kb_id: str = Form(default=""),
     user: dict = Depends(get_current_user),
+    embedding_profile_id: str = Form(default=""),
 ):
     """解析上传文件后创建或替换知识库；解析失败时不修改原库。"""
     raw = file.file.read(MAX_UPLOAD_BYTES + 1)
+    embedding_profile_id = embedding_profile_id if isinstance(embedding_profile_id, str) else ""
     display_name = (name or "").strip() or (file.filename or "未命名知识库")
     try:
         parsed = parse_document(file.filename or "", raw)
@@ -357,7 +404,7 @@ def upload_kb(
                 text=text,
             )
         else:
-            kb = get_manager().create(user["id"], display_name, description, text)
+            kb = get_manager().create(user["id"], display_name, description, text, embedding_profile_id)
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc))
     except KeyError:
@@ -394,6 +441,73 @@ def delete_kb(kb_id: str, user: dict = Depends(get_current_user)):
         get_manager().delete(user["id"], kb_id)
     except KeyError:
         raise HTTPException(status_code=404, detail="知识库不存在")
+    return {"ok": True}
+
+
+@app.post("/api/kbs/{kb_id}/reindex")
+def reindex_kb(kb_id: str, req: ReindexRequest, user: dict = Depends(get_current_user)):
+    if req.embedding_profile_id and not req.confirm_external:
+        raise HTTPException(status_code=400, detail="重建将发送知识库全文到嵌入服务，请确认后操作")
+    try:
+        return {"kb": get_manager().reindex(user["id"], kb_id, req.embedding_profile_id)}
+    except KeyError:
+        raise HTTPException(status_code=404, detail="知识库不存在")
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc))
+
+
+@app.get("/api/embeddings/providers")
+def list_embeddings(user: dict = Depends(get_current_user)):
+    return {"providers": get_embedding_store().list(user["id"])}
+
+
+@app.post("/api/embeddings/providers")
+def create_embedding(req: EmbeddingCreate, user: dict = Depends(get_current_user)):
+    try:
+        return {"provider": get_embedding_store().create(user["id"], **req.model_dump())}
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc))
+
+
+@app.put("/api/embeddings/providers/{profile_id}/key")
+def rotate_embedding_key(profile_id: str, req: SecretUpdate, user: dict = Depends(get_current_user)):
+    try:
+        get_embedding_store().rotate_key(user["id"], profile_id, req.api_key)
+    except KeyError:
+        raise HTTPException(status_code=404, detail="嵌入配置不存在")
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc))
+    return {"ok": True}
+
+
+@app.delete("/api/embeddings/providers/{profile_id}")
+def delete_embedding(profile_id: str, user: dict = Depends(get_current_user)):
+    try:
+        get_embedding_store().delete(user["id"], profile_id)
+    except KeyError:
+        raise HTTPException(status_code=404, detail="嵌入配置不存在")
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc))
+    return {"ok": True}
+
+
+@app.get("/api/search/config")
+def search_config(user: dict = Depends(get_current_user)):
+    return get_search_store().view(user["id"])
+
+
+@app.put("/api/search/config")
+def save_search_config(req: SecretUpdate, user: dict = Depends(get_current_user)):
+    try:
+        get_search_store().save(user["id"], req.api_key)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc))
+    return get_search_store().view(user["id"])
+
+
+@app.delete("/api/search/config")
+def delete_search_config(user: dict = Depends(get_current_user)):
+    get_search_store().delete(user["id"])
     return {"ok": True}
 
 
@@ -447,7 +561,11 @@ def delete_conversation(conversation_id: str, user: dict = Depends(get_current_u
 @app.post("/api/chat")
 def chat(req: ChatRequest, user: dict = Depends(get_current_user)):
     manager = get_manager()
-    if manager.get(user["id"], req.kb_id) is None:
+    if req.source_mode == "smart" and req.pipeline != "controlled":
+        raise HTTPException(status_code=400, detail="智能模式需使用受控流程")
+    if not req.kb_id and req.source_mode == "strict":
+        raise HTTPException(status_code=400, detail="严格模式需要选择知识库")
+    if req.kb_id and manager.get(user["id"], req.kb_id) is None:
         raise HTTPException(status_code=404, detail="知识库不存在")
 
     chunks = manager.query(user["id"], req.kb_id, req.question, top_k=req.top_k) if req.pipeline == "legacy" else []
@@ -487,20 +605,29 @@ def chat(req: ChatRequest, user: dict = Depends(get_current_user)):
             }
         )
         collected: list[str] = []
+        answer_metadata = {}
         try:
             if req.pipeline == "controlled":
                 yield _sse({"type": "status", "message": "正在明确问题、检索并核验证据…"})
-                catalog = manager.document_catalog(user["id"], req.kb_id)
+                catalog = manager.document_catalog(user["id"], req.kb_id) if req.kb_id else []
                 def search(document, question, top_k):
                     return manager.query_evidence(user["id"], document["kb_id"], document["document_id"], question, top_k)
+                web = None
+                if req.source_mode == "smart" and req.allow_web:
+                    key = get_search_store().key(user["id"])
+                    if key:
+                        web = TavilySearch(key).search
+                def run_pipeline(complete):
+                    if req.source_mode == "smart":
+                        return AgenticPipeline(complete, search, web, req.top_k).run(req.question, req.history, catalog)
+                    return EvidencePipeline(complete, search, req.top_k).run(req.question, req.history, catalog)
                 if provider is None:
                     with _gen_lock:
-                        result = EvidencePipeline(get_answerer().complete_messages, search, req.top_k).run(
-                            req.question, req.history, catalog)
+                        result = run_pipeline(get_answerer().complete_messages)
                 else:
                     api = APIAnswerer(provider, max_retries=0)
                     try:
-                        result = EvidencePipeline(api.complete_messages, search, req.top_k).run(req.question, req.history, catalog)
+                        result = run_pipeline(api.complete_messages)
                         result["trace"]["api_calls"] = api.call_log
                     finally:
                         api.close()
@@ -508,7 +635,13 @@ def chat(req: ChatRequest, user: dict = Depends(get_current_user)):
                 chunks_payload[:] = [{k: e[k] for k in ("text", "score", "chunk_index", "source_title", "kb_id")}
                     | {"evidence_id": e["id"], "document_id": e["document_id"],
                        "section_context": e.get("section_context", []), "dense_score": e.get("dense_score")}
+                    | {key: e[key] for key in ("source_type", "url", "retrieved_at", "published_at", "content_sha256", "content_kind") if key in e}
                     for e in result["evidence"] if e["id"] in cited]
+                answer_metadata = {"source_mode": req.source_mode, "answer_status": result["status"],
+                    "answer_sources": result.get("answer_sources", ["kb"] if cited else []),
+                    "warnings": result.get("warnings", []),
+                    "search_results": result.get("search_results", []),
+                    "show_search_results": result.get("show_search_results", False)}
                 trace_dir = STORE_DIR / "rag_traces" / str(user["id"])
                 trace_dir.mkdir(parents=True, exist_ok=True)
                 trace_id = hashlib.sha256((conversation_id + req.question + json.dumps(result["trace"], ensure_ascii=False)).encode("utf-8")).hexdigest()
@@ -516,7 +649,7 @@ def chat(req: ChatRequest, user: dict = Depends(get_current_user)):
                 trace_path.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
                 yield _sse({"type": "meta", "conversation_id": conversation_id, "chunks": chunks_payload,
                     "provider": req.provider, "pipeline": req.pipeline, "answer_status": result["status"],
-                    "model_calls": result["trace"]["model_calls"]})
+                    "model_calls": result["trace"]["model_calls"], "metadata": answer_metadata})
                 # 草稿核验前不输出；引用和正文从同一份已核验结果构造。
                 collected.append(result["answer"])
                 yield _sse({"type": "token", "content": result["answer"]})
@@ -547,6 +680,8 @@ def chat(req: ChatRequest, user: dict = Depends(get_current_user)):
                 "原文与索引版本不一致，请重新保存知识库以重建索引",
                 "旧索引无法与当前来源对应，请重新保存或融合原始知识库",
                 "来源文档边界格式不合法",
+                "索引的嵌入配置已变化，请重建索引",
+                "在线嵌入调用失败或响应不合法，请检查配置、配额及输入限制",
             }
             message = str(exc) if str(exc) in public_errors else "问答数据校验失败，请检查知识库或模型配置。"
             yield _sse({"type": "error", "message": message})
@@ -556,9 +691,11 @@ def chat(req: ChatRequest, user: dict = Depends(get_current_user)):
             answer = "".join(collected)
             if answer:
                 try:
-                    conv_service.add_message(
-                        user["id"], conversation_id, "assistant", answer, chunks_payload
-                    )
+                    if req.source_mode == "smart":
+                        conv_service.add_message(user["id"], conversation_id, "assistant", answer,
+                                                 chunks_payload, metadata=answer_metadata)
+                    else:
+                        conv_service.add_message(user["id"], conversation_id, "assistant", answer, chunks_payload)
                 except Exception:  # pragma: no cover
                     pass
         yield _sse({"type": "done"})
