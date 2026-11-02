@@ -5,7 +5,7 @@ import unittest
 import warnings
 from unittest.mock import Mock
 
-from agentic_pipeline import AgenticPipeline
+from app.rag.agentic_pipeline import AgenticPipeline
 
 
 def route(kind, question="什么是向量检索？", query="", specific=False, timely=False):
@@ -128,7 +128,7 @@ class AgenticSourceTests(unittest.TestCase):
         self.assertNotIn('opening', verifier_data['sources'][0])
 
     def test_line_chunks_preserve_table_row_and_continuous_original(self):
-        from agentic_pipeline import web_chunks
+        from app.rag.agentic_pipeline import web_chunks
         row = '| 甲 | 院长 | 负责学院行政工作 |\n'
         text = '导航\n' * 390 + row + '正文\n' * 20
         chunks = web_chunks(text)
@@ -177,14 +177,14 @@ class AgenticSourceTests(unittest.TestCase):
             web.assert_called_once()
 
     def test_extra_closing_quote_is_normalized_but_additional_content_is_rejected(self):
-        from rag_pipeline import json_object
+        from app.rag.rag_pipeline import json_object
         self.assertEqual(json_object('{"action":"answer"}"'), {'action': 'answer'})
         for raw in ['{"action":"answer"} extra', '{"action":"answer"}{"override":true}']:
             with self.assertRaises(ValueError):
                 json_object(raw)
 
     def test_local_greedy_config_does_not_inherit_sampling_parameters(self):
-        from llm_answerer import LLMAnswerer
+        from app.llm.llm_answerer import LLMAnswerer
         from transformers import GenerationConfig
         answerer = object.__new__(LLMAnswerer)
         with warnings.catch_warnings():

@@ -1,0 +1,2193 @@
+{
+  "schema_version": 1,
+  "name": "qasystem-four-sources-development-v2.1-reviewed",
+  "split": "development",
+  "annotation_status": "human_reviewed",
+  "annotation_notes": "60题均由 sunyeu 在逐题 annotation_review 填写 yes 确认；2026-10-10将其规范化为布尔值true并记录复核人。同步用户确认的三处原文文字订正，重新定位证据，问题及参考答案保持不变。标注只针对资料快照，不代表机构现状；每题使用四来源候选池。开发/测试按目标事实组划分，共用短文语料，不能视为文档隔离或真实流量代表性。",
+  "offset_convention": "去除全部空白后的Unicode字符偏移，start包含、end不包含。",
+  "split_policy": "同一目标事实及同义问法、追问仅存在于一个划分；test 不参与调参。",
+  "sources": {
+    "college": {
+      "path": "../data/aidata.txt",
+      "title": "人工智能学院",
+      "text_sha256": "d336bfe88d16056881ed05454278e5316b992af602a1f90b4a6c818ccae8323e"
+    },
+    "university": {
+      "path": "../data/sysudata.txt",
+      "title": "中山大学",
+      "text_sha256": "be2f4dccc491e39263cc02f1756eae940fe3eab6637b3ec837a88a885d5ac673"
+    },
+    "software": {
+      "path": "../data/sedata.txt",
+      "title": "软件工程学院",
+      "text_sha256": "533e17f392fd89474f92a31dcc1483fd19b281ada303d3b195cce7fb4359cdb0",
+      "source_url": "https://sse.sysu.edu.cn/basic/102",
+      "curation_notes": "sunyeu 于本对话确认三处文字订正及其他原文表述；官网链接由用户提供，本次网页读取返回403，未独立核对线上内容。"
+    },
+    "computing": {
+      "path": "../data/csdata.txt",
+      "title": "计算机学院",
+      "text_sha256": "b557c8ab6a3f506c81d827aa358ecf84899953b57ed54c3ba16350fcbef8047a"
+    }
+  },
+  "cases": [
+    {
+      "id": "dev-01",
+      "source_id": "college",
+      "category": "fact",
+      "question": "中山大学人工智能学院是哪一年成立的？",
+      "answerable": true,
+      "reference_answer": "2020年。",
+      "evidence": [
+        {
+          "source_id": "college",
+          "quote": "中山大学于2020年正式成立人工智能学院。",
+          "start": 14,
+          "end": 35,
+          "line_start": 1,
+          "line_end": 1
+        }
+      ],
+      "history": [],
+      "origin_case_id": "seed-01",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "fact_groups": [
+        "ai.founding"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": "原 seed 标注已由 sunyeu 审核；本题扩大检索范围，部分单轮题补全学院名称，需复核改动。"
+      }
+    },
+    {
+      "id": "dev-02",
+      "source_id": "college",
+      "category": "fact",
+      "question": "人工智能学院在哪个校区办学？",
+      "answerable": true,
+      "reference_answer": "珠海校区。",
+      "evidence": [
+        {
+          "source_id": "college",
+          "quote": "学院定位于珠海校区办学",
+          "start": 35,
+          "end": 46,
+          "line_start": 3,
+          "line_end": 3
+        }
+      ],
+      "history": [],
+      "origin_case_id": "seed-02",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "fact_groups": [
+        "ai.campus"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": "原 seed 标注已由 sunyeu 审核；本题扩大检索范围，部分单轮题补全学院名称，需复核改动。"
+      }
+    },
+    {
+      "id": "dev-03",
+      "source_id": "college",
+      "category": "fact",
+      "question": "关于人工智能学院，学院重点发展的三个研究方向是什么？",
+      "answerable": true,
+      "reference_answer": "智能计算、智能感知、智能控制。",
+      "evidence": [
+        {
+          "source_id": "college",
+          "quote": "重点发展智能计算、智能感知、智能控制三大研究方向",
+          "start": 56,
+          "end": 80,
+          "line_start": 3,
+          "line_end": 3
+        }
+      ],
+      "history": [],
+      "origin_case_id": "seed-03",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "fact_groups": [
+        "ai.directions"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": "原 seed 标注已由 sunyeu 审核；本题扩大检索范围，部分单轮题补全学院名称，需复核改动。"
+      }
+    },
+    {
+      "id": "dev-04",
+      "source_id": "college",
+      "category": "fact",
+      "question": "关于人工智能学院，学院有多少名教职工和专任教师？",
+      "answerable": true,
+      "reference_answer": "教职工44人，专任教师26人。",
+      "evidence": [
+        {
+          "source_id": "college",
+          "quote": "学院现有教职工44人，其中专任教师26人",
+          "start": 240,
+          "end": 260,
+          "line_start": 5,
+          "line_end": 5
+        }
+      ],
+      "history": [],
+      "origin_case_id": "seed-04",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "fact_groups": [
+        "ai.staff_totals"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": "原 seed 标注已由 sunyeu 审核；本题扩大检索范围，部分单轮题补全学院名称，需复核改动。"
+      }
+    },
+    {
+      "id": "dev-05",
+      "source_id": "college",
+      "category": "fact",
+      "question": "关于人工智能学院，专任教师中教授、副教授和助理教授分别多少人？",
+      "answerable": true,
+      "reference_answer": "教授8人、副教授16人、助理教授2人。",
+      "evidence": [
+        {
+          "source_id": "college",
+          "quote": "包括教授8人、副教授16人、助理教授2人",
+          "start": 261,
+          "end": 281,
+          "line_start": 5,
+          "line_end": 5
+        }
+      ],
+      "history": [],
+      "origin_case_id": "seed-05",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "fact_groups": [
+        "ai.faculty_titles"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": "原 seed 标注已由 sunyeu 审核；本题扩大检索范围，部分单轮题补全学院名称，需复核改动。"
+      }
+    },
+    {
+      "id": "dev-06",
+      "source_id": "college",
+      "category": "fact",
+      "question": "关于人工智能学院，学院学生总人数是多少，本科、硕士、博士各有多少人？",
+      "answerable": true,
+      "reference_answer": "学院学生共876人，本科675人、硕士146人、博士55人。",
+      "evidence": [
+        {
+          "source_id": "college",
+          "quote": "学院目前共有在校学生876人（其中本科生675人、硕士研究生146人、博士研究生55人）。",
+          "start": 361,
+          "end": 406,
+          "line_start": 7,
+          "line_end": 7
+        }
+      ],
+      "history": [],
+      "origin_case_id": "seed-06",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "fact_groups": [
+        "ai.student_counts"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": "学院学生总人数"
+      }
+    },
+    {
+      "id": "dev-07",
+      "source_id": "college",
+      "category": "fact",
+      "question": "关于人工智能学院，学院本科阶段设置什么专业？",
+      "answerable": true,
+      "reference_answer": "人工智能专业。",
+      "evidence": [
+        {
+          "source_id": "college",
+          "quote": "本科阶段设置人工智能专业",
+          "start": 406,
+          "end": 418,
+          "line_start": 7,
+          "line_end": 7
+        }
+      ],
+      "history": [],
+      "origin_case_id": "seed-07",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "fact_groups": [
+        "ai.ug_major"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": "原 seed 标注已由 sunyeu 审核；本题扩大检索范围，部分单轮题补全学院名称，需复核改动。"
+      }
+    },
+    {
+      "id": "dev-08",
+      "source_id": "college",
+      "category": "fact",
+      "question": "关于人工智能学院，学院研究生阶段设置哪些专业？",
+      "answerable": true,
+      "reference_answer": "计算机科学与技术、控制科学与工程、人工智能。",
+      "evidence": [
+        {
+          "source_id": "college",
+          "quote": "研究生阶段设置计算机科学与技术、控制科学与工程和人工智能三个专业",
+          "start": 457,
+          "end": 489,
+          "line_start": 7,
+          "line_end": 7
+        }
+      ],
+      "history": [],
+      "origin_case_id": "seed-08",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "fact_groups": [
+        "ai.grad_majors"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": "原 seed 标注已由 sunyeu 审核；本题扩大检索范围，部分单轮题补全学院名称，需复核改动。"
+      }
+    },
+    {
+      "id": "dev-09",
+      "source_id": "college",
+      "category": "fact",
+      "question": "关于人工智能学院，学院牵头建设或共建的国家级、省部级、珠海市科研平台各有多少？",
+      "answerable": true,
+      "reference_answer": "国家级2个、省部级实验室3个、珠海市重点实验室1个。",
+      "evidence": [
+        {
+          "source_id": "college",
+          "quote": "学院牵头建设（含共建）2个国家级科研平台、3个省部级实验室、1个珠海市重点实验室",
+          "start": 722,
+          "end": 762,
+          "line_start": 11,
+          "line_end": 11
+        }
+      ],
+      "history": [],
+      "origin_case_id": "seed-09",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "fact_groups": [
+        "ai.platform_counts"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": "原 seed 标注已由 sunyeu 审核；本题扩大检索范围，部分单轮题补全学院名称，需复核改动。"
+      }
+    },
+    {
+      "id": "dev-10",
+      "source_id": "college",
+      "category": "fact",
+      "question": "关于人工智能学院，学院前沿实验中心包含哪些有名称的中心或训练场？",
+      "answerable": true,
+      "reference_answer": "“智启”机器人中心和“智飞”虚实融合训练场。",
+      "evidence": [
+        {
+          "source_id": "college",
+          "quote": "由“智启”机器人中心和“智飞”虚实融合训练场等构成的前沿实验中心",
+          "start": 845,
+          "end": 877,
+          "line_start": 11,
+          "line_end": 11
+        }
+      ],
+      "history": [],
+      "origin_case_id": "seed-10",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "fact_groups": [
+        "ai.centers"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": "原 seed 标注已由 sunyeu 审核；本题扩大检索范围，部分单轮题补全学院名称，需复核改动。"
+      }
+    },
+    {
+      "id": "dev-11",
+      "source_id": "university",
+      "category": "fact",
+      "question": "中山大学由谁在哪一年创办？",
+      "answerable": true,
+      "reference_answer": "孙中山于1924年创办。",
+      "evidence": [
+        {
+          "source_id": "university",
+          "quote": "孙中山先生于1924年亲手创办",
+          "start": 33,
+          "end": 48,
+          "line_start": 1,
+          "line_end": 1
+        }
+      ],
+      "history": [],
+      "origin_case_id": "seed-11",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "fact_groups": [
+        "uni.founding"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": "原 seed 标注已由 sunyeu 审核；本题扩大检索范围，部分单轮题补全学院名称，需复核改动。"
+      }
+    },
+    {
+      "id": "dev-12",
+      "source_id": "university",
+      "category": "fact",
+      "question": "中山大学最初叫什么名字？",
+      "answerable": true,
+      "reference_answer": "国立广东大学。",
+      "evidence": [
+        {
+          "source_id": "university",
+          "quote": "中山大学起初校名为国立广东大学。",
+          "start": 109,
+          "end": 125,
+          "line_start": 1,
+          "line_end": 1
+        }
+      ],
+      "history": [],
+      "origin_case_id": "seed-12",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "fact_groups": [
+        "uni.initial_name"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": "原 seed 标注已由 sunyeu 审核；本题扩大检索范围，部分单轮题补全学院名称，需复核改动。"
+      }
+    },
+    {
+      "id": "dev-13",
+      "source_id": "university",
+      "category": "fact",
+      "question": "学校在哪一年定名为国立中山大学？",
+      "answerable": true,
+      "reference_answer": "1926年。",
+      "evidence": [
+        {
+          "source_id": "university",
+          "quote": "学校于1926年定名为国立中山大学。",
+          "start": 134,
+          "end": 152,
+          "line_start": 1,
+          "line_end": 1
+        }
+      ],
+      "history": [],
+      "origin_case_id": "seed-13",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "fact_groups": [
+        "uni.rename"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": "原 seed 标注已由 sunyeu 审核；本题扩大检索范围，部分单轮题补全学院名称，需复核改动。"
+      }
+    },
+    {
+      "id": "dev-14",
+      "source_id": "university",
+      "category": "fact",
+      "question": "今日的中山大学由哪两所学校何时合并而成？",
+      "answerable": true,
+      "reference_answer": "由中山大学和中山医科大学于2001年10月合并而成。",
+      "evidence": [
+        {
+          "source_id": "university",
+          "quote": "中山大学和中山医科大学于2001年10月合并而成",
+          "start": 174,
+          "end": 198,
+          "line_start": 3,
+          "line_end": 3
+        }
+      ],
+      "history": [],
+      "origin_case_id": "seed-14",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "fact_groups": [
+        "uni.merger"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": "原 seed 标注已由 sunyeu 审核；本题扩大检索范围，部分单轮题补全学院名称，需复核改动。"
+      }
+    },
+    {
+      "id": "dev-15",
+      "source_id": "university",
+      "category": "fact",
+      "question": "中山大学拥有多少家直属附属医院？",
+      "answerable": true,
+      "reference_answer": "10家。",
+      "evidence": [
+        {
+          "source_id": "university",
+          "quote": "拥有10家直属附属医院",
+          "start": 1402,
+          "end": 1413,
+          "line_start": 15,
+          "line_end": 15
+        }
+      ],
+      "history": [],
+      "origin_case_id": "seed-15",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "fact_groups": [
+        "uni.hospitals"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": "原 seed 标注已由 sunyeu 审核；本题扩大检索范围，部分单轮题补全学院名称，需复核改动。"
+      }
+    },
+    {
+      "id": "dev-16",
+      "source_id": "university",
+      "category": "fact",
+      "question": "关于中山大学，学校学部制改革后的三级学术治理体系是什么？",
+      "answerable": true,
+      "reference_answer": "学校、学部、院系。",
+      "evidence": [
+        {
+          "source_id": "university",
+          "quote": "“学校—学部—院系”三级学术治理体系",
+          "start": 1914,
+          "end": 1932,
+          "line_start": 18,
+          "line_end": 18
+        }
+      ],
+      "history": [],
+      "origin_case_id": "seed-16",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "fact_groups": [
+        "uni.governance"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": "原 seed 标注已由 sunyeu 审核；本题扩大检索范围，部分单轮题补全学院名称，需复核改动。"
+      }
+    },
+    {
+      "id": "dev-17",
+      "source_id": "college",
+      "category": "paraphrase",
+      "question": "关于人工智能学院，学院本科生毕业后继续去其他高校深造的比例大概是多少？",
+      "answerable": true,
+      "reference_answer": "70%以上。",
+      "evidence": [
+        {
+          "source_id": "college",
+          "quote": "本科毕业生70%以上赴国内外知名院校深造。",
+          "start": 661,
+          "end": 682,
+          "line_start": 9,
+          "line_end": 9
+        }
+      ],
+      "history": [],
+      "origin_case_id": "seed-17",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "fact_groups": [
+        "ai.further_study"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": "原 seed 标注已由 sunyeu 审核；本题扩大检索范围，部分单轮题补全学院名称，需复核改动。"
+      }
+    },
+    {
+      "id": "dev-18",
+      "source_id": "college",
+      "category": "paraphrase",
+      "question": "关于人工智能学院，学生参加省级及以上学科竞赛的获奖规模如何？",
+      "answerable": true,
+      "reference_answer": "近年来累计200余名学生获奖。",
+      "evidence": [
+        {
+          "source_id": "college",
+          "quote": "近年来累计200余名学生在省级以上学科竞赛中获奖",
+          "start": 610,
+          "end": 634,
+          "line_start": 9,
+          "line_end": 9
+        }
+      ],
+      "history": [],
+      "origin_case_id": "seed-18",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "fact_groups": [
+        "ai.competitions"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": "原 seed 标注已由 sunyeu 审核；本题扩大检索范围，部分单轮题补全学院名称，需复核改动。"
+      }
+    },
+    {
+      "id": "dev-19",
+      "source_id": "college",
+      "category": "paraphrase",
+      "question": "关于人工智能学院，学院给学生做无人系统和机器人实验准备了什么装备？",
+      "answerable": true,
+      "reference_answer": "无人机测试风墙、无人机、无人车、无人船、机器人等实验装备。",
+      "evidence": [
+        {
+          "source_id": "college",
+          "quote": "拥有国际先进的无人机测试风墙、无人机、无人车、无人船、机器人等实验装备",
+          "start": 878,
+          "end": 913,
+          "line_start": 11,
+          "line_end": 11
+        }
+      ],
+      "history": [],
+      "origin_case_id": "seed-19",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "fact_groups": [
+        "ai.gear"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": "原 seed 标注已由 sunyeu 审核；本题扩大检索范围，部分单轮题补全学院名称，需复核改动。"
+      }
+    },
+    {
+      "id": "dev-20",
+      "source_id": "college",
+      "category": "multi_evidence",
+      "question": "关于人工智能学院，学院什么时候成立，建立了哪些学段的一体化培养体系？",
+      "answerable": true,
+      "reference_answer": "2020年成立，构建本科、硕士、博士一体化工科人才培养体系。",
+      "evidence": [
+        {
+          "source_id": "college",
+          "quote": "中山大学于2020年正式成立人工智能学院。",
+          "start": 14,
+          "end": 35,
+          "line_start": 1,
+          "line_end": 1
+        },
+        {
+          "source_id": "college",
+          "quote": "构建了“本-硕-博”一体化工科人才培养体系",
+          "start": 339,
+          "end": 360,
+          "line_start": 7,
+          "line_end": 7
+        }
+      ],
+      "history": [],
+      "origin_case_id": "seed-20",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "fact_groups": [
+        "ai.founding",
+        "ai.education_levels"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": "原 seed 标注已由 sunyeu 审核；本题扩大检索范围，部分单轮题补全学院名称，需复核改动。"
+      }
+    },
+    {
+      "id": "dev-21",
+      "source_id": "college",
+      "category": "multi_evidence",
+      "question": "关于人工智能学院，学院的育人理念是什么，多少比例的本科生参与创新创业项目？",
+      "answerable": true,
+      "reference_answer": "“厚基强智，创新赋能”；90%以上的本科生参与大学生创新创业项目。",
+      "evidence": [
+        {
+          "source_id": "college",
+          "quote": "学院秉持“厚基强智，创新赋能”的育人理念",
+          "start": 307,
+          "end": 327,
+          "line_start": 7,
+          "line_end": 7
+        },
+        {
+          "source_id": "college",
+          "quote": "本科生90%以上参与大学生创新创业项目",
+          "start": 575,
+          "end": 594,
+          "line_start": 9,
+          "line_end": 9
+        }
+      ],
+      "history": [],
+      "origin_case_id": "seed-21",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "fact_groups": [
+        "ai.motto",
+        "ai.project_participation"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": "原 seed 标注已由 sunyeu 审核；本题扩大检索范围，部分单轮题补全学院名称，需复核改动。"
+      }
+    },
+    {
+      "id": "dev-22",
+      "source_id": "university",
+      "category": "multi_evidence",
+      "question": "关于中山大学，广州、珠海和深圳校区各自重点发展的学科是什么？",
+      "answerable": true,
+      "reference_answer": "广州提升文、理、医传统优势学科；珠海发展深海、深空、深地、深蓝学科群；深圳建设新医科、新工科。",
+      "evidence": [
+        {
+          "source_id": "university",
+          "quote": "广州校区重点提升文、理、医传统优势学科",
+          "start": 838,
+          "end": 857,
+          "line_start": 9,
+          "line_end": 9
+        },
+        {
+          "source_id": "university",
+          "quote": "珠海校区重点发展深海、深空、深地、深蓝学科群",
+          "start": 858,
+          "end": 880,
+          "line_start": 9,
+          "line_end": 9
+        },
+        {
+          "source_id": "university",
+          "quote": "深圳校区重点建设新医科、新工科",
+          "start": 881,
+          "end": 896,
+          "line_start": 9,
+          "line_end": 9
+        }
+      ],
+      "history": [],
+      "origin_case_id": "seed-22",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "fact_groups": [
+        "uni.campus_disciplines"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": "原 seed 标注已由 sunyeu 审核；本题扩大检索范围，部分单轮题补全学院名称，需复核改动。"
+      }
+    },
+    {
+      "id": "dev-23",
+      "source_id": "university",
+      "category": "multi_evidence",
+      "question": "关于中山大学，学校有多少院系，以及多少国家级和省部级科研创新平台？",
+      "answerable": true,
+      "reference_answer": "69个院系，43个国家级平台、270个省部级平台。",
+      "evidence": [
+        {
+          "source_id": "university",
+          "quote": "中山大学现有69个院系",
+          "start": 1697,
+          "end": 1708,
+          "line_start": 17,
+          "line_end": 17
+        },
+        {
+          "source_id": "university",
+          "quote": "中山大学现有国家级科研创新平台43个、省部级平台270个",
+          "start": 1491,
+          "end": 1519,
+          "line_start": 16,
+          "line_end": 16
+        }
+      ],
+      "history": [],
+      "origin_case_id": "seed-23",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "fact_groups": [
+        "uni.departments",
+        "uni.platform_counts"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": "原 seed 标注已由 sunyeu 审核；本题扩大检索范围，部分单轮题补全学院名称，需复核改动。"
+      }
+    },
+    {
+      "id": "dev-24",
+      "source_id": "college",
+      "category": "multi_turn",
+      "question": "它是哪一年成立的？",
+      "answerable": true,
+      "reference_answer": "中山大学人工智能学院于2020年成立。",
+      "evidence": [
+        {
+          "source_id": "college",
+          "quote": "中山大学于2020年正式成立人工智能学院。",
+          "start": 14,
+          "end": 35,
+          "line_start": 1,
+          "line_end": 1
+        }
+      ],
+      "history": [
+        {
+          "role": "user",
+          "content": "中山大学人工智能学院在哪个校区？"
+        },
+        {
+          "role": "assistant",
+          "content": "珠海校区。"
+        }
+      ],
+      "standalone_question": "中山大学人工智能学院是哪一年成立的？",
+      "origin_case_id": "seed-24",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "fact_groups": [
+        "ai.founding"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": "原 seed 标注已由 sunyeu 审核；本题扩大检索范围，部分单轮题补全学院名称，需复核改动。"
+      }
+    },
+    {
+      "id": "dev-25",
+      "source_id": "college",
+      "category": "multi_turn",
+      "question": "第二个方向叫什么？",
+      "answerable": true,
+      "reference_answer": "智能感知。",
+      "evidence": [
+        {
+          "source_id": "college",
+          "quote": "重点发展智能计算、智能感知、智能控制三大研究方向",
+          "start": 56,
+          "end": 80,
+          "line_start": 3,
+          "line_end": 3
+        }
+      ],
+      "history": [
+        {
+          "role": "user",
+          "content": "人工智能学院有哪些研究方向？"
+        },
+        {
+          "role": "assistant",
+          "content": "智能计算、智能感知、智能控制。"
+        }
+      ],
+      "standalone_question": "人工智能学院的研究方向按资料顺序列出的第二项是什么？",
+      "origin_case_id": "seed-25",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "fact_groups": [
+        "ai.directions"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": "原 seed 标注已由 sunyeu 审核；本题扩大检索范围，部分单轮题补全学院名称，需复核改动。"
+      }
+    },
+    {
+      "id": "dev-26",
+      "source_id": "university",
+      "category": "multi_turn",
+      "question": "那深圳呢？",
+      "answerable": true,
+      "reference_answer": "深圳校区重点建设新医科、新工科。",
+      "evidence": [
+        {
+          "source_id": "university",
+          "quote": "深圳校区重点建设新医科、新工科",
+          "start": 881,
+          "end": 896,
+          "line_start": 9,
+          "line_end": 9
+        }
+      ],
+      "history": [
+        {
+          "role": "user",
+          "content": "中山大学广州校区重点发展的学科是什么？"
+        },
+        {
+          "role": "assistant",
+          "content": "文、理、医传统优势学科。"
+        }
+      ],
+      "standalone_question": "中山大学深圳校区重点建设哪些学科？",
+      "origin_case_id": "seed-26",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "fact_groups": [
+        "uni.campus_disciplines"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": "原 seed 标注已由 sunyeu 审核；本题扩大检索范围，部分单轮题补全学院名称，需复核改动。"
+      }
+    },
+    {
+      "id": "dev-27",
+      "source_id": "college",
+      "category": "unanswerable",
+      "question": "关于人工智能学院，人工智能专业每年的学费具体是多少？",
+      "answerable": false,
+      "reference_answer": "资料未提供学费金额，应说明无法从知识库确认。",
+      "evidence": [],
+      "history": [],
+      "origin_case_id": "seed-27",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "fact_groups": [
+        "ai.unavailable_tuition"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": "原 seed 标注已由 sunyeu 审核；本题扩大检索范围，部分单轮题补全学院名称，需复核改动。"
+      }
+    },
+    {
+      "id": "dev-28",
+      "source_id": "college",
+      "category": "unanswerable",
+      "question": "关于人工智能学院，学院2026年的博士招生名额是多少？",
+      "answerable": false,
+      "reference_answer": "资料未提供2026年博士招生名额；在校博士人数不是招生名额。",
+      "evidence": [],
+      "history": [],
+      "origin_case_id": "seed-28",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "fact_groups": [
+        "ai.unavailable_admission"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": "原 seed 标注已由 sunyeu 审核；本题扩大检索范围，部分单轮题补全学院名称，需复核改动。"
+      }
+    },
+    {
+      "id": "dev-29",
+      "source_id": "college",
+      "category": "unanswerable",
+      "question": "人工智能学院现任院长叫什么名字？",
+      "answerable": false,
+      "reference_answer": "资料未提供院长姓名，应说明无法从知识库确认。",
+      "evidence": [],
+      "history": [],
+      "origin_case_id": "seed-29",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "fact_groups": [
+        "ai.unavailable_dean"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": "原 seed 标注已由 sunyeu 审核；本题扩大检索范围，部分单轮题补全学院名称，需复核改动。"
+      }
+    },
+    {
+      "id": "dev-30",
+      "source_id": "university",
+      "category": "unanswerable",
+      "question": "中山大学目前全国综合排名第几？",
+      "answerable": false,
+      "reference_answer": "资料未提供具体全国综合排名，不能由“国内高校前列”推算名次。",
+      "evidence": [],
+      "history": [],
+      "origin_case_id": "seed-30",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "fact_groups": [
+        "uni.unavailable_overall_rank"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": "原 seed 标注已由 sunyeu 审核；本题扩大检索范围，部分单轮题补全学院名称，需复核改动。"
+      }
+    },
+    {
+      "id": "dev-31",
+      "source_id": "software",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "category": "fact",
+      "question": "中山大学软件工程学院何时整建制成立，位于哪个校区？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "2020年6月，在珠海校区整建制成立。",
+      "evidence": [
+        {
+          "source_id": "software",
+          "quote": "2020年6月，中山大学在珠海校区整建制成立软件工程学院。",
+          "start": 0,
+          "end": 29,
+          "line_start": 1,
+          "line_end": 1
+        }
+      ],
+      "fact_groups": [
+        "se.founding",
+        "se.campus"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": ""
+      }
+    },
+    {
+      "id": "dev-32",
+      "source_id": "software",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "category": "fact",
+      "question": "软件工程学院形成学科特色所围绕的核心理论是什么？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "软件可靠性核心理论。",
+      "evidence": [
+        {
+          "source_id": "software",
+          "quote": "学院围绕软件可靠性核心理论",
+          "start": 91,
+          "end": 104,
+          "line_start": 3,
+          "line_end": 3
+        }
+      ],
+      "fact_groups": [
+        "se.reliability_core"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": ""
+      }
+    },
+    {
+      "id": "dev-33",
+      "source_id": "software",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "category": "fact",
+      "question": "软件工程学院资料列出了哪些学科特色方向？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "可信大模型、区块链、物联网、软件安全、智能软件、特色领域软件。",
+      "evidence": [
+        {
+          "source_id": "software",
+          "quote": "学院围绕软件可靠性核心理论，形成包括可信大模型、区块链、物联网、软件安全、智能软件、特色领域软件等方向的学科特色。",
+          "start": 91,
+          "end": 148,
+          "line_start": 3,
+          "line_end": 3
+        }
+      ],
+      "fact_groups": [
+        "se.research_directions"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": ""
+      }
+    },
+    {
+      "id": "dev-34",
+      "source_id": "software",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "category": "paraphrase",
+      "question": "想在软件工程学院学习自然语言处理，应关注哪条课程路线？这条路线还包括哪些课？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "智能软件课程路线，还包括数值计算方法、机器学习与数据挖掘、深度学习、图机器学习、最优化理论与算法。",
+      "evidence": [
+        {
+          "source_id": "software",
+          "quote": "智能软件课程路线：数值计算方法、机器学习与数据挖掘、深度学习、图机器学习、自然语言处理、最优化理论与算法。",
+          "start": 376,
+          "end": 429,
+          "line_start": 15,
+          "line_end": 15
+        }
+      ],
+      "fact_groups": [
+        "se.smart_courses"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": ""
+      }
+    },
+    {
+      "id": "dev-35",
+      "source_id": "software",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "category": "fact",
+      "question": "软件工程学院系统架构设计课程路线包括哪些课程？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "计算机组成原理、操作系统原理、现代操作系统应用开发、并行计算与分布式系统、云计算技术、高级数据库技术。",
+      "evidence": [
+        {
+          "source_id": "software",
+          "quote": "系统架构设计课程路线：计算机组成原理、操作系统原理、现代操作系统应用开发、并行计算与分布式系统、云计算技术、高级数据库技术。",
+          "start": 480,
+          "end": 542,
+          "line_start": 17,
+          "line_end": 17
+        }
+      ],
+      "fact_groups": [
+        "se.architecture_courses"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": ""
+      }
+    },
+    {
+      "id": "dev-36",
+      "source_id": "software",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "category": "fact",
+      "question": "软件工程学院的软件工程实训分哪三个阶段？该路线还列出了什么课程？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "初级、中级、综合项目三个阶段；还包括软件质量保证。",
+      "evidence": [
+        {
+          "source_id": "software",
+          "quote": "实训课程路线：软件工程实训（初级）、软件工程实训（中级）、软件工程实训（综合项目）、软件质量保证。",
+          "start": 326,
+          "end": 375,
+          "line_start": 14,
+          "line_end": 14
+        }
+      ],
+      "fact_groups": [
+        "se.practice_courses"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": ""
+      }
+    },
+    {
+      "id": "dev-37",
+      "source_id": "software",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "category": "paraphrase",
+      "question": "软件工程学院哪条课程路线包含编译器构建和程序分析，路线里还有哪些课程？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "代码分析课程路线；还包括离散数学基础、数据结构与算法、图论及其应用、软件测试、编译原理。",
+      "evidence": [
+        {
+          "source_id": "software",
+          "quote": "代码分析课程路线：离散数学基础、数据结构与算法、图论及其应用、软件测试、编译原理、编译器构建、程序分析。",
+          "start": 543,
+          "end": 595,
+          "line_start": 18,
+          "line_end": 18
+        }
+      ],
+      "fact_groups": [
+        "se.analysis_courses"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": ""
+      }
+    },
+    {
+      "id": "dev-38",
+      "source_id": "software",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "category": "fact",
+      "question": "软件工程学院可信大模型研究中心获得了什么认定，团队规模是多少？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "获珠海市重点实验室认定，团队由近100名教师及学生组成；这不是全院教职工人数。",
+      "evidence": [
+        {
+          "source_id": "software",
+          "quote": "学院成立了可信大模型研究中心并获珠海市重点实验室认定，研究团队由近100名教师及学生组成",
+          "start": 1387,
+          "end": 1431,
+          "line_start": 41,
+          "line_end": 41
+        }
+      ],
+      "fact_groups": [
+        "se.trust_center"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": ""
+      }
+    },
+    {
+      "id": "dev-39",
+      "source_id": "software",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "category": "fact",
+      "question": "软件工程学院的可信大模型研究主要覆盖哪些方面？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "幻觉消除、可控生成、模型可解释性、鲁棒性与可靠性、数据隐私与安全、自主可控基础设施、模型可信性评估。",
+      "evidence": [
+        {
+          "source_id": "software",
+          "quote": "研究内容主要覆盖幻觉消除、可控生成、模型可解释性、鲁棒性与可靠性、数据隐私与安全、自主可控基础设施以及模型可信性评估等方面",
+          "start": 1432,
+          "end": 1493,
+          "line_start": 41,
+          "line_end": 41
+        }
+      ],
+      "fact_groups": [
+        "se.trust_research"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": ""
+      }
+    },
+    {
+      "id": "dev-40",
+      "source_id": "software",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "category": "multi_evidence",
+      "question": "按资料，软件工程学院2020—2024年累计发表多少篇论文，其中软件工程国际顶会或期刊论文多少篇？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "累计350+篇，其中软件工程国际顶级会议或期刊论文70+篇。",
+      "evidence": [
+        {
+          "source_id": "software",
+          "quote": "2020-2024年累计发表学术论文篇数350+",
+          "start": 3072,
+          "end": 3096,
+          "line_start": 95,
+          "line_end": 95
+        },
+        {
+          "source_id": "software",
+          "quote": "其中在软件工程学科领域的国际顶级会议/期刊（如ICSE、ASE、ISSTA、TOSEM、TSE）上发表论文篇数70+",
+          "start": 3097,
+          "end": 3155,
+          "line_start": 95,
+          "line_end": 95
+        }
+      ],
+      "fact_groups": [
+        "se.publications"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": ""
+      }
+    },
+    {
+      "id": "dev-41",
+      "source_id": "software",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "category": "fact",
+      "question": "2020—2024年软件工程学院教师团队共出版多少部专著？资料举了哪些书名？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "共10部，举例包括《Blockchain Intelligence》《区块链原理与技术》《开放协同的科技大数据汇聚融合与演化分析》《从区块链到 Web3》。",
+      "evidence": [
+        {
+          "source_id": "software",
+          "quote": "2020-2024年，学院教师团队共出版专著10部，包括：《Blockchain Intelligence》、《区块链原理与技术》、《开放协同的科技大数据汇聚融合与演化分析》、《从区块链到 Web3》等。",
+          "start": 3438,
+          "end": 3538,
+          "line_start": 105,
+          "line_end": 105
+        }
+      ],
+      "fact_groups": [
+        "se.books"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": ""
+      }
+    },
+    {
+      "id": "dev-42",
+      "source_id": "software",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "category": "multi_evidence",
+      "question": "软件工程学院的人才培养理念是什么，学历培养体系覆盖哪些阶段？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "以学生成长为中心；具备本科、硕士、博士完整人才培养体系。",
+      "evidence": [
+        {
+          "source_id": "software",
+          "quote": "学院始终围绕“以学生成长为中心”的培养理念",
+          "start": 2582,
+          "end": 2603,
+          "line_start": 75,
+          "line_end": 75
+        },
+        {
+          "source_id": "software",
+          "quote": "具备本、硕、博完整人才培养体系",
+          "start": 2644,
+          "end": 2659,
+          "line_start": 75,
+          "line_end": 75
+        }
+      ],
+      "fact_groups": [
+        "se.education"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": ""
+      }
+    },
+    {
+      "id": "dev-43",
+      "source_id": "software",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "category": "unanswerable",
+      "question": "软件工程学院本科生参与大学生创新创业项目的比例具体是多少？",
+      "history": [],
+      "answerable": false,
+      "reference_answer": "资料未提供软件工程学院的该比例，无法确认；90%以上是人工智能学院的数据，不能套用。",
+      "evidence": [],
+      "fact_groups": [
+        "se.unavailable_project_rate"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": ""
+      }
+    },
+    {
+      "id": "dev-44",
+      "source_id": "software",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "category": "multi_turn",
+      "question": "它的研究也涉及数据隐私吗？",
+      "history": [
+        {
+          "role": "user",
+          "content": "软件工程学院有哪些可信大模型研究机构？"
+        },
+        {
+          "role": "assistant",
+          "content": "学院成立了可信大模型研究中心并获珠海市重点实验室认定。"
+        }
+      ],
+      "answerable": true,
+      "reference_answer": "涉及，软件工程学院可信大模型研究内容包括数据隐私与安全。",
+      "evidence": [
+        {
+          "source_id": "software",
+          "quote": "研究内容主要覆盖幻觉消除、可控生成、模型可解释性、鲁棒性与可靠性、数据隐私与安全、自主可控基础设施以及模型可信性评估等方面",
+          "start": 1432,
+          "end": 1493,
+          "line_start": 41,
+          "line_end": 41
+        }
+      ],
+      "fact_groups": [
+        "se.trust_research"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": ""
+      },
+      "standalone_question": "软件工程学院可信大模型研究中心的研究是否涉及数据隐私与安全？"
+    },
+    {
+      "id": "dev-45",
+      "source_id": "software",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "category": "multi_evidence",
+      "question": "软件工程学院的整建制成立时间与计算机学院前身的设立时间分别是什么？这是否能说明计算机学院于1979年成立？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "软件工程学院于2020年6月整建制成立；计算机学院前身电子计算机科学系于1979年获批设立。不能把前身设立时间直接当成计算机学院成立时间。",
+      "evidence": [
+        {
+          "source_id": "software",
+          "quote": "2020年6月，中山大学在珠海校区整建制成立软件工程学院。",
+          "start": 0,
+          "end": 29,
+          "line_start": 1,
+          "line_end": 1
+        },
+        {
+          "source_id": "computing",
+          "quote": "前身为1979年教育部批准设立的电子计算机科学系",
+          "start": 26,
+          "end": 50,
+          "line_start": 1,
+          "line_end": 1
+        }
+      ],
+      "fact_groups": [
+        "se.founding",
+        "cs.predecessor"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": ""
+      }
+    },
+    {
+      "id": "dev-46",
+      "source_id": "computing",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "category": "fact",
+      "question": "中山大学计算机学院在哪个校区、校园，是否在广州大学城？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "在广州校区东校园，即广州大学城。",
+      "evidence": [
+        {
+          "source_id": "computing",
+          "quote": "中山大学计算机学院位于广州校区东校园（广州大学城）",
+          "start": 0,
+          "end": 25,
+          "line_start": 1,
+          "line_end": 1
+        }
+      ],
+      "fact_groups": [
+        "cs.campus"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": ""
+      }
+    },
+    {
+      "id": "dev-47",
+      "source_id": "computing",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "category": "fact",
+      "question": "计算机学院下设多少研究所，国家级和省部级科研平台各多少？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "6个研究所、8个国家级和9个省部级科研平台。",
+      "evidence": [
+        {
+          "source_id": "computing",
+          "quote": "学院下设6个研究所，拥有8个国家级、9个省部级科研平台。",
+          "start": 79,
+          "end": 107,
+          "line_start": 3,
+          "line_end": 3
+        }
+      ],
+      "fact_groups": [
+        "cs.platforms"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": ""
+      }
+    },
+    {
+      "id": "dev-48",
+      "source_id": "computing",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "category": "fact",
+      "question": "计算机学院资料列出了哪些博士学位授权点？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "计算机科学与技术一级学科博士学位授权点、计算数学学科博士学位授权点、电子信息专业博士学位授权点。",
+      "evidence": [
+        {
+          "source_id": "computing",
+          "quote": "设有计算机科学与技术一级学科博士学位授权点、计算数学学科博士学位授权点、电子信息专业博士学位授权点。",
+          "start": 126,
+          "end": 176,
+          "line_start": 5,
+          "line_end": 5
+        }
+      ],
+      "fact_groups": [
+        "cs.doctoral_points"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": ""
+      }
+    },
+    {
+      "id": "dev-49",
+      "source_id": "computing",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "category": "fact",
+      "question": "计算机学院除高性能计算和人工智能外，还重点发展哪些方向及交叉学科？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "具身智能机器人、大数据、算力网、计算机系统结构、端边云协同计算、工业计算软件、量子计算与新型计算、计算数学，以及HPC+AI高性能科学工程计算交叉学科。",
+      "evidence": [
+        {
+          "source_id": "computing",
+          "quote": "重点发展高性能计算、人工智能、具身智能机器人、大数据、算力网、计算机系统结构、端边云协同计算、工业计算软件、量子计算与新型计算、计算数学等研究方向，以及HPC+AI高性能科学工程计算交叉学科。",
+          "start": 192,
+          "end": 288,
+          "line_start": 7,
+          "line_end": 7
+        }
+      ],
+      "fact_groups": [
+        "cs.research_directions"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": ""
+      }
+    },
+    {
+      "id": "dev-50",
+      "source_id": "computing",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "category": "fact",
+      "question": "计算机学院在超算和研究生培养上构建了什么体系？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "“三思四能”超算人才培养体系、计算・AI+研究生培养体系。",
+      "evidence": [
+        {
+          "source_id": "computing",
+          "quote": "构建“三思四能”超算人才培养体系、计算・AI+研究生培养体系",
+          "start": 441,
+          "end": 471,
+          "line_start": 15,
+          "line_end": 15
+        }
+      ],
+      "fact_groups": [
+        "cs.training"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": ""
+      }
+    },
+    {
+      "id": "dev-51",
+      "source_id": "computing",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "category": "multi_evidence",
+      "question": "按资料近五年统计，计算机学院获批多少项目、到账科研经费与校企联合研究院或实验室合同经费分别多少？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "获批项目150余项，到账科研经费近10亿元，校企共建联合研究院或实验室合同经费近2亿元；两个经费口径不同。",
+      "evidence": [
+        {
+          "source_id": "computing",
+          "quote": "获批国家重大专项、重点研发、国家自然基金、省级重大重点等项目150余项、到账科研经费近10亿元",
+          "start": 885,
+          "end": 932,
+          "line_start": 27,
+          "line_end": 27
+        },
+        {
+          "source_id": "computing",
+          "quote": "校企共建联合研究院/实验室合同经费近2亿元",
+          "start": 933,
+          "end": 954,
+          "line_start": 27,
+          "line_end": 27
+        }
+      ],
+      "fact_groups": [
+        "cs.projects_funding"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": ""
+      }
+    },
+    {
+      "id": "dev-52",
+      "source_id": "computing",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "category": "fact",
+      "question": "计算机学院以第一单位发表的CCF A类和中科院一区论文与授权发明专利规模分别如何？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "该口径论文1000多篇，授权发明专利700多项。",
+      "evidence": [
+        {
+          "source_id": "computing",
+          "quote": "学院以第一单位发表中国计算机学会CCF A类和中科院一区期刊会议论文1000多篇，授权发明专利700多项。",
+          "start": 969,
+          "end": 1021,
+          "line_start": 29,
+          "line_end": 29
+        }
+      ],
+      "fact_groups": [
+        "cs.publications_patents"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": ""
+      }
+    },
+    {
+      "id": "dev-53",
+      "source_id": "computing",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "category": "fact",
+      "question": "资料称“灵晟”超级计算机何时研制，浮点精度和持续性能是什么？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "资料称2025年底联合参与研制；双精度64位浮点计算，持续性能2EFlops。",
+      "evidence": [
+        {
+          "source_id": "computing",
+          "quote": "2025年底学院教授作为总设计师带领团队联合参与研制了世界首台双精度64位浮点计算持续性能达2EFlops的“灵晟”超级计算机",
+          "start": 1057,
+          "end": 1120,
+          "line_start": 33,
+          "line_end": 33
+        }
+      ],
+      "fact_groups": [
+        "cs.lingsheng_performance"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": "最好不要使用'资料称呼'来回答问题，直接回答研制时间和性能即可。"
+      }
+    },
+    {
+      "id": "dev-54",
+      "source_id": "computing",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "category": "fact",
+      "question": "计算机学院远程眼科手术机器人使用什么通信技术，完成的远程手术距离多远？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "5G；完成2000多公里远程机器人视网膜下注射手术。",
+      "evidence": [
+        {
+          "source_id": "computing",
+          "quote": "自主研发全球首例5G远程眼科手术机器人，顺利完成2000多公里远程机器人视网膜下注射手术",
+          "start": 1165,
+          "end": 1209,
+          "line_start": 35,
+          "line_end": 35
+        }
+      ],
+      "fact_groups": [
+        "cs.eye_robot"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": ""
+      }
+    },
+    {
+      "id": "dev-55",
+      "source_id": "computing",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "category": "fact",
+      "question": "计算机学院的跨摄像头行人AI识别技术及装备，其系统产品销往多少国家？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "资料称相关系统产品远销十余国。",
+      "evidence": [
+        {
+          "source_id": "computing",
+          "quote": "自研跨摄像头行人AI识别技术与装备获多项国家发明专利，相关系统产品远销十余国",
+          "start": 1219,
+          "end": 1257,
+          "line_start": 35,
+          "line_end": 35
+        }
+      ],
+      "fact_groups": [
+        "cs.pedestrian_ai"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": "无需使用'资料称'来回答问题，直接回答远销十余国即可。"
+      }
+    },
+    {
+      "id": "dev-56",
+      "source_id": "computing",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "category": "fact",
+      "question": "计算机学院对外交流资料明确列出了哪些合作企业？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "华为、腾讯、字节跳动等。",
+      "evidence": [
+        {
+          "source_id": "computing",
+          "quote": "与华为、腾讯、字节跳动等知名企业",
+          "start": 1654,
+          "end": 1670,
+          "line_start": 47,
+          "line_end": 47
+        }
+      ],
+      "fact_groups": [
+        "cs.company_partners"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": ""
+      }
+    },
+    {
+      "id": "dev-57",
+      "source_id": "computing",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "category": "multi_turn",
+      "question": "那省部级的有几个？",
+      "history": [
+        {
+          "role": "user",
+          "content": "中山大学计算机学院有多少国家级科研平台？"
+        },
+        {
+          "role": "assistant",
+          "content": "8个。"
+        }
+      ],
+      "answerable": true,
+      "reference_answer": "计算机学院拥有9个省部级科研平台。",
+      "evidence": [
+        {
+          "source_id": "computing",
+          "quote": "学院下设6个研究所，拥有8个国家级、9个省部级科研平台。",
+          "start": 79,
+          "end": 107,
+          "line_start": 3,
+          "line_end": 3
+        }
+      ],
+      "fact_groups": [
+        "cs.platforms"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": ""
+      },
+      "standalone_question": "中山大学计算机学院有多少省部级科研平台？"
+    },
+    {
+      "id": "dev-58",
+      "source_id": "computing",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "category": "multi_evidence",
+      "question": "中山大学人工智能学院和计算机学院分别在哪里办学？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "人工智能学院在珠海校区；计算机学院在广州校区东校园（广州大学城）。",
+      "evidence": [
+        {
+          "source_id": "college",
+          "quote": "学院定位于珠海校区办学",
+          "start": 35,
+          "end": 46,
+          "line_start": 3,
+          "line_end": 3
+        },
+        {
+          "source_id": "computing",
+          "quote": "中山大学计算机学院位于广州校区东校园（广州大学城）",
+          "start": 0,
+          "end": 25,
+          "line_start": 1,
+          "line_end": 1
+        }
+      ],
+      "fact_groups": [
+        "ai.campus",
+        "cs.campus"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": ""
+      }
+    },
+    {
+      "id": "dev-59",
+      "source_id": "computing",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "category": "false_premise",
+      "question": "计算机学院在珠海校区的哪个校园？",
+      "history": [],
+      "answerable": true,
+      "reference_answer": "题目前提有误：计算机学院在广州校区东校园（广州大学城），不在珠海校区。",
+      "evidence": [
+        {
+          "source_id": "computing",
+          "quote": "中山大学计算机学院位于广州校区东校园（广州大学城）",
+          "start": 0,
+          "end": 25,
+          "line_start": 1,
+          "line_end": 1
+        }
+      ],
+      "fact_groups": [
+        "cs.campus"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": ""
+      }
+    },
+    {
+      "id": "dev-60",
+      "source_id": "computing",
+      "retrieval_source_ids": [
+        "college",
+        "university",
+        "software",
+        "computing"
+      ],
+      "category": "unanswerable",
+      "question": "中山大学计算机学院的教职工总人数是多少？",
+      "history": [],
+      "answerable": false,
+      "reference_answer": "计算机学院资料未提供总人数，无法确认；人工智能学院的44人和软件工程学院研究团队近100人不能替代。",
+      "evidence": [],
+      "fact_groups": [
+        "cs.unavailable_staff_total"
+      ],
+      "annotation_status": "human_reviewed",
+      "annotation_review": {
+        "reviewer": "sunyeu",
+        "approved": true,
+        "notes": ""
+      }
+    }
+  ],
+  "review": {
+    "reviewer": "sunyeu",
+    "recorded_on": "2026-10-10",
+    "scope": "questions_reference_answers_and_evidence",
+    "confirmation": "60题在用户修改的文件中均填写 approved=yes；不包含模型生成答案评分。"
+  }
+}

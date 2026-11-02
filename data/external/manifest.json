@@ -1,0 +1,33 @@
+{
+  "chen700564/RGB": {
+    "revision": "65ec39e40e7dc9abb50e9bf1b4f32be3f6f16615"
+  },
+  "baidu/DuReader": {
+    "revision": "c625076b06da8f56d59f19c41c73bd580a98a347"
+  },
+  "zh_refine.json": {
+    "url": "https://raw.githubusercontent.com/chen700564/RGB/65ec39e40e7dc9abb50e9bf1b4f32be3f6f16615/data/zh_refine.json",
+    "sha256": "7a5c7547dcfa1b83429b53a41644453508f820f502d3817312cbf8051afb4563",
+    "bytes": 3893494
+  },
+  "zh_int.json": {
+    "url": "https://raw.githubusercontent.com/chen700564/RGB/65ec39e40e7dc9abb50e9bf1b4f32be3f6f16615/data/zh_int.json",
+    "sha256": "e2ddb0461e2130f4b006996a574a89d5898989ff8b15f51d900c17162c7d1b17",
+    "bytes": 3024012
+  },
+  "dureader_checklist.dataset.tar.gz": {
+    "url": "https://dataset-bj.cdn.bcebos.com/lic2021/dureader_checklist.dataset.tar.gz",
+    "sha256": "d51553cfe1e025f8706e40417da065cbd097240ab2bf99077744489ada0e0ede",
+    "bytes": 1636803
+  },
+  "dureader_dev.json": {
+    "archive_member": "dataset/dev.json",
+    "sha256": "bd100d8f5326361f51be2bfbf2242417fe659ef23b0173bbbd72625fb0d68c7e",
+    "bytes": 1543035
+  },
+  "DuReader-License.docx": {
+    "archive_member": "dataset/License.docx",
+    "sha256": "78ddb91ccae9b0bad5976a58f97510333e91d33090f77393cc334a76f84a507d",
+    "bytes": 49303
+  }
+}

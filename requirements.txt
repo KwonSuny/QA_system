@@ -1,4 +1,4 @@
-# Web 运行依赖和核心 RAG 组件；PyTorch 请按硬件选择对应构建。
+# Runtime dependencies; install a hardware-matched PyTorch build separately.
 -r requirements-web.txt
 chromadb>=0.6,<2
 transformers>=4.49,<5

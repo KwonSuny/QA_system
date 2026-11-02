@@ -1,31 +1,46 @@
 # QASystem：基于证据的多用户知识库问答系统
 
-基于 FastAPI 的中文 RAG 应用，支持多用户知识库、多轮对话、TXT / Markdown / DOCX / PDF 导入，以及本地或云端生成、独立的本地或在线嵌入。回答保留来源归属和可展开引用，并通过结构、原文与语义检查减少张冠李戴、无依据回答和漏答。
+FastAPI 中文 RAG 应用，支持多用户知识库、多轮对话、TXT / Markdown / DOCX / PDF 导入、本地或云端生成，以及每库独立的本地/在线嵌入配置。系统保留文档归属与引用证据，结合检索、规划、生成和核验，支持拒答、部分回答、分析结论及按需联网。
 
-适用于 RAG 学习、课程项目进阶和受控环境中的原型验证，不是面向公网的生产部署方案。
 
-## 功能与技术
+## 项目结构
 
-| 能力 | 实现 |
-| --- | --- |
-| 多用户与隔离 | FastAPI、SQLAlchemy、SQLite；账号、知识库、会话及 API 配置按用户隔离 |
-| 知识库 | ChromaDB 向量索引；保留文档、标题、章节与来源边界，支持多个知识库管理和融合 |
-| 混合检索 | 本地 BGE 或 OpenAI 兼容在线嵌入，向量检索与中文 BM25 通过 RRF 融合 |
-| 多轮问答 | 结合对话历史消解指代、改写追问、拆分需求；历史只用于理解问题，不充当事实证据 |
-| 答案生成 | 事实引用连续原文；分析结论关联已核验前提；支持部分回答、拒答和最多一轮补检 |
-| 来源选择 | 严格知识库模式；智能补充模式可结合知识库、稳定通识和 Tavily 网页搜索 |
-| 文件读取 | python-docx、pypdf 提取文本；保留表格/章节或 PDF 页码线索 |
-| 前端与流式交互 | 原生 HTML / CSS / JavaScript；SSE 返回阶段状态与经核验的回答 |
-| 凭据保护 | PBKDF2-SHA256 密码哈希、Fernet 加密保存 API Key |
-| 评测 | 检索指标、人工答案评分、API 重放与核心回归测试 |
+```text
+.
+├── app/
+│   ├── api/           # FastAPI 路由、认证依赖与 SSE
+│   ├── core/          # SQLite 模型、认证与密钥加密
+│   ├── knowledge/     # 文档解析、知识库、向量化与网页搜索
+│   ├── llm/           # 本地及 OpenAI 兼容生成后端
+│   ├── rag/           # 严格证据流程与智能来源路由
+│   ├── services/      # 会话与消息持久化
+│   ├── evaluation/    # 评测、公开数据转换及检索实验工具
+│   └── static/        # HTML / CSS / JavaScript
+├── data/              # 学院/学校资料及公开基准所需派生文本
+├── evaluation/        # 已审核题集、留出集与虚构开发诊断集
+├── tests/             # 项目全部 8 个 unittest 模块
+├── docs/              # 架构图与 RAG 流程图
+├── requirements*.txt
+├── .gitignore
+└── README.md
+```
 
-默认受控流程通常调用模型 3 次，补检后最多 5 次；智能补充模式另有独立预算。受控流程会等待核验后再返回答案，首字延迟高于单次生成。核验与生成使用同一模型，不能视为独立事实裁判。
+Python 模块按职责归类，目录和文件名均使用小写 `snake_case`。应用数据、静态资源和评测数据放在项目根的独立目录；运行路径由代码位置解析，不依赖当前启动目录。
 
-## 快速开始
+## 技术与主要流程
 
-### 1. 环境与依赖
+- **后端与存储**：FastAPI、SQLAlchemy、SQLite、ChromaDB、SSE。
+- **检索与生成**：本地 BGE、OpenAI 兼容在线嵌入、中文 BM25 + RRF、Transformers 本地生成、OpenAI SDK 云端生成。
+- **文件与安全**：python-docx、pypdf、PBKDF2-SHA256、Fernet；用户、知识库、会话和 API 配置隔离。
+- **回答流程**：历史消解指代与需求规划 → 按授权来源检索 → 带证据生成 → 结构、引用及语义核验 → 最多一轮补检。
+- **来源模式**：严格知识库模式；智能补充模式可结合本地库、稳定通识和 Tavily 网页证据。明确要求“只根据知识库”或“不要联网”会限制来源。
+- **引用显示**：知识库 `[K1]` 与网页 `[W1]` 分开展示；未经核验的搜索结果不会作为答案引用。
 
-推荐 Python 3.12。先创建虚拟环境：
+
+
+## 安装与运行
+
+推荐 Python 3.12。请在项目根目录创建独立虚拟环境：
 
 ```powershell
 python -m venv .venv
@@ -33,110 +48,101 @@ python -m venv .venv
 python -m pip install --upgrade pip
 ```
 
-Linux / macOS 激活命令为 `source .venv/bin/activate`。
-
-PyTorch 体积较大，请按 CPU / CUDA 硬件从 [PyTorch 安装页面](https://pytorch.org/get-started/locally/)选择安装命令。然后安装项目依赖：
+Linux / macOS 使用 `source .venv/bin/activate` 激活。PyTorch 体积较大，请先从 [PyTorch 安装页面](https://pytorch.org/get-started/locally/)选择适配 CPU 或 CUDA 的构建，再安装项目依赖：
 
 ```bash
 python -m pip install -r requirements.txt
 ```
 
-若使用测试依赖，可执行 `python -m pip install -r requirements-dev.txt`。依赖文件不包含模型权重。
-
-### 2. 配置管理员并启动
-
-应用不会自动读取 `.env`。首次启动前，在当前终端设置管理员账号与强密码：
+首次启动前配置管理员账号和强密码。应用不会自动读取 `.env`：
 
 ```powershell
 # Windows PowerShell
 $env:APP_ADMIN_USER = "admin"
 $env:APP_ADMIN_PASSWORD = "替换为强密码"
-python -m uvicorn server:app --host 127.0.0.1 --port 8000
+python -m uvicorn app.api.server:app --host 127.0.0.1 --port 8000
 ```
 
 ```bash
 # Linux / macOS
 export APP_ADMIN_USER=admin
 export APP_ADMIN_PASSWORD='替换为强密码'
-python -m uvicorn server:app --host 127.0.0.1 --port 8000
+python -m uvicorn app.api.server:app --host 127.0.0.1 --port 8000
 ```
 
-访问 <http://127.0.0.1:8000>。首次启动会创建本地数据库并把 `data/aidata.txt` 导入为管理员的默认知识库。`data/` 包含软件工程学院、计算机学院、人工智能学院与中山大学的公开资料快照；`evaluation/seed.json` 与其配套资料则是虚构的开发诊断集。
+访问 <http://127.0.0.1:8000>。首次启动会创建 `kb_store/` 并将 `data/aidata.txt` 导入管理员的默认知识库。管理员变量仅在创建首个管理员时生效；未配置时默认账号为 `admin / admin123`，仅限本地试用，首次使用后应立即改密。默认嵌入和生成模型分别是 `BAAI/bge-small-zh-v1.5` 与 `Qwen/Qwen2.5-1.5B-Instruct`；可用 `LOCAL_EMBEDDING_MODEL`、`LOCAL_LLM_MODEL` 指向本地权重，缺少权重时可能从 Hugging Face 下载。
 
-管理员环境变量仅在创建首个管理员时生效；若已有管理员，需要通过应用内管理功能修改密码。首次启动默认管理员账号为 `admin / admin123`，仅适用于本地试用，应立即更改。
+如只用在线嵌入且不希望启动时载入默认本地知识库，可在启动前设置 `APP_SEED_DEFAULT_KB=0`。生成 API、Tavily 搜索及在线嵌入配置在应用内分别管理；使用在线嵌入需显式确认文本外发。
 
-### 3. 准备模型
+## 功能使用
 
-默认嵌入模型为 `BAAI/bge-small-zh-v1.5`，默认生成模型为 `Qwen/Qwen2.5-1.5B-Instruct`。模型查找顺序为环境变量、项目 `models/` / `model/` 目录，最后回退到 Hugging Face 模型 ID。缺少本地权重时可能联网下载。
+### 账号与知识库
 
-```powershell
-$env:LOCAL_EMBEDDING_MODEL = "D:\models\bge-small-zh-v1.5"
-$env:LOCAL_LLM_MODEL = "D:\models\Qwen2.5-1.5B-Instruct"
-```
+首次启动后使用管理员账号登录。若启动前设置了 `APP_ADMIN_USER` 和 `APP_ADMIN_PASSWORD`，使用对应值；未设置时初始账号为 `admin / admin123`。普通用户可在登录页注册，注册后拥有独立的知识库、模型配置和对话记录。
 
-也可登录后配置 OpenAI 兼容的生成 API。生成与嵌入配置相互独立；在线嵌入会将文档正文及查询发送到所配置服务，界面会要求确认。在线生成会发送问题、必要对话历史与本轮检索证据。
+左侧“知识库”区域点击 **＋** 创建知识库，填写名称和简介，再粘贴正文或选择 TXT、Markdown、DOCX、PDF 文件。创建后选择知识库即可开始提问。点击知识库卡片上的编辑按钮可更新名称、简介或正文；删除会同时移除该库的索引和资料，且无法撤销。
 
-## 来源与引用
+需要联合查询多个库时，点击知识库区域的融合按钮，至少选择两个知识库并为新库命名。融合会创建一个新的知识库，原库默认保留；新库会保留来源标记，便于答案引用溯源。
 
-- “严格知识库”仅按选定知识库回答，证据不足时拒答。
-- “智能补充”可以选择知识库、稳定通识或受控网页搜索。明确要求“只根据知识库”会覆盖智能路由；“不要联网”会阻止搜索。
-- 知识库引用使用 `[K1]`，网页引用使用 `[W1]`；通识回答标明未经过外部资料核验。
-- 网页搜索需在“检索与联网”配置 Tavily Key 并启用联网。只发送必要的公开检索词，不发送知识库正文；网页内容不会自动导入知识库。
-- 网页检索结果与实际答案引用分开展示；未被核验的搜索摘录不会伪装成事实引用。
-- 在线嵌入配置按知识库隔离。更换嵌入模型需要显式重建索引；新索引成功后才切换，失败时保留原索引。
+### 配置回答模型、嵌入和联网
 
-每个知识库可以单独选择本地或在线嵌入模型。在线服务须兼容 OpenAI `/embeddings` 接口。当前不支持供应商专用 `input_type` 或多模态嵌入协议。
+- **回答模型**：点击右上角“我的 API”→“添加配置”，填写服务名称、OpenAI 兼容 Base URL、模型名和 API Key。保存后在顶部“模型”下拉框选择该配置；选择“本地模型”则使用本机已准备好的生成模型。API 配置属于当前账号。
+- **嵌入模型**：点击“检索与联网”添加在线嵌入配置，填写 Base URL、模型名和 Key，可按服务要求指定向量维度及批量大小。创建或融合知识库时可选择该配置，并确认允许发送文本。已有库更换嵌入配置时，先保存正文，再点击“按所选配置重建索引”；只有新索引成功后才会切换。
+- **网页搜索**：在“检索与联网”填写 Tavily API Key 并保存。每次问答还需选择“智能补充”并勾选“允许联网”才会搜索。搜索服务会收到必要的问题和公开检索词，不会收到知识库正文；网页结果只用于当前回答，不会自动写入知识库。
 
-## 文档导入
+在线生成会将问题、必要的对话历史和本轮检索证据发送给所选模型；在线嵌入会将知识库正文及查询发送给所选嵌入服务。请只配置你允许使用的服务，并留意服务费用。
 
-支持 `.txt`、`.md`、`.text`、`.docx` 和文本型 `.pdf`。DOCX 提取正文段落和表格，不做图片 OCR；PDF 提取文字层并记录物理页码，扫描 PDF 需先自行 OCR。复杂多栏、公式和表格可能影响抽取顺序，导入后请检查内容。上传原始二进制文件不会保留，解析后文本存入本地运行目录。
+### 提问、来源模式与引用
 
-将多份资料合并导入时，可用以下标题标识来源：
+1. 选择左侧知识库，在顶部“来源”选择“严格知识库”，输入问题并按 Enter 发送（Shift+Enter 换行）。顶部“片段”设置检索数量 Top-K，默认 4；“温度”控制生成随机度。
+2. 严格模式仅根据所选知识库作答；证据不足时可能拒答。追问可直接结合当前对话历史理解指代，但历史内容本身不会作为新事实证据。
+3. “智能补充”可结合已选知识库、稳定通识和网页搜索；也可不选择知识库，直接询问通用问题。要联网时还需单独勾选“允许联网”。“只根据知识库”会限制为知识库来源，“不要联网”会阻止网页搜索。
+4. 回答下方可展开引用查看实际采用的资料片段：`[K1]` 等表示知识库来源，`[W1]` 等表示网页来源。未作为依据的搜索结果会与已引用来源分开展示；通识回答会标记为“未经外部资料核验”。请结合原文核对重要结论。
 
-```markdown
-# 来源文档：甲研究所
-甲研究所资料……
+左侧“历史对话”会保存已提交的问答。点击 **＋** 或“清空对话”会切换到新的空白对话视图，原对话仍保留在历史列表中；选择历史项可继续查看或追问，也可重命名或删除。删除历史对话不可撤销。
 
-# 来源文档：乙研究所
-乙研究所资料……
-```
+管理员可通过“用户管理”查看用户和资源概况、创建用户、重置密码或删除用户。删除用户会一并删除其知识库、对话和配置，请谨慎操作。
 
-## 评测与回归
+## 资料与评测
 
-发布包带有 12 道虚构机构诊断题及两份虚构资料，覆盖来源归属、跨资料比较、追问、分析和拒答。标注状态为助手草稿，适合演示和修改评测流程，不是已审核基准，也不代表模型准确率。`data/` 另包含四份公开学校/学院资料，供默认知识库及手动导入使用；它们未被混入虚构评测集。
+`data/` 包含四份公开学校/学院资料和 RGB / DuReader-Checklist 派生文本。`evaluation/` 包含已审核开发题与留出题、12 道虚构推理诊断题，以及外部数据集派生评测题。题集保持独立，留出集不可用于调参。第三方数据许可与来源说明见 `data/external/dureader_license.txt` 及 `evaluation/external/` 内的说明文件；请勿超出原许可范围使用。
+
+校验默认已审核数据或虚构诊断集，不调用模型：
 
 ```bash
-# 校验发布包附带的虚构评测资料，不调用模型 API
-python -B rag_evaluation.py validate
+python -B -m app.evaluation.rag_evaluation validate
+python -B -m app.evaluation.rag_evaluation validate --dataset evaluation/reasoning_development.json
+```
 
-# 93 项核心回归测试；模型/API 使用测试替身
+安装测试依赖并运行完整回归：
+
+```bash
+python -m pip install -r requirements-dev.txt
 python -B -m unittest discover -s tests -v
 ```
 
-检索基线可用 `rag_evaluation.py run --help` 查看参数；调用在线模型的受控评测会产生 API 费用。答案评分分别记录正确性、上下文支持度和拒答状态；检索命中不能替代答案质量评测。
+当前 8 个模块共 135 个测试，模型与 API 使用测试替身；覆盖来源规划、引用核验、文档解析、嵌入配置、数据集转换、评测流程和检索实验。若运行环境禁止创建 Windows asyncio socketpair，可设置 `QASYSTEM_SKIP_HTTP_CLIENT_TESTS=1` 跳过两项 HTTP 客户端集成测试；其他测试不受影响。测试通过不等于真实模型回答质量或泛化能力已验证。T2Retrieval 的 Parquet 文件未随包分发；运行对应实验需自行准备数据并安装 `pyarrow`。
 
-## 项目结构
+受控 API 评测可能产生费用，参数可用以下命令查看：
 
-```text
-.
-├── server.py                 # FastAPI 接口、认证、SSE
-├── agentic_pipeline.py       # 智能来源规划与网页/通识补充
-├── rag_pipeline.py           # 需求规划、来源约束、生成、核验与补检
-├── kb_service.py             # 知识库管理、切分、向量与混合检索
-├── embedding_service.py      # 在线嵌入配置与协议校验
-├── web_search.py             # Tavily 搜索与网页证据快照
-├── document_reader.py        # TXT / Markdown / DOCX / PDF 解析
-├── db.py / auth.py / crypto.py
-├── static/                   # 原生 Web 前端
-├── data/                    # 四份公开学校/学院资料快照
-├── evaluation/               # 虚构诊断题与资料
-├── tests/                    # 核心回归测试
-├── requirements*.txt         # 运行和测试依赖
-└── kb_store/                 # 首次运行创建的数据库、向量和本地资料
+```bash
+python -m app.evaluation.rag_evaluation --help
+python -m app.evaluation.retrieval_experiments --help
 ```
 
-## 安全与适用边界
+## 文档读取与来源格式
 
-默认仅监听 `127.0.0.1`，适合本地或可信网络原型。公开部署前还需完善 HTTPS、注册和调用限流、服务端 API 地址访问控制及登录凭证保护。浏览器登录 token 保存在 `localStorage`。不要将 API Key、`kb_store/`、模型权重、真实用户资料或私有知识库提交到 Git。
+支持 `.txt`、`.md`、`.text`、`.docx` 与文本型 `.pdf`。DOCX 提取段落和表格但不识别图片；PDF 提取文字层并保留页码，扫描件需先 OCR。复杂多栏、公式或表格可能导致顺序不准，入库前请检查。上传二进制文件不长期留存，解析文本保存至本机运行目录。
 
-本项目代码尚未附带开源许可证；公开展示不等于授予复用授权。依赖库和模型各自遵循其许可证，使用前请分别确认。
+合并多来源材料时用标题标识来源：
+
+```markdown
+# 来源文档：甲
+甲资料……
+
+# 来源文档：乙
+乙资料……
+```
+
+默认监听 `127.0.0.1`。公开部署前需完善 HTTPS、限流、注册防护、服务端 API 地址访问控制及登录凭证保护。浏览器登录 token 使用 `localStorage`。
+

@@ -13,7 +13,7 @@ class SourceUITests(unittest.TestCase):
         node = shutil.which('node')
         if not node:
             self.skipTest('Node.js 不可用')
-        source = (Path(__file__).resolve().parents[1]/'static'/'app.js').read_text(encoding='utf-8-sig')
+        source = (Path(__file__).resolve().parents[1]/'app'/'static'/'app.js').read_text(encoding='utf-8-sig')
         functions = '\n'.join(re.search(r'(?:async )?function '+name+r'\([^\n]*\) \{[\s\S]*?\n\}', source).group()
                               for name in ['selectConversation', 'updateSourceMode'])
         program = r'''
@@ -43,7 +43,7 @@ eval(FUNCTIONS);
         node = shutil.which('node')
         if not node:
             self.skipTest('Node.js 不可用')
-        source = (Path(__file__).resolve().parents[1]/'static'/'app.js').read_text(encoding='utf-8-sig')
+        source = (Path(__file__).resolve().parents[1]/'app'/'static'/'app.js').read_text(encoding='utf-8-sig')
         names = ['escapeHtml', 'appendSources', 'appendSourceGroup', 'safeSourceUrl', 'appendAnswerMetadata', 'appendSearchResults']
         functions = '\n'.join(re.search(r'function '+name+r'\([^\n]*\) \{[\s\S]*?\n\}', source).group() for name in names)
         program = r'''
@@ -87,7 +87,7 @@ assert.equal(resultItem.children.length,0);
         self.assertEqual(result.returncode, 0, result.stderr)
 
     def test_all_literal_element_references_exist(self):
-        root = Path(__file__).resolve().parents[1]/'static'
+        root = Path(__file__).resolve().parents[1]/'app'/'static'
         js = (root/'app.js').read_text(encoding='utf-8-sig')
         html = (root/'index.html').read_text(encoding='utf-8-sig')
         refs = set(re.findall(r"\$\('([^']+)'\)", js))
